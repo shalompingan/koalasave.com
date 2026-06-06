@@ -1,0 +1,2194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-05GKEP7NNY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-05GKEP7NNY');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Savings Goal Calculator — Free Tracker &amp; Planner | KoalaSave</title>
+    <meta name="description" id="pageDescription" content="Track your savings goals with interactive charts and visual progress. Free savings calculator for emergency fund, vacation, down payment, and more.">
+    <link rel="canonical" id="canonicalLink" href="https://koalasave.com/">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <!-- Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- ─── Open Graph / Social Share ─── -->
+    <meta property="og:title" content="🛡️ Koala's Safety Net — Free Emergency Fund Calculator | KoalaSave" id="ogTitle">
+    <meta property="og:description" content="Build your rainy day fund like a koala. Free interactive savings calculator with progress charts. Start your emergency fund today." id="ogDescription">
+    <meta property="og:image" content="https://koalasave.com/share-cover.png" id="ogImage">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://koalasave.com/" id="ogUrl">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="KoalaSave">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" id="twitterCard">
+    <meta name="twitter:title" content="🛡️ Koala's Safety Net — Free Emergency Fund Calculator | KoalaSave" id="twitterTitle">
+    <meta name="twitter:description" content="Build your rainy day fund like a koala. Free interactive savings calculator with progress charts. Start your emergency fund today." id="twitterDescription">
+    <meta name="twitter:image" content="https://koalasave.com/share-cover.png" id="twitterImage">
+
+    <script type="application/ld+json" id="schemaJson">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "KoalaSave Savings Goal Calculator",
+        "url": "https://koalasave.com/",
+        "description": "Free interactive savings calculator with progress tracking, charts, and multiple goal support.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <style>
+        :root {
+            --body-gradient-start: #f0f4f8;
+            --body-gradient-end: #e6edf5;
+            --header-gradient-start: #1e3a5f;
+            --header-gradient-mid: #2563eb;
+            --header-gradient-end: #3b82f6;
+            --header-shadow: rgba(37,99,235,.2);
+            --nav-bg: rgba(30, 58, 95, 0.95);
+            --btn-primary-bg: #2563eb;
+            --btn-primary-hover: #1d4ed8;
+            --btn-primary-shadow: rgba(37,99,235,.3);
+            --btn-success-bg: #059669;
+            --btn-success-hover: #047857;
+            --btn-success-shadow: rgba(5,150,105,.3);
+            --input-focus-border: #2563eb;
+            --input-focus-shadow: rgba(37,99,235,.1);
+            --ring-fg: #10b981;
+            --ring-shadow: rgba(16,185,129,.15);
+            --stat-blue: #2563eb;
+            --stat-green: #059669;
+            --stat-orange: #d97706;
+            --slider-thumb-bg: #2563eb;
+            --slider-thumb-shadow: rgba(37,99,235,.35);
+            --slider-bg-start: #dbeafe;
+            --slider-bg-end: #93c5fd;
+            --impact-bg-start: #eff6ff;
+            --impact-bg-end: #f8fafc;
+            --impact-border: #e0e7ff;
+            --impact-value-color: #1e40af;
+            --extra-value-bg: #eff6ff;
+            --extra-value-color: #2563eb;
+            --goal-hover-border: #2563eb;
+            --goal-hover-shadow: rgba(37,99,235,.1);
+            --goal-active-border: #2563eb;
+            --goal-active-shadow: rgba(37,99,235,.12);
+            --goal-progress-bg: #10b981;
+            --faq-hover-color: #2563eb;
+            --share-focus-border: #93c5fd;
+            --share-focus-shadow: rgba(37,99,235,.1);
+            --share-input-focus-border: #2563eb;
+            --footer-link-hover: #2563eb;
+            --chart-line-color: #2563eb;
+            --chart-line-bg: rgba(37,99,235,.08);
+            --chart-extra-color: #10b981;
+            --chart-extra-bg: rgba(16,185,129,.08);
+            --link-main-bg-start: #dbeafe;
+            --link-main-bg-end: #bfdbfe;
+            --link-main-color: #1e40af;
+            --link-travel-bg-start: #fef3c7;
+            --link-travel-bg-end: #fde68a;
+            --link-travel-color: #92400e;
+            --link-housing-bg-start: #d1fae5;
+            --link-housing-bg-end: #a7f3d0;
+            --link-housing-color: #065f46;
+            --affiliate-bg-start: #eff6ff;
+            --affiliate-bg-end: #f8fafc;
+            --affiliate-heading-color: #1e40af;
+            --affiliate-text-color: #1e3a5f;
+            --affiliate-btn-bg: #2563eb;
+            --affiliate-btn-hover: #1d4ed8;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--body-gradient-start) 0%, var(--body-gradient-end) 100%);
+            color: #1e293b;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* ─── Nav ─── */
+        .site-nav {
+            background: var(--nav-bg);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .nav-logo {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .nav-links { display: flex; gap: 4px; }
+        .nav-links a {
+            color: rgba(255,255,255,.7);
+            text-decoration: none;
+            font-size: .82rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: background .2s, color .2s;
+        }
+        .nav-links a:hover { background: rgba(255,255,255,.12); color: #fff; }
+        .nav-links a.active { background: rgba(255,255,255,.14); color: #fff; }
+
+        /* ─── Header ─── */
+        header {
+            background: linear-gradient(135deg, var(--header-gradient-start) 0%, var(--header-gradient-mid) 50%, var(--header-gradient-end) 100%);
+            color: #fff;
+            padding: 40px 0 36px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 20px var(--header-shadow);
+        }
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0; right: 0;
+            height: 40px;
+            background: linear-gradient(135deg, var(--body-gradient-start) 0%, var(--body-gradient-end) 100%);
+            clip-path: ellipse(50% 100% at 50% 100%);
+        }
+        header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.5px; }
+        header p { font-size: 1rem; opacity: .85; margin-top: 6px; }
+
+        /* ─── Cards ─── */
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,.06), 0 10px 24px -4px rgba(0,0,0,.06);
+            padding: 28px;
+            margin-bottom: 28px;
+            transition: box-shadow .25s;
+        }
+        .card:hover { box-shadow: 0 6px 12px -2px rgba(0,0,0,.08), 0 12px 28px -6px rgba(0,0,0,.06); }
+        .card h2 {
+            font-size: 1.1rem; font-weight: 600; color: #0f172a;
+            margin-bottom: 18px; display: flex; align-items: center; gap: 8px;
+        }
+        .card h2 .icon { font-size: 1.25rem; }
+
+        /* ─── Form ─── */
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .form-grid .full { grid-column: 1 / -1; }
+        .form-group { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+        .form-group label { font-size: .82rem; font-weight: 600; color: #334155; }
+        .form-group input {
+            padding: 11px 14px; border: 1.5px solid #e2e8f0; border-radius: 10px;
+            font-size: .95rem; outline: none; font-family: inherit;
+            width: 100%; min-width: 0; background: #fafbfc;
+            transition: border-color .2s, box-shadow .2s;
+        }
+        .form-group input:focus {
+            border-color: var(--input-focus-border); box-shadow: 0 0 0 4px var(--input-focus-shadow); background: #fff;
+        }
+        .form-group .hint { font-size: .75rem; color: #94a3b8; }
+
+        /* ─── Tool Row ─── */
+        .tool-row {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 24px;
+            align-items: stretch;
+            margin-bottom: 28px;
+        }
+        .tool-row > .card { margin-bottom: 0; height: 100%; }
+        .tool-row > :first-child { display: flex; flex-direction: column; height: 100%; }
+        .tool-row > :first-child .form-grid { flex: 1; align-content: space-evenly; }
+        .progress-card {
+            margin-bottom: 0; flex: 1; display: flex;
+            flex-direction: column; justify-content: center;
+        }
+
+        /* ─── Progress Ring ─── */
+        .progress-wrap { display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: center; }
+        .ring-container { position: relative; display: flex; align-items: center; justify-content: center; }
+        .ring-container svg {
+            width: 160px; height: 160px; transform: rotate(-90deg);
+            display: block; filter: drop-shadow(0 2px 4px var(--ring-shadow));
+        }
+        .ring-container .ring-bg { fill: none; stroke: #e2e8f0; stroke-width: 10; }
+        .ring-container .ring-fg {
+            fill: none; stroke: var(--ring-fg); stroke-width: 10;
+            stroke-linecap: round; transition: stroke-dashoffset .8s cubic-bezier(.4,0,.2,1);
+        }
+        .ring-container .center-label { font-size: 2.1rem; font-weight: 800; color: #0f172a; line-height: 1.2; }
+        .ring-label {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex; flex-direction: column; align-items: center; pointer-events: none;
+        }
+
+        /* ─── Stats ─── */
+        .stats-row {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 12px; margin-top: 18px; padding-top: 18px; border-top: 1px solid #eef2f6;
+        }
+        .stat-box {
+            background: #f8fafc; border-radius: 12px; padding: 16px 12px;
+            text-align: center; border: 1px solid transparent;
+            transition: background .2s, border-color .2s, transform .2s;
+        }
+        .stat-box:hover { background: #f1f5f9; border-color: #e2e8f0; transform: translateY(-1px); }
+        .stat-box .stat-value { font-size: 1.35rem; font-weight: 700; color: #0f172a; line-height: 1.3; }
+        .stat-box .stat-label { font-size: .75rem; color: #64748b; margin-top: 3px; font-weight: 500; }
+        .stat-box .stat-value.green { color: var(--stat-green); }
+        .stat-box .stat-value.orange { color: var(--stat-orange); }
+        .stat-box .stat-value.blue { color: var(--stat-blue); }
+
+        /* ─── What-If Slider ─── */
+        .slider-wrap { margin-top: 6px; }
+        .slider-wrap .slider-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .slider-wrap .slider-header label { font-weight: 600; font-size: .9rem; color: #334155; }
+        .slider-wrap .slider-header .extra-value {
+            font-weight: 700; font-size: 1.05rem; color: var(--extra-value-color);
+            background: var(--extra-value-bg); padding: 2px 12px; border-radius: 20px;
+        }
+        input[type="range"] {
+            width: 100%; height: 6px; -webkit-appearance: none; appearance: none;
+            background: linear-gradient(90deg, var(--slider-bg-start), var(--slider-bg-end)); border-radius: 4px; outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none; width: 22px; height: 22px;
+            background: var(--slider-thumb-bg); border-radius: 50%; cursor: pointer;
+            box-shadow: 0 2px 6px var(--slider-thumb-shadow); transition: transform .15s;
+        }
+        .slider-impact { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+        .impact-box {
+            background: linear-gradient(135deg, var(--impact-bg-start) 0%, var(--impact-bg-end) 100%);
+            border-radius: 12px; padding: 14px 12px; text-align: center; border: 1px solid var(--impact-border);
+        }
+        .impact-box .impact-value { font-size: 1.15rem; font-weight: 700; color: var(--impact-value-color); }
+        .impact-box .impact-label { font-size: .72rem; color: #64748b; margin-top: 2px; }
+
+        /* ─── Chart ─── */
+        .chart-wrap { position: relative; height: 300px; }
+
+        /* ─── Buttons ─── */
+        .btn-row { display: flex; gap: 12px; margin-top: 26px; width: 100%; }
+        .btn-row .btn { flex: 1; }
+        .btn {
+            padding: 11px 22px; border: none; border-radius: 10px; font-size: .88rem;
+            font-weight: 600; cursor: pointer; font-family: inherit; width: 100%;
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+            transition: background .2s, transform .1s, box-shadow .2s;
+        }
+        .btn:active { transform: scale(.97); }
+        .btn-primary { background: var(--btn-primary-bg); color: #fff; }
+        .btn-primary:hover { background: var(--btn-primary-hover); box-shadow: 0 4px 12px var(--btn-primary-shadow); }
+        .btn-secondary { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
+        .btn-secondary:hover { background: #e2e8f0; }
+        .btn-success { background: var(--btn-success-bg); color: #fff; }
+        .btn-success:hover { background: var(--btn-success-hover); box-shadow: 0 4px 12px var(--btn-success-shadow); }
+        .btn-danger { background: #fee2e2; color: #dc2626; }
+        .btn-danger:hover { background: #fecaca; }
+        .btn-sm { padding: 7px 14px; font-size: .8rem; border-radius: 8px; }
+
+        /* ─── Saved Goals ─── */
+        #goalsList { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+        .goal-item {
+            background: #fff; border: 1.5px solid #e2e8f0; border-radius: 12px;
+            padding: 16px; cursor: pointer; position: relative;
+            transition: border-color .2s, box-shadow .2s, transform .2s;
+        }
+        .goal-item:hover { border-color: var(--goal-hover-border); box-shadow: 0 4px 12px var(--goal-hover-shadow); transform: translateY(-1px); }
+        .goal-item .goal-name { font-weight: 600; font-size: .9rem; color: #0f172a; }
+        .goal-item .goal-progress { font-size: .8rem; color: #64748b; margin-top: 3px; }
+        .goal-item .goal-delete {
+            position: absolute; top: 6px; right: 8px; background: none; border: none;
+            color: #94a3b8; cursor: pointer; font-size: 1rem; padding: 2px 6px; border-radius: 6px;
+        }
+        .goal-item .goal-delete:hover { background: #fee2e2; color: #dc2626; }
+        .goal-active { border-color: var(--goal-active-border) !important; box-shadow: 0 0 0 3px var(--goal-active-shadow) !important; }
+        .goal-progress-bar { height: 100%; background: var(--goal-progress-bg); border-radius: 4px; transition: width .4s; }
+
+        /* ─── FAQ ─── */
+        .faq-item { border-bottom: 1px solid #eef2f6; padding: 16px 0; }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-q {
+            font-weight: 600; color: #0f172a; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: .95rem; transition: color .2s;
+        }
+        .faq-q:hover { color: var(--faq-hover-color); }
+        .faq-q::after { content: '+'; font-size: 1.2rem; color: #94a3b8; }
+        .faq-q.open::after { content: '\2212'; }
+        .faq-a {
+            color: #475569; font-size: .9rem; line-height: 1.7; padding-right: 24px;
+            max-height: 0; overflow: hidden; opacity: 0; margin-top: 0;
+            transition: max-height .35s cubic-bezier(0.4,0,0.2,1), opacity .25s ease, margin-top .25s ease;
+        }
+        .faq-a.open { max-height: 150px; opacity: 1; margin-top: 10px; }
+
+        /* ─── Toast ─── */
+        .toast {
+            position: fixed; bottom: 28px; left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: #0f172a; color: #fff; padding: 14px 28px; border-radius: 12px;
+            font-size: .88rem; opacity: 0; pointer-events: none; z-index: 999;
+            box-shadow: 0 8px 24px rgba(0,0,0,.2);
+            transition: opacity .3s, transform .3s;
+        }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        /* ─── Footer ─── */
+        footer {
+            text-align: center; padding: 32px 0 28px;
+            background: transparent; border: none;
+            font-size: .82rem; margin-top: 20px;
+        }
+        footer .footer-inner {
+            display: flex; justify-content: center; align-items: center;
+            flex-wrap: wrap; gap: 8px 16px;
+            color: var(--footer-text-color);
+        }
+        footer .footer-inner .footer-copy { color: var(--footer-text-color); white-space: nowrap; }
+        footer .footer-inner a {
+            color: var(--footer-link-color); text-decoration: none;
+            white-space: nowrap; transition: color .2s;
+        }
+        footer .footer-inner a:hover { color: var(--footer-link-hover); text-decoration: underline; }
+        footer .footer-inner .footer-sep { color: var(--footer-text-color); opacity: .35; user-select: none; }
+
+        /* ─── Modal ─── */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,.4); z-index: 1000;
+            opacity: 0; pointer-events: none;
+            transition: opacity .3s ease;
+        }
+        .modal-overlay.open { opacity: 1; pointer-events: auto; }
+
+        .modal {
+            position: fixed; top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(.92);
+            background: #fff; border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.15);
+            z-index: 1001; width: 90%; max-width: 520px;
+            max-height: 80vh; overflow-y: auto;
+            opacity: 0; pointer-events: none;
+            transition: opacity .3s ease, transform .3s ease;
+        }
+        .modal.open { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1); }
+
+        .modal-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 24px 0;
+        }
+        .modal-header h3 { font-size: 1.1rem; font-weight: 700; color: var(--modal-accent-color); margin: 0; }
+        .modal-close {
+            background: none; border: none; font-size: 1.3rem;
+            cursor: pointer; color: var(--modal-accent-color);
+            padding: 4px 8px; border-radius: 6px; transition: background .2s;
+            line-height: 1;
+        }
+        .modal-close:hover { background: rgba(0,0,0,.05); }
+
+        .modal-body { padding: 16px 24px 24px; }
+        .modal-body p { font-size: .88rem; color: #475569; line-height: 1.7; margin-bottom: 12px; }
+        .modal-body p:last-child { margin-bottom: 0; }
+        .modal-body strong { color: var(--modal-accent-color); }
+        .modal-body a { color: var(--modal-accent-color); text-decoration: underline; }
+
+        /* ─── Empty State ─── */
+        .empty-state { text-align: center; padding: 40px 16px; color: #94a3b8; }
+        .empty-state .empty-icon { font-size: 2.5rem; margin-bottom: 10px; }
+
+        /* ─── Share Box ─── */
+        .share-url-box {
+            display: flex; gap: 8px; margin-top: 14px; padding: 12px 14px;
+            background: #f8fafc; border-radius: 10px; border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 8px rgba(0,0,0,.04);
+            transition: box-shadow .25s, border-color .25s;
+        }
+        .share-url-box:focus-within { box-shadow: 0 4px 16px var(--share-focus-shadow); border-color: var(--share-focus-border); }
+        .share-url-box input {
+            flex: 1; padding: 9px 12px; border: 1.5px solid #e2e8f0; border-radius: 8px;
+            font-size: .82rem; font-family: monospace; background: #fff;
+        }
+        .share-url-box input:focus { border-color: var(--share-input-focus-border); outline: none; }
+
+        /* ─── Share Card Preview ─── */
+        .share-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 12px; padding: 16px; border: 1.5px solid #e2e8f0;
+            box-shadow: 0 2px 8px rgba(0,0,0,.04);
+        }
+        .share-card-text {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: .78rem; line-height: 1.6; color: #1e293b;
+            white-space: pre-wrap; word-break: break-word;
+            margin: 0; padding: 0; background: none; border: none;
+        }
+        .share-card .btn { margin-top: 10px; width: auto; }
+
+        /* ─── Card Generator (html2canvas) ─── */
+        #cardGenerator { position:fixed!important; left:-9999px!important; top:0!important; z-index:-1!important; pointer-events:none!important; }
+        .card-gen { display:flex; flex-direction:column; position:relative; overflow:hidden; box-sizing:border-box; font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif; border-radius:20px; }
+        .card-gen-landscape { width:1200px; height:630px; }
+        .card-gen-square { width:800px; height:800px; }
+
+        /* Soft shadow layer (html2canvas-safe) */
+        .card-gen-shadow { position:absolute; inset:0; z-index:0; border-radius:20px; background:rgba(0,0,0,.04); transform:translate(3px,4px); }
+
+        /* Background layer */
+        .card-gen-bg { position:absolute; inset:0; z-index:1; border-radius:20px; overflow:hidden; }
+        .card-gen-bg-main { position:absolute; inset:0; background:linear-gradient(160deg, var(--card-gen-bg-start,#eef2ff) 0%, var(--card-gen-bg-mid,#dbeafe) 45%, var(--card-gen-bg-end,#bfdbfe) 100%); }
+        .card-gen-bg-noise { position:absolute; inset:0; opacity:.04; background-image:repeating-linear-gradient(45deg,transparent,transparent 2px,rgba(0,0,0,.03) 2px,rgba(0,0,0,.03) 4px); }
+
+        /* Decorative blobs */
+        .card-gen-blob { position:absolute; border-radius:50%; z-index:2; }
+        .card-gen-blob1 { width:500px; height:500px; top:-180px; right:-100px; background:var(--card-gen-accent,#2563eb); opacity:.06; }
+        .card-gen-blob2 { width:400px; height:400px; bottom:-160px; left:-100px; background:var(--card-gen-accent2,#60a5fa); opacity:.05; }
+        .card-gen-blob3 { width:200px; height:200px; bottom:60px; right:80px; background:var(--card-gen-accent,#2563eb); opacity:.03; }
+
+        /* Gradient accent bar at top */
+        .card-gen-accent-bar { position:absolute; top:0; left:0; right:0; height:6px; z-index:5; background:linear-gradient(90deg, var(--card-gen-accent,#2563eb), var(--card-gen-accent2,#60a5fa)); }
+
+        /* Content layer — 40px padding for breathing room */
+        .card-gen-content { position:relative; z-index:4; display:flex; flex-direction:column; height:100%; padding:40px; }
+
+        /* ── Brand line: "KoalaSave · Savings Journey" ── */
+        .card-gen-brand-line { font-size:13px; font-weight:600; color:var(--card-gen-accent,#2563eb); letter-spacing:1.5px; text-transform:uppercase; opacity:.55; margin-bottom:12px; }
+
+        /* ── Body ── */
+        .card-gen-body { display:flex; flex:1; align-items:center; gap:48px; }
+        .card-gen-landscape .card-gen-body { flex-direction:row; }
+        .card-gen-square .card-gen-body { flex-direction:column; gap:20px; }
+
+        /* Left: logo + goal + stats */
+        .card-gen-landscape .card-gen-body-left { flex:1; min-width:0; display:flex; flex-direction:column; gap:14px; }
+        .card-gen-body-left { flex:1; min-width:0; display:flex; flex-direction:column; gap:12px; }
+        .card-gen-goal { display:flex; align-items:center; gap:16px; }
+        .card-gen-landscape .card-gen-goal { position:relative; top:-35px; }
+        .card-gen-logo-wrap { flex-shrink:0; width:52px; height:52px; border-radius:50%; background:var(--card-gen-logo-bg,rgba(37,99,235,.12)); display:flex; align-items:center; justify-content:center; }
+        .card-gen-logo-img { width:32px; height:32px; display:block; }
+        .card-gen-goal-text { flex:1; min-width:0; display:flex; align-items:center; flex-wrap:wrap; gap:4px; }
+        .card-gen-goal-emoji { font-size:28px; line-height:1; }
+        .card-gen-goal-title { font-size:28px; font-weight:800; color:var(--card-gen-text,#1e3a5f); letter-spacing:-.5px; line-height:1.25; }
+
+        /* Stats grid (default 2×2) — premium boxes */
+        .card-gen-stats { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+        .card-gen-stat { background:rgba(255,255,255,.75); border-radius:14px; padding:16px 20px; border:1px solid rgba(255,255,255,.85); box-shadow:0 4px 12px rgba(0,0,0,.05); }
+        .card-gen-stat-value { font-size:24px; font-weight:800; color:var(--card-gen-text,#1e3a5f); line-height:1.2; letter-spacing:-.5px; }
+        .card-gen-stat-label { font-size:11px; font-weight:700; color:var(--card-gen-accent,#2563eb); letter-spacing:1.3px; text-transform:uppercase; margin-top:2px; opacity:.7; }
+
+        /* Right: ring — percentage as hero (Canvas-based for html2canvas compat) */
+        .card-gen-body-right { display:flex; flex-direction:column; align-items:center; }
+        .card-gen-ring-container { position:relative; width:200px; height:200px; display:flex; align-items:center; justify-content:center; }
+        .card-gen-landscape .card-gen-ring-container { width:300px; height:300px; }
+        .card-gen-square .card-gen-ring-container { width:300px; height:300px; }
+        .card-gen-square .card-gen-body-right { position:relative; top:-30px; }
+        .card-gen-ring-canvas { display:block; width:100%; height:100%; }
+        .card-gen-ring-label { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+        .card-gen-pct-num { font-size:52px; font-weight:800; color:var(--card-gen-text,#1e3a5f); line-height:1; letter-spacing:-3px; }
+        .card-gen-landscape .card-gen-pct-num { font-size:72px; }
+        .card-gen-square .card-gen-pct-num { font-size:68px; }
+        .card-gen-pct-sign { font-size:20px; font-weight:700; color:var(--card-gen-accent,#2563eb); margin-top:-4px; }
+        .card-gen-landscape .card-gen-pct-sign { font-size:26px; }
+        .card-gen-square .card-gen-pct-sign { font-size:24px; }
+
+        /* Progress bar */
+        .card-gen-bar-wrap { margin:6px 0 0; }
+        .card-gen-bar-label-row { display:flex; justify-content:space-between; font-size:12px; font-weight:600; color:var(--card-gen-text,#1e3a5f); opacity:.45; margin-bottom:6px; }
+        .card-gen-bar-track { height:8px; background:rgba(0,0,0,.06); border-radius:10px; overflow:hidden; }
+        .card-gen-bar-fill { height:100%; border-radius:10px; background:linear-gradient(90deg, var(--card-gen-accent,#2563eb), var(--card-gen-accent2,#60a5fa)); transition:width .5s; }
+
+        /* Bottom: quote + social slogan + domain */
+        .card-gen-bottom { display:flex; align-items:center; justify-content:space-between; padding-top:14px; border-top:1px solid rgba(0,0,0,.05); margin-top:8px; }
+        .card-gen-bottom-left { display:flex; flex-direction:column; gap:2px; flex:1; }
+        .card-gen-quote { font-size:14px; font-style:italic; color:var(--card-gen-text,#1e3a5f); opacity:.45; }
+        .card-gen-slogan { font-size:16px; font-weight:700; color:var(--card-gen-accent,#2563eb); }
+        .card-gen-domain { font-size:13px; font-weight:700; color:var(--card-gen-accent,#2563eb); letter-spacing:.5px; opacity:.5; flex-shrink:0; }
+        .card-gen-domain::before { content:'✦ '; opacity:.4; }
+
+        /* ── Warm tone (progress >= 50%) ── */
+        .card-gen-warm { --card-gen-accent:#ea580c; --card-gen-accent2:#f97316; }
+        .card-gen-warm .card-gen-bg-main { background:linear-gradient(160deg, #fff7ed 0%, #ffedd5 45%, #fed7aa 100%); }
+        .card-gen-warm .card-gen-blob1 { background:#ea580c; opacity:.10; }
+        .card-gen-warm .card-gen-blob2 { background:#f97316; opacity:.08; }
+        .card-gen-warm .card-gen-blob3 { background:#ea580c; opacity:.05; }
+        .card-gen-warm .card-gen-bar-fill { background:linear-gradient(90deg, #ea580c, #fbbf24); }
+        .card-gen-warm .card-gen-stat { background:rgba(255,255,255,.7); border-color:rgba(255,255,255,.85); }
+        .card-gen-warm .card-gen-logo-wrap { background:rgba(234,88,12,.12); }
+        .card-gen-warm .card-gen-slogan { color:#ea580c; }
+
+        /* ─── Card Preview UI ─── */
+        .card-preview-overlay {
+            position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:2000;
+            display:flex; align-items:center; justify-content:center;
+            opacity:0; pointer-events:none; transition:opacity .3s;
+        }
+        .card-preview-overlay.open { opacity:1; pointer-events:auto; }
+        .card-preview-box {
+            background:#fff; border-radius:16px; padding:28px; max-width:520px; width:90%;
+            max-height:85vh; overflow-y:auto; box-shadow:0 20px 60px rgba(0,0,0,.2);
+            transform:scale(.92); transition:transform .3s;
+        }
+        .card-preview-overlay.open .card-preview-box { transform:scale(1); }
+        .card-preview-box h3 { font-size:1.05rem; font-weight:700; color:#0f172a; margin-bottom:4px; }
+        .card-preview-box p { font-size:.85rem; color:#64748b; margin-bottom:14px; }
+        .card-preview-box img { width:100%; border-radius:10px; border:1px solid #e2e8f0; margin-bottom:12px; }
+        .card-preview-actions { display:flex; gap:10px; }
+        .card-preview-actions .btn { flex:1; }
+        .size-options { display:flex; gap:10px; margin-bottom:16px; }
+        .size-options .btn { flex:1; font-size:.82rem; }
+        .size-options .btn.active { outline:2px solid var(--btn-primary-bg); outline-offset:2px; }
+
+        /* ─── Team Up / Challenge ─── */
+        .teamup-box {
+            margin-top:12px; padding:14px 16px;
+            background:linear-gradient(135deg,#fff7ed,#ffedd5);
+            border-radius:12px; border:1.5px solid #fde68a;
+        }
+        .teamup-box .teamup-title { font-weight:700; font-size:.88rem; color:#9a3412; margin-bottom:6px; }
+        .teamup-box .teamup-desc { font-size:.82rem; color:#92400e; margin-bottom:10px; }
+        .teamup-box .teamup-emoji-bar { font-size:1.1rem; letter-spacing:2px; margin:6px 0; font-family:'Courier New',monospace; }
+        .teamup-box .teamup-url-row { display:flex; gap:8px; margin-top:8px; }
+        .teamup-box .teamup-url-row input { flex:1; padding:7px 10px; border:1.5px solid #fde68a; border-radius:8px; font-size:.8rem; font-family:monospace; background:#fff; }
+        .teamup-box .teamup-url-row input:focus { border-color:#f59e0b; outline:none; }
+
+        /* ─── Affiliate Section ─── */
+        .affiliate-section {
+            background: linear-gradient(135deg, var(--affiliate-bg-start), var(--affiliate-bg-end));
+            border-radius: 12px; padding: 20px 24px; margin-top: 16px;
+        }
+        .affiliate-section h3 { font-size: 1rem; font-weight: 600; color: var(--affiliate-heading-color); margin-bottom: 12px; }
+        .affiliate-section p { font-size: .85rem; color: var(--affiliate-text-color); line-height: 1.6; }
+        .affiliate-section .affiliate-link {
+            display: inline-block; padding: 8px 12px;
+            background: var(--affiliate-btn-bg); color: #fff; border-radius: 8px;
+            text-decoration: none; font-size: .8rem; font-weight: 600;
+            transition: background .2s;
+        }
+        .affiliate-section .affiliate-link:hover { background: var(--affiliate-btn-hover); }
+        .affiliate-section #affiliateLinks {
+            display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;
+        }
+
+        /* ─── Cross-links ─── */
+        .tool-links { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 4px; }
+        .tool-links a {
+            display: flex; flex-direction: column; padding: 18px 20px;
+            border-radius: 12px; text-decoration: none;
+            transition: transform .2s, box-shadow .2s;
+        }
+        .tool-links a:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.08); }
+        .tool-link-main { background: linear-gradient(135deg, var(--link-main-bg-start), var(--link-main-bg-end)); color: var(--link-main-color); }
+        .tool-link-travel { background: linear-gradient(135deg, var(--link-travel-bg-start), var(--link-travel-bg-end)); color: var(--link-travel-color); }
+        .tool-link-housing { background: linear-gradient(135deg, var(--link-housing-bg-start), var(--link-housing-bg-end)); color: var(--link-housing-color); }
+        .tool-links .link-title { font-weight: 700; font-size: 1rem; }
+        .tool-links .link-desc { font-size: .82rem; opacity: .8; margin-top: 2px; }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 1024px) {
+            .tool-row { grid-template-columns: 1fr; }
+            .form-grid { grid-template-columns: 1fr 1fr; }
+            .progress-wrap { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+            header { padding: 28px 0 32px; }
+            header h1 { font-size: 1.5rem; }
+        }
+        @media (max-width: 640px) {
+            .nav-inner { flex-direction: column; gap: 8px; padding: 10px 16px; }
+            .nav-links { width: 100%; justify-content: center; flex-wrap: wrap; }
+            .nav-links a { font-size: .78rem; padding: 5px 10px; }
+            header h1 { font-size: 1.3rem; }
+            header { padding: 24px 0 28px; }
+            header::after { height: 24px; }
+            main.container { margin-top: 12px !important; }
+            .card { padding: 20px; margin-bottom: 20px; border-radius: 14px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .chart-wrap { height: 265px; }
+            .tool-links { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            header h1 { font-size: 1.15rem; }
+            header p { font-size: .85rem; }
+            .stats-row { grid-template-columns: 1fr; gap: 8px; padding-top: 14px; margin-top: 14px; }
+            .stat-box { padding: 12px 10px; border-radius: 8px; }
+            .stat-box .stat-value { font-size: 1.1rem; }
+            .stat-box .stat-label { font-size: .65rem; margin-top: 1px; }
+            .slider-impact { grid-template-columns: 1fr; }
+            #goalsList { grid-template-columns: 1fr; }
+            .share-url-box { flex-direction: column; gap: 8px; }
+            .share-url-box input { width: 100%; }
+            .share-url-box .btn { width: 100%; justify-content: center; }
+            .btn-row { flex-wrap: wrap; gap: 8px; }
+            .btn-row .btn { width: calc(50% - 4px); justify-content: center; flex: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo"><img src="/logo.png" alt="KoalaSave" style="height:32px;width:32px;"> KoalaSave</a>
+            <div class="nav-links">
+                <a href="/" id="navDefault" data-mode="default">🛡️ Safety Net</a>
+                <a href="/?mode=travel" id="navTravel" data-mode="travel">🌴 Paradise Fund</a>
+                <a href="/?mode=housing" id="navHousing" data-mode="housing">🌿 Eucalyptus Grove</a>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <h1 id="headerTitle">🎯 Savings Goal Calculator</h1>
+            <p id="headerDesc">Plan your savings &amp; watch your progress — free interactive tracker</p>
+        </div>
+    </header>
+
+    <main class="container" style="margin-top: 20px;">
+
+        <div class="tool-row">
+            <div class="card" style="margin-bottom:0">
+                <h2><span class="icon" id="formIcon">✏️</span> <span id="formTitle">Your Goal</span></h2>
+                <div class="form-grid">
+                    <div class="full form-group">
+                        <label for="goalName" id="nameLabel">Goal name</label>
+                        <input type="text" id="goalName" placeholder="e.g. Hawaii Trip 2027" value="Emergency Fund">
+                    </div>
+                    <div class="form-group">
+                        <label for="targetAmount" id="targetLabel">Target amount ($)</label>
+                        <input type="number" id="targetAmount" min="1" step="100" value="10000">
+                    </div>
+                    <div class="form-group">
+                        <label for="savedAmount">Already saved ($)</label>
+                        <input type="number" id="savedAmount" min="0" step="100" value="7500">
+                    </div>
+                    <div class="form-group">
+                        <label for="monthlySavings">I can save $<span id="monthlyLabel">500</span> / month</label>
+                        <input type="number" id="monthlySavings" min="1" step="50" value="500">
+                    </div>
+                    <div class="form-group">
+                        <label for="targetMonths" id="monthsLabel">Target deadline (months) <span class="hint">— optional</span></label>
+                        <input type="number" id="targetMonths" min="1" step="1" placeholder="e.g. 18" value="">
+                    </div>
+                </div>
+                <div class="btn-row">
+                    <button class="btn btn-success" id="saveBtn">💾 Save Goal</button>
+                    <button class="btn btn-secondary" id="shareBtn">🔗 Share</button>
+                    <button class="btn btn-primary" id="saveCardBtn">📸 Card</button>
+                    <button class="btn btn-secondary" id="teamupBtn">👥 Team Up</button>
+                </div>
+                <div id="shareBox" style="display:none;margin-top:14px;">
+                    <div class="share-card" id="shareCardPreview">
+                        <pre id="shareCardText" class="share-card-text"></pre>
+                        <button class="btn btn-sm btn-primary" id="copyCardBtn">📋 Copy Card</button>
+                    </div>
+                    <div class="share-url-box" style="margin-top:8px;">
+                        <input type="text" id="shareUrlInput" readonly onclick="this.select()">
+                        <button class="btn btn-sm btn-secondary" id="copyBtn">Copy Link</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card progress-card" style="margin-bottom:0">
+                <div class="progress-wrap">
+                    <div class="ring-container">
+                        <svg viewBox="0 0 200 200">
+                            <circle class="ring-bg" cx="100" cy="100" r="82"/>
+                            <circle class="ring-fg" id="progressRing" cx="100" cy="100" r="82"
+                                stroke-dasharray="515.22" stroke-dashoffset="515.22"/>
+                        </svg>
+                        <div class="ring-label">
+                            <span class="center-label" id="percentLabel">0%</span>
+                        </div>
+                    </div>
+                    <div style="min-width:0">
+                        <div id="statusMessage" style="font-size:.95rem;color:#475569;margin-bottom:4px;">
+                            Set your goal details to see your savings plan.
+                        </div>
+                        <div style="font-size:.82rem;color:#94a3b8;">
+                            Goal: <strong id="dispTarget">$10,000</strong>
+                            &middot; Saved: <strong id="dispSaved">$2,500</strong>
+                        </div>
+                        <div class="stats-row">
+                            <div class="stat-box">
+                                <div class="stat-value blue" id="statMonthly">$—</div>
+                                <div class="stat-label">Needed / month</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-value" id="statTimeline">—</div>
+                                <div class="stat-label">Time to goal</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-value green" id="statTargetDate">—</div>
+                                <div class="stat-label">Target date</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="affiliate-section" id="affiliateSection">
+                    <h3 id="affiliateHeading">🏦 Earn interest while you save</h3>
+                    <p id="affiliateText">Put your savings in a high-yield account and earn while you save.</p>
+                    <div id="affiliateLinks"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><span class="icon">⚡</span> What if I save more per month?</h2>
+            <div class="slider-wrap">
+                <div class="slider-header">
+                    <label>Extra per month</label>
+                    <span class="extra-value">+$<span id="extraDisplay">0</span></span>
+                </div>
+                <input type="range" id="extraSlider" min="0" max="2000" step="50" value="0">
+            </div>
+            <div class="slider-impact">
+                <div class="impact-box">
+                    <div class="impact-value" id="impactMonths">—</div>
+                    <div class="impact-label">Months to goal (with extra)</div>
+                </div>
+                <div class="impact-box">
+                    <div class="impact-value" id="impactEarly">—</div>
+                    <div class="impact-label">Months saved vs. original plan</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><span class="icon">📈</span> Savings Projection</h2>
+            <div class="chart-wrap">
+                <canvas id="savingsChart"></canvas>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><span class="icon">💾</span> Saved Goals</h2>
+            <div id="goalsList">
+                <div class="empty-state">
+                    <div class="empty-icon">📋</div>
+                    <p id="emptyStateText">No goals saved yet. Fill in your goal above and click <strong>"Save Goal"</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id="toolLinksCard">
+            <h2><span class="icon">🔗</span> <span id="toolLinksTitle">Try a specialized savings calculator</span></h2>
+            <div class="tool-links" id="toolLinksContainer">
+                <a href="/?mode=travel" class="tool-link-travel">
+                    <span class="link-title">✈️ Travel Savings Calculator</span>
+                    <span class="link-desc">Save for your dream vacation — preset for trip planning</span>
+                </a>
+                <a href="/?mode=housing" class="tool-link-housing">
+                    <span class="link-title">🏠 Home Down Payment Calculator</span>
+                    <span class="link-desc">Plan your home buying savings with down payment targets</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="card" id="faqCard" itemscope itemtype="https://schema.org/FAQPage">
+            <h2><span class="icon">❓</span> <span id="faqTitle">Frequently Asked Questions</span></h2>
+            <div id="faqContainer"></div>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <span class="footer-copy">&copy; 2026 KoalaSave.com</span>
+                <span class="footer-sep">|</span>
+                <a href="javascript:void(0)" onclick="openModal('privacy')">Privacy &amp; Cookie Policy</a>
+                <span class="footer-sep">|</span>
+                <a href="javascript:void(0)" onclick="openModal('terms')">Terms &amp; Disclaimers</a>
+                <span class="footer-sep">|</span>
+                <a href="javascript:void(0)" onclick="openModal('contact')">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ─── Card Generator (off-screen, for html2canvas) ─── -->
+    <div id="cardGenerator">
+        <!-- Landscape 1200×630 -->
+        <div id="cardGenLandscape" class="card-gen card-gen-landscape">
+            <div class="card-gen-shadow"></div>
+            <div class="card-gen-bg">
+                <div class="card-gen-bg-main"></div>
+                <div class="card-gen-bg-noise"></div>
+            </div>
+            <div class="card-gen-blob card-gen-blob1"></div>
+            <div class="card-gen-blob card-gen-blob2"></div>
+            <div class="card-gen-blob card-gen-blob3"></div>
+            <div class="card-gen-accent-bar"></div>
+            <div class="card-gen-content">
+                <div class="card-gen-brand-line">KoalaSave · Savings Journey</div>
+                <div class="card-gen-body">
+                    <div class="card-gen-body-left">
+                        <div class="card-gen-goal">
+                            <div class="card-gen-logo-wrap"><img src="/favicon.png" alt="" class="card-gen-logo-img"></div>
+                            <div class="card-gen-goal-text">
+                                <span class="card-gen-goal-emoji" id="cgenEmojiL">🛡️</span>
+                                <span class="card-gen-goal-title" id="cgenTitleL">Emergency Safety Net</span>
+                            </div>
+                        </div>
+                        <div class="card-gen-stats">
+                            <div class="card-gen-stat">
+                                <div class="card-gen-stat-value" id="cgenTargetL">$10,000</div>
+                                <div class="card-gen-stat-label">Target</div>
+                            </div>
+                            <div class="card-gen-stat">
+                                <div class="card-gen-stat-value" id="cgenMonthlyL">$500/mo</div>
+                                <div class="card-gen-stat-label">Monthly</div>
+                            </div>
+                            <div class="card-gen-stat">
+                                <div class="card-gen-stat-value" id="cgenSavedL">$5,600</div>
+                                <div class="card-gen-stat-label">Saved</div>
+                            </div>
+                            <div class="card-gen-stat">
+                                <div class="card-gen-stat-value" id="cgenDateL">Dec 2026</div>
+                                <div class="card-gen-stat-label">Goal Date</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-gen-body-right">
+                        <div class="card-gen-ring-container">
+                            <canvas class="card-gen-ring-canvas" id="cgenRingL" width="300" height="300"></canvas>
+                            <div class="card-gen-ring-label">
+                                <span class="card-gen-pct-num" id="cgenPctL">56</span>
+                                <span class="card-gen-pct-sign">%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-gen-bar-wrap">
+                    <div class="card-gen-bar-label-row">
+                        <span>Progress</span>
+                        <span id="cgenBarPctL">56%</span>
+                    </div>
+                    <div class="card-gen-bar-track">
+                        <div class="card-gen-bar-fill" id="cgenBarL" style="width:56%"></div>
+                    </div>
+                </div>
+                <div class="card-gen-bottom">
+                    <div class="card-gen-bottom-left">
+                        <div class="card-gen-quote" id="cgenSloganL">"A rainy day fund is peace of mind."</div>
+                        <div class="card-gen-slogan" id="cgenSocialL">Can you catch up with me? 🐨</div>
+                    </div>
+                    <div class="card-gen-domain">koalasave.com</div>
+                </div>
+            </div>
+        </div>
+        <!-- Square 800×800 -->
+        <div id="cardGenSquare" class="card-gen card-gen-square">
+            <div class="card-gen-shadow"></div>
+            <div class="card-gen-bg">
+                <div class="card-gen-bg-main"></div>
+                <div class="card-gen-bg-noise"></div>
+            </div>
+            <div class="card-gen-blob card-gen-blob1"></div>
+            <div class="card-gen-blob card-gen-blob2"></div>
+            <div class="card-gen-blob card-gen-blob3"></div>
+            <div class="card-gen-accent-bar"></div>
+            <div class="card-gen-content">
+                <div class="card-gen-brand-line">KoalaSave · Savings Journey</div>
+                <div class="card-gen-body">
+                    <div class="card-gen-body-left" style="text-align:center;">
+                        <div class="card-gen-goal" style="justify-content:center;">
+                            <div class="card-gen-logo-wrap"><img src="/favicon.png" alt="" class="card-gen-logo-img"></div>
+                            <div class="card-gen-goal-text" style="justify-content:center;">
+                                <span class="card-gen-goal-emoji" id="cgenEmojiS">🛡️</span>
+                                <span class="card-gen-goal-title" id="cgenTitleS">Emergency Safety Net</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-gen-body-right">
+                        <div class="card-gen-ring-container">
+                            <canvas class="card-gen-ring-canvas" id="cgenRingS" width="300" height="300"></canvas>
+                            <div class="card-gen-ring-label">
+                                <span class="card-gen-pct-num" id="cgenPctS">56</span>
+                                <span class="card-gen-pct-sign">%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-gen-stats" style="padding:0;">
+                    <div class="card-gen-stat">
+                        <div class="card-gen-stat-value" id="cgenTargetS">$10,000</div>
+                        <div class="card-gen-stat-label">Target</div>
+                    </div>
+                    <div class="card-gen-stat">
+                        <div class="card-gen-stat-value" id="cgenSavedS">$5,600</div>
+                        <div class="card-gen-stat-label">Saved</div>
+                    </div>
+                    <div class="card-gen-stat">
+                        <div class="card-gen-stat-value" id="cgenMonthlyS">$500/mo</div>
+                        <div class="card-gen-stat-label">Monthly</div>
+                    </div>
+                    <div class="card-gen-stat">
+                        <div class="card-gen-stat-value" id="cgenDateS">Dec 2026</div>
+                        <div class="card-gen-stat-label">Goal Date</div>
+                    </div>
+                </div>
+                <div class="card-gen-bar-wrap">
+                    <div class="card-gen-bar-label-row">
+                        <span>Progress</span>
+                        <span id="cgenBarPctS">56%</span>
+                    </div>
+                    <div class="card-gen-bar-track">
+                        <div class="card-gen-bar-fill" id="cgenBarS" style="width:56%"></div>
+                    </div>
+                </div>
+                <div class="card-gen-bottom">
+                    <div class="card-gen-bottom-left">
+                        <div class="card-gen-quote" id="cgenSloganS">"A rainy day fund is peace of mind."</div>
+                        <div class="card-gen-slogan" id="cgenSocialS">Can you catch up with me? 🐨</div>
+                    </div>
+                    <div class="card-gen-domain">koalasave.com</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card Preview Modal -->
+    <div class="card-preview-overlay" id="cardPreviewOverlay">
+        <div class="card-preview-box">
+            <h3>📸 Your Savings Card</h3>
+            <p>Preview your card below, then download to share!</p>
+            <img id="cardPreviewImg" alt="Savings card preview">
+            <div class="card-preview-actions">
+                <button class="btn btn-sm btn-primary" id="cardDownloadBtn">⬇️ Download PNG</button>
+                <button class="btn btn-sm btn-secondary" id="cardPreviewClose">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modalOverlay"></div>
+
+    <!-- Dynamic Modal (content rendered by openModal) -->
+    <div class="modal" id="modalDynamic">
+        <div class="modal-header">
+            <h3>Modal Title</h3>
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+        </div>
+        <div class="modal-body"></div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+    (function() {
+        'use strict';
+
+        let currentRoute = 'default';
+
+        /* ─── Legal / Compliance Texts ─── */
+        const legalTexts = {
+            privacy: {
+                heading: 'Privacy &amp; Cookie Policy',
+                render: function() {
+                    return '<p><strong>Information Collection:</strong> KoalaSave does not collect any personally identifiable information (PII). You do not need to create an account or provide personal data to use the Service. All financial goals, target amounts, and savings data you enter are stored exclusively in your browser\'s localStorage on your own device.</p>' +
+                        '<p><strong>LocalStorage Technology:</strong> We use localStorage, not traditional cookies, to store your data. localStorage data never leaves your device and is not sent to our servers. Clearing your browser cache will permanently delete your saved goals.</p>' +
+                        '<p><strong>Third-Party Services:</strong> We may use Google Analytics (anonymized IPs) for usage analysis and Google AdSense for advertisements. These services may place cookies governed by their own privacy policies. Affiliate links on this site may earn us a commission at no extra cost to you.</p>' +
+                        '<p><strong>Children\'s Privacy:</strong> Our Service is not directed at children under 13 (or under 16 in the EU/UK). We do not knowingly collect any personal information from children.</p>' +
+                        '<p><strong>Your Rights:</strong> All your data is stored locally. You can delete it anytime by clearing your browser\'s localStorage for this site. For questions, contact us at <a href="mailto:support@koalasave.com">support@koalasave.com</a>.</p>';
+                }
+            },
+            terms: {
+                heading: 'Terms of Service &amp; Disclaimers',
+                render: function() {
+                    return '<p><strong>Terms of Service:</strong> KoalaSave is a free interactive savings calculator tool. All source code, design, and branding are the exclusive property of KoalaSave. You may not reproduce or commercialize any part of the Service without our written consent. We reserve the right to modify or discontinue the Service at any time.</p>' +
+                        '<p><strong>Data Loss Disclaimer:</strong> All your savings data is stored locally in your browser\'s localStorage. We do not maintain server backups. Clearing your browser cache or using private browsing mode will result in permanent data loss. You are solely responsible for backing up your goal information.</p>' +
+                        '<p><strong>Not Financial Advice:</strong> KoalaSave is NOT a financial advisor. All calculations, charts, and projections are for informational, educational, and entertainment purposes only. They do not constitute financial, investment, legal, or tax advice. Always consult a qualified professional before making financial decisions.</p>' +
+                        '<p><strong>Accuracy &amp; Limitations:</strong> Our calculator uses a simplified linear model and does not account for inflation, interest rates, investment returns, market volatility, taxes, or life changes. We make no guarantees regarding the accuracy or completeness of any calculation.</p>' +
+                        '<p><strong>Affiliate &amp; Advertising Disclosure:</strong> We may participate in affiliate marketing programs and display advertisements. Clicking affiliate links may earn us a commission at no extra cost to you. This does not constitute an endorsement. You should perform your own due diligence.</p>' +
+                        '<p><strong>Limitation of Liability:</strong> To the fullest extent permitted by law, KoalaSave and its operators are not liable for any losses or damages arising from your use of or reliance on the Service.</p>' +
+                        '<p><strong>Contact:</strong> <a href="mailto:support@koalasave.com">support@koalasave.com</a></p>';
+                }
+            },
+            contact: {
+                heading: 'Contact Us',
+                render: function() {
+                    return '<p>Have questions, suggestions, or feedback? We\'d love to hear from you!</p>' +
+                        '<p><strong>Email:</strong> <a href="mailto:support@koalasave.com">support@koalasave.com</a></p>' +
+                        '<p>We typically respond within 24-48 hours during business days.</p>';
+                }
+            }
+        };
+
+        /* ─── Page Configs ─── */
+        const pageConfigs = {
+            default: {
+                seo: {
+                    title: "Koala's Safety Net — Emergency Fund Calculator | KoalaSave",
+                    description: "Build your safety net like a koala — stress-free emergency savings with interactive progress tracking. Start your rainy day fund today.",
+                    canonical: 'https://koalasave.com/',
+                    ogImage: 'https://koalasave.com/share-cover.png',
+                    schemaName: "KoalaSave Emergency Fund Calculator",
+                    schemaDescription: 'Free emergency fund calculator with interactive progress tracking, charts, and savings goal management.',
+                    ogTitle: "🛡️ 稳如考拉！我的应急安全网基金计划 | KoalaSave",
+                    ogDescription: "未雨绸缪，拒绝焦虑。快用 KoalaSave 规划你的存钱计划，零隐私收集！零登录，一键开存！",
+                    shareTitle: "🛡️ 稳如考拉！我刚刚开启了我的应急安全网基金！",
+                    shareDesc: "未雨绸缪，拒绝焦虑。快用 KoalaSave 规划你的存钱计划，零隐私收集！"
+                },
+                header: {
+                    h1: '🛡️ Koala\'s Safety Net',
+                    p: "Save for a rainy day, stress-free. Like a koala snug in a tree — secure and prepared.",
+                    formIcon: '✏️',
+                    formTitle: 'Your Safety Net',
+                    nameLabel: 'Fund name',
+                    namePlaceholder: 'e.g. Rainy Day Fund',
+                    targetLabel: 'Target amount ($)',
+                    monthsLabel: 'Target deadline (months)',
+                    monthsPlaceholder: 'e.g. 18',
+                    statusMessage: 'Set your safety net goal to see your savings plan.',
+                    emptyState: 'No safety nets yet. Set your goal above and click <strong>"Save Goal"</strong>.'
+                },
+                defaults: {
+                    goalName: 'Emergency Fund 🐨',
+                    targetAmount: 10000,
+                    savedAmount: 7500,
+                    monthlySavings: 500,
+                    targetMonths: ''
+                },
+                extraSliderMax: 2000,
+                extraSliderStep: 50,
+                navActive: 'navDefault',
+                css: {
+                    '--body-gradient-start': '#f0f4f8',
+                    '--body-gradient-end': '#e2e8f0',
+                    '--header-gradient-start': '#1e3a5f',
+                    '--header-gradient-mid': '#2563eb',
+                    '--header-gradient-end': '#60a5fa',
+                    '--header-shadow': 'rgba(37,99,235,.25)',
+                    '--nav-bg': 'rgba(30, 58, 95, 0.95)',
+                    '--btn-primary-bg': '#2563eb',
+                    '--btn-primary-hover': '#1e3a5f',
+                    '--btn-primary-shadow': 'rgba(37,99,235,.35)',
+                    '--input-focus-border': '#2563eb',
+                    '--input-focus-shadow': 'rgba(37,99,235,.12)',
+                    '--ring-fg': '#60a5fa',
+                    '--ring-shadow': 'rgba(96,165,250,.18)',
+                    '--stat-blue': '#2563eb',
+                    '--stat-green': '#059669',
+                    '--stat-orange': '#d97706',
+                    '--slider-thumb-bg': '#2563eb',
+                    '--slider-thumb-shadow': 'rgba(37,99,235,.4)',
+                    '--slider-bg-start': '#dbeafe',
+                    '--slider-bg-end': '#93c5fd',
+                    '--impact-bg-start': '#f0f4f8',
+                    '--impact-bg-end': '#e2e8f0',
+                    '--impact-border': '#dbeafe',
+                    '--impact-value-color': '#1e3a5f',
+                    '--extra-value-bg': '#dbeafe',
+                    '--extra-value-color': '#2563eb',
+                    '--goal-hover-border': '#2563eb',
+                    '--goal-hover-shadow': 'rgba(37,99,235,.12)',
+                    '--goal-active-border': '#2563eb',
+                    '--goal-active-shadow': 'rgba(37,99,235,.15)',
+                    '--goal-progress-bg': '#60a5fa',
+                    '--faq-hover-color': '#2563eb',
+                    '--share-focus-border': '#93c5fd',
+                    '--share-focus-shadow': 'rgba(37,99,235,.12)',
+                    '--share-input-focus-border': '#2563eb',
+                    '--footer-link-hover': '#2563eb',
+                    '--chart-line-color': '#2563eb',
+                    '--chart-line-bg': 'rgba(37,99,235,.1)',
+                    '--chart-extra-color': '#059669',
+                    '--chart-extra-bg': 'rgba(5,150,105,.1)',
+                    '--affiliate-bg-start': '#f0f4f8',
+                    '--affiliate-bg-end': '#e2e8f0',
+                    '--affiliate-heading-color': '#1e3a5f',
+                    '--affiliate-text-color': '#1e3a5f',
+                    '--affiliate-btn-bg': '#2563eb',
+                    '--affiliate-btn-hover': '#1e3a5f',
+                    '--footer-text-color': '#1e3a5f',
+                    '--footer-link-color': '#3b82f6',
+                    '--modal-accent-color': '#2563eb'
+                },
+                chartColors: {
+                    plan: { border: '#94a3b8', bg: 'transparent' },
+                    actual: { border: '#2563eb', bg: 'rgba(37,99,235,.1)' },
+                    extra: { border: '#059669', bg: 'rgba(5,150,105,.1)' }
+                },
+                faqTitle: 'Emergency Fund FAQ',
+                faq: [
+                    { q: 'How much should I save for an emergency fund?', a: 'Most financial experts recommend saving 3-6 months of essential living expenses. Use this calculator to set a target based on your actual monthly expenses and track your progress visually.' },
+                    { q: 'What is the 50/30/20 budgeting rule for savings?', a: 'The 50/30/20 rule allocates 50% of income to needs, 30% to wants, and 20% to savings and debt repayment. If you earn $4,000/month, that means $800/month toward your safety net.' },
+                    { q: 'How does the savings goal calculator work?', a: 'Enter your target amount, current savings, and monthly contribution. The calculator instantly shows your progress percentage, monthly savings needed, projected completion date, and an interactive chart of your savings journey.' },
+                    { q: 'Why "Koala\'s Safety Net"?', a: 'Like a koala who always has a sturdy tree to call home, a financial safety net gives you peace of mind. Our calculator helps you build that cushion, one branch at a time — no stress, just steady progress.' },
+                    { q: 'Can I save for multiple goals at the same time?', a: 'Yes! This tool lets you save and track multiple goals simultaneously. Each goal is saved in your browser with its own progress ring and projection chart, so you can manage an emergency fund, vacation fund, and down payment all in one place.' }
+                ],
+                toolLinksTitle: 'Try a specialized savings calculator',
+                toolLinks: [
+                    { href: '/?mode=travel', title: '🌴 Paradise Savings Calculator', desc: 'Save for your dream Maldives vacation', cls: 'tool-link-travel' },
+                    { href: '/?mode=housing', title: '🌿 Eucalyptus Grove Fund', desc: 'Plan your first home down payment', cls: 'tool-link-housing' }
+                ],
+                affiliate: {
+                    heading: '🏦 Looking for the Best Interest Rates?',
+                    text: 'To maintain strict objectivity, KoalaSave does not accept bank sponsorships. For up-to-date interest rates and comprehensive bank comparisons, we highly recommend checking the independent reviews on NerdWallet or Bankrate.',
+                    links: [
+                        { text: 'View NerdWallet HYSA Guide →', url: 'https://www.nerdwallet.com/best/banking/high-yield-savings-accounts', style: '' },
+                        { text: 'Check Bankrate Rates →', url: 'https://www.bankrate.com/banking/savings/best-high-yield-interests-savings-accounts/', style: 'background:#059669;' }
+                    ]
+                },
+                affiliateLink: 'https://www.nerdwallet.com/best/banking/high-yield-savings-accounts',
+                legal: legalTexts,
+                shareCard: {
+                    emoji: '🛡️',
+                    titleLine: 'Emergency Safety Net',
+                    slogan: 'A rainy day fund is peace of mind. Start saving with me! 🐨'
+                }
+            },
+
+            travel: {
+                seo: {
+                    title: 'Maldives Dream Fund — Vacation Savings Calculator | KoalaSave',
+                    description: "Wake up in paradise. Save for your dream Maldives vacation with our free travel savings calculator. Track every dollar toward your island escape.",
+                    canonical: 'https://koalasave.com/travel/',
+                    ogImage: 'https://koalasave.com/share-cover.png',
+                    schemaName: 'KoalaSave Maldives Vacation Calculator',
+                    schemaDescription: 'Free travel savings calculator to plan and track your dream Maldives vacation fund with progress charts.',
+                    ogTitle: "🌴 我的马尔代夫存钱大作战 — Paradise Savings Calculator | KoalaSave",
+                    ogDescription: "Wake up in paradise. Plan & track your dream Maldives vacation savings for free. See exactly when you'll be sipping cocktails on the beach.",
+                    shareTitle: "🌴 阳光沙滩马尔代夫！我的度假存钱计划开启了！",
+                    shareDesc: "醒来就在天堂。算算你离下一次梦想旅行还差几个月？免登录一键计算！"
+                },
+                header: {
+                    h1: '🌴 Paradise Savings Calculator',
+                    p: "Wake up in paradise. Your dream Maldives vacation is closer than you think — start saving today.",
+                    formIcon: '✏️',
+                    formTitle: 'Your Paradise Goal',
+                    nameLabel: 'Trip name',
+                    namePlaceholder: 'e.g. Maldives Dream Trip',
+                    targetLabel: 'Trip budget ($)',
+                    monthsLabel: 'Travel date (months away)',
+                    monthsPlaceholder: 'e.g. 12',
+                    statusMessage: 'Set your trip budget to start your paradise countdown.',
+                    emptyState: 'No trips planned yet. Set your paradise goal above and click <strong>"Save Goal"</strong>.'
+                },
+                defaults: {
+                    goalName: 'Maldives Dream Trip 🏝️',
+                    targetAmount: 3500,
+                    savedAmount: 2500,
+                    monthlySavings: 300,
+                    targetMonths: 12
+                },
+                extraSliderMax: 2000,
+                extraSliderStep: 50,
+                navActive: 'navTravel',
+                css: {
+                    '--body-gradient-start': '#fdf2f8',
+                    '--body-gradient-end': '#fce7f3',
+                    '--header-gradient-start': '#be185d',
+                    '--header-gradient-mid': '#ec4899',
+                    '--header-gradient-end': '#f472b6',
+                    '--header-shadow': 'rgba(236,72,153,.2)',
+                    '--nav-bg': 'rgba(157, 23, 77, 0.95)',
+                    '--btn-primary-bg': '#ec4899',
+                    '--btn-primary-hover': '#be185d',
+                    '--btn-primary-shadow': 'rgba(236,72,153,.3)',
+                    '--input-focus-border': '#ec4899',
+                    '--input-focus-shadow': 'rgba(236,72,153,.1)',
+                    '--ring-fg': '#ec4899',
+                    '--ring-shadow': 'rgba(236,72,153,.15)',
+                    '--stat-blue': '#ec4899',
+                    '--stat-green': '#0d9488',
+                    '--stat-orange': '#d97706',
+                    '--slider-thumb-bg': '#ec4899',
+                    '--slider-thumb-shadow': 'rgba(236,72,153,.35)',
+                    '--slider-bg-start': '#fbcfe8',
+                    '--slider-bg-end': '#f9a8d4',
+                    '--impact-bg-start': '#fdf2f8',
+                    '--impact-bg-end': '#fce7f3',
+                    '--impact-border': '#fbcfe8',
+                    '--impact-value-color': '#be185d',
+                    '--extra-value-bg': '#fdf2f8',
+                    '--extra-value-color': '#ec4899',
+                    '--goal-hover-border': '#ec4899',
+                    '--goal-hover-shadow': 'rgba(236,72,153,.1)',
+                    '--goal-active-border': '#ec4899',
+                    '--goal-active-shadow': 'rgba(236,72,153,.12)',
+                    '--goal-progress-bg': '#ec4899',
+                    '--faq-hover-color': '#ec4899',
+                    '--share-focus-border': '#fbcfe8',
+                    '--share-focus-shadow': 'rgba(236,72,153,.1)',
+                    '--share-input-focus-border': '#ec4899',
+                    '--footer-link-hover': '#ec4899',
+                    '--chart-line-color': '#ec4899',
+                    '--chart-line-bg': 'rgba(236,72,153,.08)',
+                    '--chart-extra-color': '#0d9488',
+                    '--chart-extra-bg': 'rgba(13,148,136,.08)',
+                    '--affiliate-bg-start': '#fdf2f8',
+                    '--affiliate-bg-end': '#fce7f3',
+                    '--affiliate-heading-color': '#be185d',
+                    '--affiliate-text-color': '#831843',
+                    '--affiliate-btn-bg': '#ec4899',
+                    '--affiliate-btn-hover': '#be185d',
+                    '--footer-text-color': '#831843',
+                    '--footer-link-color': '#ec4899',
+                    '--modal-accent-color': '#ec4899'
+                },
+                chartColors: {
+                    plan: { border: '#94a3b8', bg: 'transparent' },
+                    actual: { border: '#ec4899', bg: 'rgba(236,72,153,.08)' },
+                    extra: { border: '#0d9488', bg: 'rgba(13,148,136,.08)' }
+                },
+                faqTitle: 'Maldives Travel FAQ',
+                faq: [
+                    { q: 'How much does a Maldives trip cost?', a: 'A 5-7 day Maldives trip typically costs $2,500-5,000 per person including flights, overwater bungalow accommodation, meals, and activities. Setting a realistic budget is the first step toward paradise.' },
+                    { q: 'How can I save for a Maldives vacation faster?', a: 'Open a dedicated travel savings fund, automate monthly transfers, cut discretionary spending, pick up a side gig, or use the "what if" slider to see how increasing your monthly savings accelerates your trip.' },
+                    { q: 'When is the best time to book Maldives?', a: 'The dry season (November-April) offers the best weather. Book flights 3-6 months in advance and hotels 6-12 months ahead for the best rates on overwater villas.' }
+                ],
+                toolLinksTitle: 'Try another savings tool',
+                toolLinks: [
+                    { href: '/', title: '🛡️ Koala\'s Safety Net', desc: 'Build your emergency fund stress-free', cls: 'tool-link-main' },
+                    { href: '/?mode=housing', title: '🌿 Eucalyptus Grove Fund', desc: 'Plan your first home down payment', cls: 'tool-link-housing' }
+                ],
+                affiliate: {
+                    heading: '🏨 Book your Maldives paradise',
+                    text: 'Lock in early deals on overwater bungalows and flights. Booking 6+ months ahead can save you 30% on your dream island escape.',
+                    links: [
+                        { text: 'Search Maldives hotels →', url: 'https://www.booking.com/searchresults.html?ss=Maldives', style: '' },
+                        { text: 'Compare flight deals →', url: 'https://www.skyscanner.com', style: 'background:#0d9488;' }
+                    ]
+                },
+                affiliateLink: 'https://www.booking.com/searchresults.html?ss=Maldives',
+                legal: legalTexts,
+                shareCard: {
+                    emoji: '🌴',
+                    titleLine: 'Maldives Dream Trip',
+                    slogan: 'Wake up in paradise. Your dream vacation fund awaits! 🌴'
+                }
+            },
+
+            housing: {
+                seo: {
+                    title: 'Eucalyptus Grove Fund — Home Down Payment Calculator | KoalaSave',
+                    description: "Build your eucalyptus grove, brick by brick. Plan your first home down payment with our free savings calculator and track your progress.",
+                    canonical: 'https://koalasave.com/housing/',
+                    ogImage: 'https://koalasave.com/share-cover.png',
+                    schemaName: 'KoalaSave Home Down Payment Calculator',
+                    schemaDescription: 'Free down payment savings calculator to plan and track your first home fund with progress charts.',
+                    ogTitle: "🌿 Eucalyptus Grove Fund — Home Down Payment Calculator | KoalaSave",
+                    ogDescription: "Brick by brick. Plan your first home down payment with our free savings tracker. Know exactly when you'll get the keys to your dream home.",
+                    shareTitle: "🐨 尤加利树林计划：我的首付冲刺大作战！",
+                    shareDesc: "拥有属于自己的温暖小窝。KoalaSave 帮你精准计算买房首付进度，快来看看！"
+                },
+                header: {
+                    h1: '🌿 Build Your Eucalyptus Grove',
+                    p: "Brick by brick. Like a koala finding the perfect tree — your first home is closer than you think.",
+                    formIcon: '✏️',
+                    formTitle: 'Your Home Fund',
+                    nameLabel: 'Goal name',
+                    namePlaceholder: 'e.g. My First Home',
+                    targetLabel: 'Down payment target ($)',
+                    monthsLabel: 'Target purchase timeline (months)',
+                    monthsPlaceholder: 'e.g. 36',
+                    statusMessage: 'Set your down payment target to plan your home fund.',
+                    emptyState: 'No home goals yet. Set your down payment goal above and click <strong>"Save Goal"</strong>.'
+                },
+                defaults: {
+                    goalName: 'First Home 🏡',
+                    targetAmount: 80000,
+                    savedAmount: 10000,
+                    monthlySavings: 1500,
+                    targetMonths: 36
+                },
+                extraSliderMax: 3000,
+                extraSliderStep: 100,
+                navActive: 'navHousing',
+                css: {
+                    '--body-gradient-start': '#fff7ed',
+                    '--body-gradient-end': '#ffedd5',
+                    '--header-gradient-start': '#9a3412',
+                    '--header-gradient-mid': '#ea580c',
+                    '--header-gradient-end': '#fb923c',
+                    '--header-shadow': 'rgba(234,88,12,.2)',
+                    '--nav-bg': 'rgba(124, 45, 18, 0.95)',
+                    '--btn-primary-bg': '#ea580c',
+                    '--btn-primary-hover': '#9a3412',
+                    '--btn-primary-shadow': 'rgba(234,88,12,.3)',
+                    '--input-focus-border': '#ea580c',
+                    '--input-focus-shadow': 'rgba(234,88,12,.1)',
+                    '--ring-fg': '#fb923c',
+                    '--ring-shadow': 'rgba(251,146,60,.15)',
+                    '--stat-blue': '#ea580c',
+                    '--stat-green': '#ea580c',
+                    '--stat-orange': '#d97706',
+                    '--slider-thumb-bg': '#ea580c',
+                    '--slider-thumb-shadow': 'rgba(234,88,12,.35)',
+                    '--slider-bg-start': '#fed7aa',
+                    '--slider-bg-end': '#fdba74',
+                    '--impact-bg-start': '#fff7ed',
+                    '--impact-bg-end': '#ffedd5',
+                    '--impact-border': '#fed7aa',
+                    '--impact-value-color': '#9a3412',
+                    '--extra-value-bg': '#fff7ed',
+                    '--extra-value-color': '#ea580c',
+                    '--goal-hover-border': '#ea580c',
+                    '--goal-hover-shadow': 'rgba(234,88,12,.1)',
+                    '--goal-active-border': '#ea580c',
+                    '--goal-active-shadow': 'rgba(234,88,12,.12)',
+                    '--goal-progress-bg': '#fb923c',
+                    '--faq-hover-color': '#ea580c',
+                    '--share-focus-border': '#fed7aa',
+                    '--share-focus-shadow': 'rgba(234,88,12,.1)',
+                    '--share-input-focus-border': '#ea580c',
+                    '--footer-link-hover': '#ea580c',
+                    '--chart-line-color': '#ea580c',
+                    '--chart-line-bg': 'rgba(234,88,12,.08)',
+                    '--chart-extra-color': '#fb923c',
+                    '--chart-extra-bg': 'rgba(251,146,60,.08)',
+                    '--affiliate-bg-start': '#fff7ed',
+                    '--affiliate-bg-end': '#ffedd5',
+                    '--affiliate-heading-color': '#9a3412',
+                    '--affiliate-text-color': '#7c2d12',
+                    '--affiliate-btn-bg': '#ea580c',
+                    '--affiliate-btn-hover': '#9a3412',
+                    '--footer-text-color': '#7c2d12',
+                    '--footer-link-color': '#ea580c',
+                    '--modal-accent-color': '#ea580c'
+                },
+                chartColors: {
+                    plan: { border: '#94a3b8', bg: 'transparent' },
+                    actual: { border: '#ea580c', bg: 'rgba(234,88,12,.08)' },
+                    extra: { border: '#fb923c', bg: 'rgba(251,146,60,.08)' }
+                },
+                faqTitle: 'Home Buying FAQ',
+                faq: [
+                    { q: 'How much down payment do I need for a house?', a: 'Conventional loans typically require 3-20% down. For an $80,000 target, that represents a 16% down payment on a $500,000 home — a solid range to avoid PMI while keeping monthly payments manageable.' },
+                    { q: 'How can I save for a down payment faster?', a: 'Put your savings in a high-yield account (4-5% APY), automate monthly transfers, reduce rent by moving in with family temporarily, or pick up a side hustle. Every extra dollar brings your eucalyptus grove closer.' },
+                    { q: 'What is PMI and how does it affect my down payment?', a: 'Private Mortgage Insurance (PMI) is required when you put down less than 20%. It typically costs 0.5-1.5% of the loan amount annually. Reaching 20% equity removes PMI — our calculator helps you target that sweet spot.' },
+                    { q: 'Why "Eucalyptus Grove"?', a: 'Just as a koala carefully selects the perfect eucalyptus tree to call home, your first home is about finding the right place to put down roots. We help you save for that moment, one brick at a time.' }
+                ],
+                toolLinksTitle: 'Try another savings tool',
+                toolLinks: [
+                    { href: '/', title: "🛡️ Koala's Safety Net", desc: 'Build your emergency fund stress-free', cls: 'tool-link-main' },
+                    { href: '/?mode=travel', title: '🌴 Paradise Savings Calculator', desc: 'Save for your dream Maldives vacation', cls: 'tool-link-travel' }
+                ],
+                affiliate: {
+                    heading: '🏦 Earn interest while you save for home',
+                    text: 'High-yield savings accounts (4-5% APY) help your down payment fund grow faster while you save. Compare top-rated accounts and mortgage pre-approval options.',
+                    links: [
+                        { text: 'Compare HYSA rates →', url: 'https://www.bankrate.com/banking/savings/rates/', style: '' },
+                        { text: 'Check mortgage rates →', url: 'https://www.bankrate.com/mortgages/', style: 'background:#9a3412;' }
+                    ]
+                },
+                affiliateLink: 'https://www.bankrate.com/banking/savings/rates/',
+                legal: legalTexts,
+                shareCard: {
+                    emoji: '🌿',
+                    titleLine: 'First Home Down Payment',
+                    slogan: 'Brick by brick, your dream home is getting closer. Save with me! 🏡'
+                }
+            }        };
+
+        /* ─── Route Detection — ?mode= takes priority ─── */
+        function detectRoute() {
+            const params = new URLSearchParams(location.search);
+            var mode = params.get('mode');
+            // Alias: mode=emergency → default config
+            if (mode === 'emergency') mode = 'default';
+            if (mode && pageConfigs[mode]) return mode;
+            // Backward compat: ?tab= (legacy shared links)
+            var tab = params.get('tab');
+            if (tab === 'emergency') tab = 'default';
+            if (tab && pageConfigs[tab]) return tab;
+            // Fallback: hash / path
+            const hash = location.hash.slice(1).toLowerCase();
+            const path = location.pathname.replace(/\/$/, '').toLowerCase();
+            if (hash === 'travel' || path === '/travel') return 'travel';
+            if (hash === 'housing' || path === '/housing') return 'housing';
+            return 'default';
+        }
+
+        function applyConfig(name) {
+            const cfg = pageConfigs[name] || pageConfigs.default;
+
+            // CSS variables
+            const root = document.documentElement;
+            for (const [key, val] of Object.entries(cfg.css)) {
+                root.style.setProperty(key, val);
+            }
+
+            // SEO
+            document.title = cfg.seo.title;
+            document.getElementById('pageDescription').content = cfg.seo.description;
+            document.getElementById('canonicalLink').href = cfg.seo.canonical;
+            const schemaEl = document.getElementById('schemaJson');
+            try {
+                const schema = JSON.parse(schemaEl.textContent);
+                schema.name = cfg.seo.schemaName;
+                schema.description = cfg.seo.schemaDescription;
+                schema.url = cfg.seo.canonical;
+                schemaEl.textContent = JSON.stringify(schema);
+            } catch(e) {}
+
+            // OG / Twitter Card — 爬虫兼容：不存在则自动创建
+            updateMetaTag('property', 'og:title', cfg.seo.shareTitle || cfg.seo.ogTitle);
+            updateMetaTag('property', 'og:description', cfg.seo.shareDesc || cfg.seo.ogDescription);
+            updateMetaTag('property', 'og:url', cfg.seo.canonical);
+            updateMetaTag('property', 'og:image', cfg.seo.ogImage);
+            updateMetaTag('name', 'twitter:title', cfg.seo.shareTitle || cfg.seo.ogTitle);
+            updateMetaTag('name', 'twitter:description', cfg.seo.shareDesc || cfg.seo.ogDescription);
+            updateMetaTag('name', 'twitter:image', cfg.seo.ogImage);
+
+            // Header
+            document.getElementById('headerTitle').textContent = cfg.header.h1;
+            document.getElementById('headerDesc').innerHTML = cfg.header.p;
+
+            // Form labels and defaults
+            document.getElementById('formIcon').textContent = cfg.header.formIcon;
+            document.getElementById('formTitle').textContent = cfg.header.formTitle;
+            document.getElementById('nameLabel').textContent = cfg.header.nameLabel;
+            document.getElementById('targetLabel').textContent = cfg.header.targetLabel;
+            document.getElementById('monthsLabel').innerHTML = cfg.header.monthsLabel + ' <span class="hint">— optional</span>';
+            const goalNameInput = document.getElementById('goalName');
+            goalNameInput.placeholder = cfg.header.namePlaceholder;
+            goalNameInput.value = cfg.defaults.goalName;
+            document.getElementById('targetAmount').value = cfg.defaults.targetAmount;
+            document.getElementById('savedAmount').value = cfg.defaults.savedAmount;
+            document.getElementById('monthlySavings').value = cfg.defaults.monthlySavings;
+            document.getElementById('targetMonths').value = cfg.defaults.targetMonths;
+
+            // Status message
+            document.getElementById('statusMessage').textContent = cfg.header.statusMessage;
+
+            // Empty state — element may not exist if goals have been rendered
+            const emptyEl = document.getElementById('emptyStateText');
+            if (emptyEl) emptyEl.innerHTML = cfg.header.emptyState;
+
+            // Display values
+            document.getElementById('dispTarget').textContent = '$' + Number(cfg.defaults.targetAmount).toLocaleString();
+            document.getElementById('dispSaved').textContent = '$' + Number(cfg.defaults.savedAmount).toLocaleString();
+            document.getElementById('monthlyLabel').textContent = cfg.defaults.monthlySavings;
+
+            // Slider
+            document.getElementById('extraSlider').max = cfg.extraSliderMax;
+            document.getElementById('extraSlider').step = cfg.extraSliderStep;
+            document.getElementById('extraSlider').value = 0;
+            document.getElementById('extraDisplay').textContent = '0';
+
+            // Nav active
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            const navEl = document.getElementById(cfg.navActive);
+            if (navEl) navEl.classList.add('active');
+
+            // FAQ
+            const faqContainer = document.getElementById('faqContainer');
+            faqContainer.innerHTML = cfg.faq.map((item, i) =>
+                '<div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">' +
+                    '<div class="faq-q" itemprop="name">' + item.q + '</div>' +
+                    '<div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">' +
+                        '<div itemprop="text">' + item.a + '</div>' +
+                    '</div>' +
+                '</div>'
+            ).join('');
+            document.getElementById('faqTitle').innerHTML = cfg.faqTitle;
+
+            // Tool links
+            const toolLinksContainer = document.getElementById('toolLinksContainer');
+            toolLinksContainer.innerHTML = cfg.toolLinks.map(link =>
+                '<a href="' + link.href + '" class="' + link.cls + '">' +
+                    '<span class="link-title">' + link.title + '</span>' +
+                    '<span class="link-desc">' + link.desc + '</span>' +
+                '</a>'
+            ).join('');
+            document.getElementById('toolLinksTitle').textContent = cfg.toolLinksTitle;
+
+            // Affiliate section
+            const affSection = document.getElementById('affiliateSection');
+            if (cfg.affiliate) {
+                affSection.style.display = 'block';
+                document.getElementById('affiliateHeading').textContent = cfg.affiliate.heading;
+                document.getElementById('affiliateText').textContent = cfg.affiliate.text;
+                const linksContainer = document.getElementById('affiliateLinks');
+                linksContainer.innerHTML = cfg.affiliate.links.map((l, i) =>
+                    '<a href="' + (i === 0 && cfg.affiliateLink ? cfg.affiliateLink : l.url) + '" class="affiliate-link" target="_blank" rel="noopener" style="' + (l.style || '') + '">' + l.text + '</a>'
+                ).join('');
+            } else {
+                affSection.style.display = 'none';
+            }
+        }
+
+        /* ─── 爬虫兼容：更新 Meta 标签，不存在则自动创建 ─── */
+        function updateMetaTag(attrName, attrValue, contentValue) {
+            let element = document.querySelector('meta[' + attrName + '="' + attrValue + '"]');
+            if (element) {
+                element.setAttribute('content', contentValue);
+            } else {
+                element = document.createElement('meta');
+                element.setAttribute(attrName, attrValue);
+                element.setAttribute('content', contentValue);
+                document.head.appendChild(element);
+            }
+        }
+
+        /* ─── Calculator Logic ─── */
+        let chartInstance = null;
+        let goals = [];
+        let activeGoalId = null;
+
+        function getStorageKey() { return 'savingsGoals_' + currentRoute; }
+
+        const $ = id => document.getElementById(id);
+        const goalName       = $('goalName');
+        const targetAmount   = $('targetAmount');
+        const savedAmount    = $('savedAmount');
+        const monthlySavings = $('monthlySavings');
+        const targetMonths   = $('targetMonths');
+        const extraSlider    = $('extraSlider');
+        const extraDisplay   = $('extraDisplay');
+        const progressRing   = $('progressRing');
+        const percentLabel   = $('percentLabel');
+        const statusMessage  = $('statusMessage');
+        const dispTarget     = $('dispTarget');
+        const dispSaved      = $('dispSaved');
+        const statMonthly    = $('statMonthly');
+        const statTimeline   = $('statTimeline');
+        const statTargetDate = $('statTargetDate');
+        const impactMonths   = $('impactMonths');
+        const impactEarly    = $('impactEarly');
+        const goalsList      = $('goalsList');
+        const monthlyLabel   = $('monthlyLabel');
+        const shareBtn       = $('shareBtn');
+        const shareBox       = $('shareBox');
+        const shareUrlInput  = $('shareUrlInput');
+        const copyBtn        = $('copyBtn');
+        const copyCardBtn    = $('copyCardBtn');
+        const saveCardBtn    = $('saveCardBtn');
+        const teamupBtn      = $('teamupBtn');
+        const saveBtn        = $('saveBtn');
+        const toastEl        = $('toast');
+
+        const CIRCUMFERENCE = 2 * Math.PI * 82;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            currentRoute = detectRoute();
+
+            // Normalize URL: /?mode=emergency → /
+            if (currentRoute === 'default' && location.search.includes('mode=emergency')) {
+                var cleanUrl = location.pathname.replace(/\/?$/, '') + '/';
+                history.replaceState(null, '', cleanUrl);
+            }
+            // Sync URL if route came from hash/path (upgrade to ?mode=)
+            const urlParams = parseURLParams();
+            if (!urlParams.mode && !urlParams.tab) {
+                if (currentRoute !== 'default') {
+                    const newUrl = location.pathname.replace(/\/?$/, '') + '/?mode=' + currentRoute;
+                    history.replaceState(null, '', newUrl);
+                }
+            }
+
+            applyConfig(currentRoute);
+
+            // Re-bind the monthly label since applyConfig resets the value
+            monthlyLabel.textContent = monthlySavings.value;
+
+            loadGoals();
+            bindEvents();
+            const vals = parseURLParams();
+            if (vals.target) {
+                targetAmount.value = vals.target;
+                savedAmount.value = vals.saved || 0;
+                monthlySavings.value = vals.monthly || 200;
+                if (vals.months) targetMonths.value = vals.months;
+                if (vals.name) goalName.value = vals.name;
+                // Show challenge welcome if someone arrived via shared link
+                setTimeout(function() { showChallengeWelcome(vals); }, 800);
+            }
+            updateAll();
+            renderGoalsList();
+            renderChart();
+
+            // Close card preview on overlay background click
+            document.getElementById('cardPreviewOverlay').addEventListener('click', function(e) {
+                if (e.target === this) closeCardPreview();
+            });
+        });
+
+        /* ─── Switch mode (SPA-style, no full page reload) ─── */
+        function switchToMode(mode) {
+            currentRoute = mode;
+            applyConfig(currentRoute);
+            monthlyLabel.textContent = monthlySavings.value;
+            loadGoals();
+            renderGoalsList();
+            updateAll();
+            renderChart();
+        }
+
+        /* Navigate between modes with pushState */
+        function navigateToMode(mode) {
+            if (mode === currentRoute) return;
+            history.pushState({ mode: mode }, '', mode === 'default' ? '/' : '/?mode=' + mode);
+            switchToMode(mode);
+        }
+
+        /* Listen to browser back/forward */
+        window.addEventListener('popstate', function() {
+            var newRoute = detectRoute();
+            if (newRoute !== currentRoute) switchToMode(newRoute);
+        });
+
+        function bindEvents() {
+            [goalName, targetAmount, savedAmount, monthlySavings, targetMonths].forEach(el =>
+                el.addEventListener('input', () => { updateAll(); renderChart(); })
+            );
+            extraSlider.addEventListener('input', () => {
+                extraDisplay.textContent = extraSlider.value;
+                updateAll();
+                renderChart();
+            });
+            saveBtn.addEventListener('click', saveCurrentGoal);
+            shareBtn.addEventListener('click', toggleShareBox);
+            copyBtn.addEventListener('click', copyShareLink);
+            copyCardBtn.addEventListener('click', copyShareCard);
+            saveCardBtn.addEventListener('click', function() {
+                // Simple size picker using existing modal infrastructure
+                var modal = document.getElementById('modalDynamic');
+                modal.querySelector('.modal-header h3').innerHTML = '📸 Card Size';
+                modal.querySelector('.modal-body').innerHTML =
+                    '<p style="font-size:.88rem;color:#475569;margin-bottom:16px;">Choose a size for your savings card:</p>' +
+                    '<div style="display:flex;flex-direction:column;gap:10px;">' +
+                        '<button class="btn btn-sm btn-primary" id="sizeLandscapeBtn" style="justify-content:center;">🌄 Landscape 1200×630 — Best for Twitter/FB</button>' +
+                        '<button class="btn btn-sm btn-secondary" id="sizeSquareBtn" style="justify-content:center;">⬛ Square 800×800 — Best for WhatsApp/IG</button>' +
+                    '</div>';
+                document.getElementById('modalOverlay').classList.add('open');
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+                document.getElementById('sizeLandscapeBtn').addEventListener('click', function() { window.closeModal(); generateCardImage('landscape'); });
+                document.getElementById('sizeSquareBtn').addEventListener('click', function() { window.closeModal(); generateCardImage('square'); });
+            });
+            teamupBtn.addEventListener('click', toggleTeamUp);
+            // Nav links: SPA-style navigation via pushState
+            document.querySelectorAll('.nav-links a[data-mode]').forEach(function(a) {
+                a.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    navigateToMode(this.getAttribute('data-mode'));
+                });
+            });
+            document.getElementById('cardDownloadBtn').addEventListener('click', downloadCardImage);
+            document.getElementById('cardPreviewClose').addEventListener('click', closeCardPreview);
+        }
+
+        function getValues() {
+            return {
+                name: goalName.value.trim() || 'Untitled Goal',
+                target: parseFloat(targetAmount.value) || 0,
+                saved: parseFloat(savedAmount.value) || 0,
+                monthly: parseFloat(monthlySavings.value) || 0,
+                months: parseInt(targetMonths.value) || 0,
+                extra: parseInt(extraSlider.value) || 0
+            };
+        }
+
+        function calculate(v) {
+            const remaining = Math.max(0, v.target - v.saved);
+            const pct = v.target > 0 ? Math.min(100, (v.saved / v.target) * 100) : 0;
+            let neededMonthly = 0, onTrack = null;
+            if (v.months > 0 && remaining > 0) {
+                neededMonthly = remaining / v.months;
+                onTrack = v.monthly >= neededMonthly;
+            }
+            let monthsAtCurrent = v.monthly > 0 ? remaining / v.monthly : Infinity;
+            const effectiveMonthly = v.monthly + v.extra;
+            let monthsWithExtra = effectiveMonthly > 0 ? remaining / effectiveMonthly : Infinity;
+            let monthsEarly = 0;
+            if (v.monthly > 0) monthsEarly = Math.max(0, monthsAtCurrent - monthsWithExtra);
+            const now = new Date();
+            return {
+                remaining, percent: pct, neededMonthly, onTrack,
+                monthsAtCurrent: monthsAtCurrent === Infinity ? null : monthsAtCurrent,
+                monthsWithExtra: monthsWithExtra === Infinity ? null : monthsWithExtra,
+                monthsEarly,
+                dateAtCurrent: monthsAtCurrent === Infinity ? null : addMonths(now, Math.round(monthsAtCurrent)),
+                dateWithExtra: monthsWithExtra === Infinity ? null : addMonths(now, Math.round(monthsWithExtra)),
+                deadlineDate: v.months > 0 ? addMonths(now, v.months) : null,
+                effectiveMonthly
+            };
+        }
+
+        function addMonths(date, n) { const d = new Date(date); d.setMonth(d.getMonth() + n); return d; }
+        function formatDate(d) { return d ? d.toLocaleDateString('en-US', { month:'short', year:'numeric' }) : '—'; }
+        function formatCurrency(n) {
+            if (n === null || n === undefined || !isFinite(n)) return '$—';
+            if (n >= 1e6) return '$' + (n/1e6).toFixed(1) + 'M';
+            if (n >= 1e3) return '$' + n.toLocaleString('en-US', { maximumFractionDigits: 0 });
+            return '$' + n.toFixed(0);
+        }
+        function formatNumber(n) { return n.toLocaleString('en-US', { maximumFractionDigits: 0 }); }
+
+        function updateAll() {
+            const v = getValues(), r = calculate(v);
+            monthlyLabel.textContent = v.monthly;
+            progressRing.style.strokeDashoffset = CIRCUMFERENCE * (1 - r.percent / 100);
+            percentLabel.textContent = Math.round(r.percent) + '%';
+            dispTarget.textContent = formatCurrency(v.target);
+            dispSaved.textContent = formatCurrency(v.saved);
+            statMonthly.textContent = formatCurrency(v.months > 0 ? r.neededMonthly : v.monthly);
+            statTimeline.textContent = (r.monthsAtCurrent !== null && isFinite(r.monthsAtCurrent))
+                ? Math.ceil(r.monthsAtCurrent) + ' months'
+                : (r.saved >= r.target ? 'Goal reached! 🎉' : '—');
+            statTargetDate.textContent = v.months > 0 && r.deadlineDate ? formatDate(r.deadlineDate)
+                : r.dateAtCurrent ? formatDate(r.dateAtCurrent) : '—';
+            if (v.target <= 0) statusMessage.textContent = 'Enter a target amount to see your savings plan.';
+            else if (r.saved >= r.target) statusMessage.textContent = '🎉 Congratulations! You\'ve reached your savings goal!';
+            else if (v.months > 0 && r.neededMonthly > 0) {
+                if (r.onTrack) statusMessage.textContent = 'Great — you\'re saving $' + formatNumber(v.monthly) + '/month, which meets your target of $' + formatNumber(Math.ceil(r.neededMonthly)) + '/month.';
+                else { const gap = r.neededMonthly - v.monthly; statusMessage.textContent = 'You need $' + formatNumber(Math.ceil(r.neededMonthly)) + '/month to reach your deadline. Try increasing by $' + formatNumber(Math.ceil(gap)) + '/month, or use the slider above.'; }
+            } else if (r.monthsAtCurrent !== null && isFinite(r.monthsAtCurrent))
+                statusMessage.textContent = 'At $' + formatNumber(v.monthly) + '/month, you\'ll reach your goal in ' + Math.ceil(r.monthsAtCurrent) + ' months (' + formatDate(r.dateAtCurrent) + ').';
+            else statusMessage.textContent = 'Set a monthly savings amount to see your timeline.';
+            if (v.extra > 0 && r.monthsWithExtra !== null && isFinite(r.monthsWithExtra)) {
+                impactMonths.textContent = Math.ceil(r.monthsWithExtra) + ' months';
+                impactEarly.textContent = r.monthsEarly > 0 ? Math.ceil(r.monthsEarly) + ' months earlier 🎉' : '—';
+            } else if (v.extra > 0 && r.saved >= r.target) { impactMonths.textContent = 'Goal reached!'; impactEarly.textContent = '—'; }
+            else { impactMonths.textContent = 'Add extra to see impact'; impactEarly.textContent = '—'; }
+        }
+
+        function renderChart() {
+            const v = getValues(), r = calculate(v);
+            const cfg = pageConfigs[currentRoute] || pageConfigs.default;
+            const cc = cfg.chartColors;
+            const ctx = document.getElementById('savingsChart').getContext('2d');
+            if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
+            if (v.target <= 0) return;
+            const labels = [], planData = [], actualData = [], extraData = [];
+            let maxMonths = 60;
+            if (v.months > 0) maxMonths = Math.max(v.months, 60);
+            if (r.monthsAtCurrent !== null && isFinite(r.monthsAtCurrent)) maxMonths = Math.max(maxMonths, Math.ceil(r.monthsAtCurrent) + 6);
+            if (r.monthsWithExtra !== null && isFinite(r.monthsWithExtra)) maxMonths = Math.max(maxMonths, Math.ceil(r.monthsWithExtra) + 6);
+            maxMonths = Math.min(maxMonths, 240);
+            for (let m = 0; m <= maxMonths; m++) {
+                labels.push(m === 0 ? 'Now' : (m === maxMonths ? '' : m));
+                if (v.months > 0) planData.push(Math.min(v.saved + r.neededMonthly * m, v.target));
+                actualData.push(Math.min(v.saved + v.monthly * m, v.target * 1.05));
+                extraData.push(Math.min(v.saved + (v.monthly + v.extra) * m, v.target * 1.05));
+            }
+            const datasets = [];
+            if (v.months > 0) datasets.push({ label:'Plan (at $' + Math.ceil(r.neededMonthly) + '/mo)', data:planData, borderColor:cc.plan.border, backgroundColor:cc.plan.bg, borderDash:[6,4], borderWidth:2, pointRadius:0, tension:0 });
+            datasets.push({ label: v.extra > 0 ? 'Current ($' + v.monthly + '/mo)' : 'Your savings path ($' + v.monthly + '/mo)', data:actualData, borderColor:cc.actual.border, backgroundColor:cc.actual.bg, borderWidth:3, pointRadius:0, tension:0, fill: !v.extra });
+            if (v.extra > 0) datasets.push({ label:'With +$' + v.extra + '/mo ($' + (v.monthly+v.extra) + '/mo)', data:extraData, borderColor:cc.extra.border, backgroundColor:cc.extra.bg, borderWidth:3, pointRadius:0, tension:0, fill:true });
+            chartInstance = new Chart(ctx, {
+                type:'line', data:{ labels, datasets },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { position:'bottom', labels:{ boxWidth:14, padding:16, font:{ size:12 } } }, tooltip:{ callbacks:{ label: ctx => ctx.dataset.label + ': ' + formatCurrency(ctx.parsed.y) } } },
+                    scales: { x:{ title:{ display:true, text:'Months from now', font:{ size:12 } }, grid:{ display:false }, ticks:{ maxTicksLimit:15, font:{ size:11 } } }, y:{ title:{ display:true, text:'Total savings ($)', font:{ size:12 } }, grid:{ color:'rgba(0,0,0,.05)' }, ticks:{ callback: v => formatCurrency(v), font:{ size:11 } }, beginAtZero:true } },
+                    elements: { point:{ radius:0 } }
+                },
+                plugins: [{
+                    id:'targetLine',
+                    beforeDraw: function(chart) {
+                        const c = chart.ctx, a = chart.chartArea, yS = chart.scales.y;
+                        if (!a || v.target <= 0) return;
+                        const y = yS.getPixelForValue(v.target);
+                        if (y < a.top || y > a.bottom) return;
+                        c.save(); c.setLineDash([4,4]); c.strokeStyle='#ef4444'; c.lineWidth=1.5;
+                        c.beginPath(); c.moveTo(a.left,y); c.lineTo(a.right,y); c.stroke(); c.setLineDash([]);
+                        c.fillStyle='#ef4444'; c.font='11px -apple-system, sans-serif'; c.textAlign='right';
+                        c.fillText('Target: ' + formatCurrency(v.target), a.right-4, y-6); c.restore();
+                    }
+                }]
+            });
+        }
+
+        function loadGoals() {
+            try { const data = localStorage.getItem(getStorageKey()); goals = data ? JSON.parse(data) : []; }
+            catch(e) { goals = []; }
+        }
+        function saveGoals() {
+            try { localStorage.setItem(getStorageKey(), JSON.stringify(goals)); }
+            catch(e) { showToast('Failed to save to localStorage.'); }
+        }
+        function saveCurrentGoal() {
+            const v = getValues();
+            if (v.target <= 0) { showToast('Please enter a target amount.'); return; }
+            const r = calculate(v);
+            const goal = { id: Date.now().toString(36) + Math.random().toString(36).slice(2,5), name: v.name, target: v.target, saved: v.saved, monthly: v.monthly, months: v.months, extra: v.extra, percent: r.percent, createdAt: new Date().toISOString() };
+            const idx = goals.findIndex(g => g.name === v.name);
+            if (idx >= 0) goals[idx] = goal; else goals.push(goal);
+            saveGoals(); renderGoalsList(); activeGoalId = goal.id;
+            showToast('✅ "' + goal.name + '" saved!');
+        }
+        function deleteGoal(id, e) {
+            e.stopPropagation(); goals = goals.filter(g => g.id !== id);
+            saveGoals(); renderGoalsList();
+            if (activeGoalId === id) activeGoalId = null;
+            showToast('Goal deleted.');
+        }
+        function loadGoal(id) {
+            const g = goals.find(g => g.id === id);
+            if (!g) return;
+            activeGoalId = g.id; goalName.value = g.name; targetAmount.value = g.target;
+            savedAmount.value = g.saved; monthlySavings.value = g.monthly; targetMonths.value = g.months || '';
+            extraSlider.value = g.extra || 0; extraDisplay.textContent = extraSlider.value;
+            updateAll(); renderChart(); renderGoalsList();
+            document.querySelector('.tool-row').scrollIntoView({ behavior:'smooth', block:'start' });
+        }
+        function renderGoalsList() {
+            if (!goals.length) { goalsList.innerHTML = '<div class="empty-state"><div class="empty-icon">📋</div><p id="emptyStateText">' + (document.getElementById('emptyStateText') ? document.getElementById('emptyStateText').innerHTML : 'No goals saved yet.') + '</p></div>'; return; }
+            goalsList.innerHTML = goals.map(g => { const pct = g.target > 0 ? Math.min(100, Math.round((g.saved/g.target)*100)) : 0; const active = g.id === activeGoalId ? 'goal-active' : ''; return '<div class="goal-item ' + active + '" data-id="' + g.id + '"><button class="goal-delete" data-id="' + g.id + '" title="Delete">✕</button><div class="goal-name">' + escHtml(g.name) + '</div><div class="goal-progress">' + pct + '% · ' + formatCurrency(g.saved) + ' / ' + formatCurrency(g.target) + '</div><div style="margin-top:6px;height:4px;background:#e2e8f0;border-radius:4px;overflow:hidden;"><div class="goal-progress-bar" style="width:' + pct + '%;"></div></div></div>'; }).join('');
+            goalsList.querySelectorAll('.goal-item').forEach(el => { el.addEventListener('click', function(e) { if (e.target.closest('.goal-delete')) return; loadGoal(this.dataset.id); }); });
+            goalsList.querySelectorAll('.goal-delete').forEach(el => { el.addEventListener('click', function(e) { deleteGoal(this.dataset.id, e); }); });
+        }
+        function escHtml(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+        function toggleShareBox() {
+            const v = getValues();
+            if (v.target <= 0) { showToast('Set a target amount first.'); return; }
+            const p = new URLSearchParams();
+            p.set('mode', currentRoute === 'default' ? 'emergency' : currentRoute);
+            if (goalName.value.trim()) p.set('name', goalName.value.trim());
+            if (v.target) p.set('target', v.target); if (v.saved) p.set('saved', v.saved);
+            if (v.monthly) p.set('monthly', v.monthly); if (v.months) p.set('months', v.months);
+            shareUrlInput.value = location.origin + (currentRoute === 'default' ? '/' : '/?mode=' + (currentRoute === 'default' ? 'emergency' : currentRoute)) + '?' + p.toString();
+            // Remove duplicate mode param by rebuilding cleanly
+            var cleanUrl = location.origin + '/' + '?mode=' + (currentRoute === 'default' ? 'emergency' : currentRoute);
+            if (goalName.value.trim()) cleanUrl += '&name=' + encodeURIComponent(goalName.value.trim());
+            if (v.target) cleanUrl += '&target=' + v.target;
+            if (v.saved) cleanUrl += '&saved=' + v.saved;
+            if (v.monthly) cleanUrl += '&monthly=' + v.monthly;
+            if (v.months) cleanUrl += '&months=' + v.months;
+            shareUrlInput.value = cleanUrl;
+
+            // Build share card text
+            const cfg = pageConfigs[currentRoute] || pageConfigs.default;
+            const sc = cfg.shareCard;
+            const pct = v.target > 0 ? Math.min(100, Math.round((v.saved / v.target) * 100)) : 0;
+            const r = calculate(v);
+            const dateStr = r.dateAtCurrent ? formatDate(r.dateAtCurrent) : '—';
+            const cardText =
+                '🐨 KoalaSave Savings Check-in\n' +
+                '────────────────\n' +
+                sc.emoji + '  ' + sc.titleLine + '\n' +
+                '🎯  Target: $' + Number(v.target).toLocaleString() + '\n' +
+                '💰  Saved: $' + Number(v.saved).toLocaleString() + ' (' + pct + '%)\n' +
+                '📅  Est. completion: ' + dateStr + '\n' +
+                '\n' +
+                '"' + sc.slogan + '"\n' +
+                '→ ' + shareUrlInput.value;
+
+            document.getElementById('shareCardText').textContent = cardText;
+            shareBox.style.display = shareBox.style.display === 'none' ? 'block' : 'none';
+            if (shareBox.style.display === 'block') { shareUrlInput.select(); }
+        }
+        function copyShareLink() {
+            shareUrlInput.select();
+            try { navigator.clipboard.writeText(shareUrlInput.value); } catch(e) { document.execCommand('copy'); }
+            showToast('🔗 Link copied!'); shareBox.style.display = 'none';
+        }
+        function copyShareCard() {
+            const text = document.getElementById('shareCardText').textContent;
+            try { navigator.clipboard.writeText(text); } catch(e) {
+                const ta = document.createElement('textarea');
+                ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+            }
+            showToast('📋 Card copied! Share it with friends 🐨'); shareBox.style.display = 'none';
+        }
+
+        /* ─── Team Up / Challenge ─── */
+        function toggleTeamUp() {
+            const v = getValues();
+            if (v.target <= 0) { showToast('Set a target amount first.'); return; }
+            const cfg = pageConfigs[currentRoute] || pageConfigs.default;
+            const sc = cfg.shareCard;
+            const pct = v.target > 0 ? Math.min(100, Math.round((v.saved / v.target) * 100)) : 0;
+            const filled = Math.round(pct / 10);
+            const empty = 10 - filled;
+            const bar = '█'.repeat(filled) + '░'.repeat(empty);
+            const p = new URLSearchParams();
+            p.set('mode', currentRoute === 'default' ? 'emergency' : currentRoute);
+            if (goalName.value.trim()) p.set('name', goalName.value.trim());
+            if (v.target) p.set('target', v.target); if (v.saved) p.set('saved', v.saved);
+            if (v.monthly) p.set('monthly', v.monthly); if (v.months) p.set('months', v.months);
+            var url = location.origin + '/?mode=' + (currentRoute === 'default' ? 'emergency' : currentRoute);
+            if (goalName.value.trim()) url += '&name=' + encodeURIComponent(goalName.value.trim());
+            if (v.target) url += '&target=' + v.target;
+            if (v.saved) url += '&saved=' + v.saved;
+            if (v.monthly) url += '&monthly=' + v.monthly;
+            if (v.months) url += '&months=' + v.months;
+
+            var modal = document.getElementById('modalDynamic');
+            modal.querySelector('.modal-header h3').innerHTML = '👥 Challenge a Friend';
+            modal.querySelector('.modal-body').innerHTML =
+                '<p style="font-size:.88rem;font-weight:600;color:#0f172a;">Can you catch up with me? 🐨</p>' +
+                '<p style="font-size:.82rem;color:#64748b;margin-bottom:12px;">Send this challenge to your partner or bestie and start a savings race!</p>' +
+                '<div style="background:linear-gradient(135deg,#fff7ed,#ffedd5);border-radius:12px;padding:14px 16px;text-align:center;margin-bottom:14px;">' +
+                    '<div style="font-size:.9rem;font-weight:600;color:#9a3412;margin-bottom:6px;">' + (sc ? sc.emoji + ' ' + sc.titleLine : 'Savings Goal') + '</div>' +
+                    '<div style="font-size:1.6rem;font-weight:800;color:#ea580c;">$' + Number(v.target).toLocaleString() + '</div>' +
+                    '<div style="font-size:.82rem;color:#92400e;margin-top:4px;">Saved: $' + Number(v.saved).toLocaleString() + ' (' + pct + '%)</div>' +
+                    '<div style="font-size:1.3rem;font-family:monospace;margin:8px 0;letter-spacing:2px;">' + bar + ' ' + pct + '%</div>' +
+                '</div>' +
+                '<label style="font-size:.78rem;font-weight:600;color:#475569;">Challenge link:</label>' +
+                '<div style="display:flex;gap:8px;margin-top:4px;">' +
+                    '<input type="text" id="teamupUrlInput" value="' + url + '" readonly style="flex:1;padding:8px 10px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.8rem;font-family:monospace;" onclick="this.select()">' +
+                    '<button class="btn btn-sm btn-primary" id="teamupCopyBtn" style="width:auto;white-space:nowrap;">📋 Copy</button>' +
+                '</div>';
+            document.getElementById('modalOverlay').classList.add('open');
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            // Wire copy button after modal renders
+            document.getElementById('teamupCopyBtn').addEventListener('click', function() {
+                var input = document.getElementById('teamupUrlInput');
+                input.select();
+                try { navigator.clipboard.writeText(input.value); } catch(e) { document.execCommand('copy'); }
+                showToast('👥 Challenge link copied! 🐨');
+                window.closeModal();
+            });
+        }
+
+        /* ─── Card Image Generator (html2canvas) ─── */
+        function drawRing(canvasId, pct, accent) {
+            var canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            var cx = w / 2, cy = h / 2;
+            var lineW = Math.round(w / 14);
+            var r = cx - lineW;
+            var p = Math.min(100, Math.max(0, pct));
+            var endAngle = -Math.PI / 2 + (Math.PI * 2 * p / 100);
+
+            ctx.clearRect(0, 0, w, h);
+
+            // Track
+            ctx.beginPath();
+            ctx.arc(cx, cy, r, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(0,0,0,.06)';
+            ctx.lineWidth = lineW;
+            ctx.stroke();
+
+            // Progress
+            ctx.beginPath();
+            ctx.arc(cx, cy, r, -Math.PI / 2, endAngle);
+            ctx.strokeStyle = accent;
+            ctx.lineWidth = lineW;
+            ctx.lineCap = 'round';
+            ctx.stroke();
+        }
+
+        function populateGeneratorCard() {
+            const v = getValues(), r = calculate(v);
+            const cfg = pageConfigs[currentRoute] || pageConfigs.default;
+            const sc = cfg.shareCard;
+            const pct = v.target > 0 ? Math.min(100, Math.round((v.saved / v.target) * 100)) : 0;
+            const dateStr = r.dateAtCurrent ? formatDate(r.dateAtCurrent) : '—';
+            const isWarm = pct >= 50;
+
+            // Landscape card
+            document.getElementById('cgenEmojiL').textContent = sc.emoji;
+            document.getElementById('cgenTitleL').textContent = sc.titleLine;
+            document.getElementById('cgenTargetL').textContent = '$' + Number(v.target).toLocaleString();
+            document.getElementById('cgenSavedL').textContent = '$' + Number(v.saved).toLocaleString();
+            document.getElementById('cgenMonthlyL').textContent = '$' + Number(v.monthly || r.neededMonthly).toLocaleString() + '/mo';
+            document.getElementById('cgenDateL').textContent = dateStr;
+            document.getElementById('cgenSloganL').textContent = '"' + sc.slogan + '"';
+            document.getElementById('cgenSocialL').textContent = 'Can you catch up with me? 🐨';
+            document.getElementById('cgenPctL').textContent = pct;
+            document.getElementById('cgenBarPctL').textContent = pct + '%';
+            document.getElementById('cgenBarL').style.width = pct + '%';
+            drawRing('cgenRingL', pct, isWarm ? '#ea580c' : (cfg.css['--stat-blue'] || '#2563eb'));
+
+            // Square card
+            document.getElementById('cgenEmojiS').textContent = sc.emoji;
+            document.getElementById('cgenTitleS').textContent = sc.titleLine;
+            document.getElementById('cgenTargetS').textContent = '$' + Number(v.target).toLocaleString();
+            document.getElementById('cgenSavedS').textContent = '$' + Number(v.saved).toLocaleString();
+            document.getElementById('cgenMonthlyS').textContent = '$' + Number(v.monthly || r.neededMonthly).toLocaleString() + '/mo';
+            document.getElementById('cgenDateS').textContent = dateStr;
+            document.getElementById('cgenSloganS').textContent = '"' + sc.slogan + '"';
+            document.getElementById('cgenSocialS').textContent = 'Can you catch up with me? 🐨';
+            document.getElementById('cgenPctS').textContent = pct;
+            document.getElementById('cgenBarPctS').textContent = pct + '%';
+            document.getElementById('cgenBarS').style.width = pct + '%';
+            drawRing('cgenRingS', pct, isWarm ? '#ea580c' : (cfg.css['--stat-blue'] || '#2563eb'));
+
+            // Apply theme colors
+            const cardGen = document.getElementById('cardGenerator');
+            const css = cfg.css;
+            const accent = isWarm ? '#ea580c' : (css['--stat-blue'] || '#2563eb');
+            const accent2 = isWarm ? '#f97316' : (css['--btn-primary-hover'] || '#1d4ed8');
+            const bgStart = isWarm ? '#fff7ed' : (css['--body-gradient-start'] || '#eef2ff');
+            const bgMid = isWarm ? '#ffedd5' : (css['--slider-bg-start'] || '#dbeafe');
+            const bgEnd = isWarm ? '#fed7aa' : (css['--body-gradient-end'] || '#bfdbfe');
+            const textColor = isWarm ? '#9a3412' : (css['--header-gradient-start'] || '#1e3a5f');
+
+            cardGen.style.setProperty('--card-gen-accent', accent);
+            cardGen.style.setProperty('--card-gen-accent2', accent2);
+            cardGen.style.setProperty('--card-gen-bg-start', bgStart);
+            cardGen.style.setProperty('--card-gen-bg-mid', bgMid);
+            cardGen.style.setProperty('--card-gen-bg-end', bgEnd);
+            cardGen.style.setProperty('--card-gen-text', textColor);
+            cardGen.style.setProperty('--card-gen-logo-bg', isWarm ? 'rgba(234,88,12,.12)' : 'rgba(37,99,235,.12)');
+
+            cardGen.classList.toggle('card-gen-warm', isWarm);
+        }
+
+        function generateCardImage(size) {
+            populateGeneratorCard();
+            const id = size === 'square' ? 'cardGenSquare' : 'cardGenLandscape';
+            const el = document.getElementById(id);
+            if (!el) return;
+
+            showToast('⏳ Generating your card...');
+
+            // Force layout and wait for styles to apply
+            requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                    var scale = size === 'square' ? 2 : 2;
+                    html2canvas(el, {
+                        scale: scale,
+                        backgroundColor: null,
+                        useCORS: true,
+                        logging: false,
+                        width: size === 'square' ? 800 : 1200,
+                        height: size === 'square' ? 800 : 630
+                    }).then(function(canvas) {
+                        canvas.toBlob(function(blob) {
+                            if (!blob) { showToast('Failed to generate image.'); return; }
+                            var url = URL.createObjectURL(blob);
+                            var img = document.getElementById('cardPreviewImg');
+                            img.src = url;
+                            img.setAttribute('data-blob-url', url);
+                            img.setAttribute('data-size', size);
+                            document.getElementById('cardPreviewOverlay').classList.add('open');
+                            showToast('✅ Card ready!');
+                        }, 'image/png');
+                    }).catch(function() {
+                        showToast('❌ Failed to generate card. Try again.');
+                    });
+                });
+            });
+        }
+
+        function downloadCardImage() {
+            var img = document.getElementById('cardPreviewImg');
+            var url = img.getAttribute('data-blob-url') || img.src;
+            var size = img.getAttribute('data-size') || 'landscape';
+            if (!url || url === '') return;
+            var link = document.createElement('a');
+            var cfg = pageConfigs[currentRoute] || pageConfigs.default;
+            var name = (cfg.shareCard && cfg.shareCard.titleLine) || 'savings';
+            link.href = url;
+            link.download = 'koalasave-' + name.toLowerCase().replace(/\s+/g, '-') + '-' + size + '.png';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast('⬇️ Card downloaded!');
+        }
+
+        function closeCardPreview() {
+            var overlay = document.getElementById('cardPreviewOverlay');
+            overlay.classList.remove('open');
+            var img = document.getElementById('cardPreviewImg');
+            var blobUrl = img.getAttribute('data-blob-url');
+            if (blobUrl) { URL.revokeObjectURL(blobUrl); }
+            img.removeAttribute('data-blob-url');
+            img.src = '';
+        }
+
+        /* ─── Welcome Challenge Modal ─── */
+        function showChallengeWelcome(v) {
+            const pct = v.target > 0 ? Math.min(100, Math.round((v.saved / v.target) * 100)) : 0;
+            const filled = Math.round(pct / 10);
+            const empty = 10 - filled;
+            const bar = '█'.repeat(filled) + '░'.repeat(empty);
+            const cfg = pageConfigs[currentRoute] || pageConfigs.default;
+            const sc = cfg.shareCard;
+            var modal = document.getElementById('modalDynamic');
+            modal.querySelector('.modal-header h3').innerHTML = '👋 Challenge Accepted!';
+            modal.querySelector('.modal-body').innerHTML =
+                '<p style="font-size:1rem;font-weight:600;color:#0f172a;">Someone sent you a savings challenge! 🐨</p>' +
+                '<div style="background:#f8fafc;border-radius:12px;padding:16px 18px;margin:12px 0;text-align:center;">' +
+                    '<div style="font-size:2rem;margin-bottom:4px;">' + (sc ? sc.emoji : '🎯') + '</div>' +
+                    '<div style="font-weight:700;font-size:1rem;color:#0f172a;">' + (sc ? sc.titleLine : 'Savings Goal') + '</div>' +
+                    '<div style="font-size:2.5rem;font-weight:800;color:var(--modal-accent-color);margin:8px 0;">$' + Number(v.target).toLocaleString() + '</div>' +
+                    '<div style="font-size:.9rem;color:#475569;">Already saved: <strong>$' + Number(v.saved).toLocaleString() + '</strong></div>' +
+                    '<div style="font-size:1.2rem;font-family:monospace;margin:8px 0;letter-spacing:2px;">' + bar + ' ' + pct + '%</div>' +
+                '</div>' +
+                '<p style="font-size:.85rem;color:#64748b;text-align:center;">Can you catch up? Adjust the numbers above and start your own savings journey! 🚀</p>';
+            document.getElementById('modalOverlay').classList.add('open');
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function parseURLParams() {
+            const p = {}, sp = new URLSearchParams(location.search);
+            if (sp.has('mode')) p.mode = sp.get('mode');
+            if (sp.has('tab')) p.tab = sp.get('tab'); // legacy
+            if (sp.has('target')) p.target = parseFloat(sp.get('target'));
+            if (sp.has('saved')) p.saved = parseFloat(sp.get('saved'));
+            if (sp.has('monthly')) p.monthly = parseFloat(sp.get('monthly'));
+            if (sp.has('months')) p.months = parseInt(sp.get('months'));
+            if (sp.has('name')) p.name = sp.get('name');
+            return p;
+        }
+        let toastTimeout = null;
+        function showToast(msg) { toastEl.textContent = msg; toastEl.classList.add('show'); clearTimeout(toastTimeout); toastTimeout = setTimeout(() => toastEl.classList.remove('show'), 2500); }
+
+        /* FAQ toggle delegation */
+        document.addEventListener('click', function(e) {
+            const q = e.target.closest('.faq-q');
+            if (q) {
+                q.classList.toggle('open');
+                const a = q.nextElementSibling;
+                if (a) a.classList.toggle('open');
+            }
+        });
+
+        /* ─── Modal functions ─── */
+        window.openModal = function(id) {
+            const legal = pageConfigs[currentRoute].legal;
+            const modal = document.getElementById('modalDynamic');
+            modal.querySelector('.modal-header h3').innerHTML = legal[id].heading;
+            modal.querySelector('.modal-body').innerHTML = legal[id].render();
+            document.getElementById('modalOverlay').classList.add('open');
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        };
+        window.closeModal = function() {
+            document.querySelectorAll('.modal-overlay, .modal').forEach(function(el) { el.classList.remove('open'); });
+            document.body.style.overflow = '';
+        };
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal-overlay')) window.closeModal();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') window.closeModal();
+        });
+    })();
+    </script>
+
+</body>
+</html>
