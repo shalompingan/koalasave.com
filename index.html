@@ -43,12 +43,24 @@
     <script type="application/ld+json" id="schemaJson">
     {
         "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "KoalaSave Savings Goal Calculator",
-        "url": "https://koalasave.com/",
-        "description": "Free interactive savings calculator with progress tracking, charts, and multiple goal support.",
-        "applicationCategory": "FinanceApplication",
-        "operatingSystem": "All"
+        "@graph": [
+            {
+                "@type": "WebApplication",
+                "@id": "https://koalasave.com/#webapp",
+                "name": "KoalaSave Savings Goal Calculator",
+                "url": "https://koalasave.com/",
+                "description": "Free interactive savings calculator with progress tracking, charts, and multiple goal support.",
+                "applicationCategory": "FinanceApplication",
+                "operatingSystem": "All"
+            },
+            {
+                "@type": "Organization",
+                "@id": "https://koalasave.com/#organization",
+                "name": "KoalaSave",
+                "url": "https://koalasave.com/",
+                "logo": "https://koalasave.com/favicon.png"
+            }
+        ]
     }
     </script>
 
@@ -1449,9 +1461,13 @@
             const schemaEl = document.getElementById('schemaJson');
             try {
                 const schema = JSON.parse(schemaEl.textContent);
-                schema.name = cfg.seo.schemaName;
-                schema.description = cfg.seo.schemaDescription;
-                schema.url = cfg.seo.canonical;
+                const items = schema['@graph'] || [schema];
+                const app = items.find(function(i) { return i['@type'] === 'WebApplication'; });
+                if (app) {
+                    app.name = cfg.seo.schemaName;
+                    app.description = cfg.seo.schemaDescription;
+                    app.url = cfg.seo.canonical;
+                }
                 schemaEl.textContent = JSON.stringify(schema);
             } catch(e) {}
 
