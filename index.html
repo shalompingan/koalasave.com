@@ -2005,7 +2005,11 @@
             const sc = cfg.shareCard;
             const pct = v.target > 0 ? Math.min(100, Math.round((v.saved / v.target) * 100)) : 0;
             const dateStr = r.dateAtCurrent ? formatDate(r.dateAtCurrent) : '—';
-            const isWarm = pct >= 50;
+            const css = cfg.css;
+
+            // Use the current mode's accent color (--stat-blue maps to primary brand)
+            const accent = css['--stat-blue'] || '#2563eb';
+            const accent2 = css['--btn-primary-hover'] || '#1d4ed8';
 
             // Landscape card
             document.getElementById('cgenEmojiL').textContent = sc.emoji;
@@ -2019,7 +2023,7 @@
             document.getElementById('cgenPctL').textContent = pct;
             document.getElementById('cgenBarPctL').textContent = pct + '%';
             document.getElementById('cgenBarL').style.width = pct + '%';
-            drawRing('cgenRingL', pct, isWarm ? '#ea580c' : (cfg.css['--stat-blue'] || '#2563eb'));
+            drawRing('cgenRingL', pct, accent);
 
             // Square card
             document.getElementById('cgenEmojiS').textContent = sc.emoji;
@@ -2033,17 +2037,15 @@
             document.getElementById('cgenPctS').textContent = pct;
             document.getElementById('cgenBarPctS').textContent = pct + '%';
             document.getElementById('cgenBarS').style.width = pct + '%';
-            drawRing('cgenRingS', pct, isWarm ? '#ea580c' : (cfg.css['--stat-blue'] || '#2563eb'));
+            drawRing('cgenRingS', pct, accent);
 
-            // Apply theme colors
+            // Apply theme colors from the current mode (no isWarm override)
             const cardGen = document.getElementById('cardGenerator');
-            const css = cfg.css;
-            const accent = isWarm ? '#ea580c' : (css['--stat-blue'] || '#2563eb');
-            const accent2 = isWarm ? '#f97316' : (css['--btn-primary-hover'] || '#1d4ed8');
-            const bgStart = isWarm ? '#fff7ed' : (css['--body-gradient-start'] || '#eef2ff');
-            const bgMid = isWarm ? '#ffedd5' : (css['--slider-bg-start'] || '#dbeafe');
-            const bgEnd = isWarm ? '#fed7aa' : (css['--body-gradient-end'] || '#bfdbfe');
-            const textColor = isWarm ? '#9a3412' : (css['--header-gradient-start'] || '#1e3a5f');
+            const bgStart = css['--body-gradient-start'] || '#f0f4f8';
+            const bgMid = css['--slider-bg-start'] || '#dbeafe';
+            const bgEnd = css['--body-gradient-end'] || '#e2e8f0';
+            const textColor = css['--header-gradient-start'] || '#1e3a5f';
+            const logoBg = 'rgba(' + hexToRgb(accent) + ',.12)';
 
             cardGen.style.setProperty('--card-gen-accent', accent);
             cardGen.style.setProperty('--card-gen-accent2', accent2);
@@ -2051,9 +2053,15 @@
             cardGen.style.setProperty('--card-gen-bg-mid', bgMid);
             cardGen.style.setProperty('--card-gen-bg-end', bgEnd);
             cardGen.style.setProperty('--card-gen-text', textColor);
-            cardGen.style.setProperty('--card-gen-logo-bg', isWarm ? 'rgba(234,88,12,.12)' : 'rgba(37,99,235,.12)');
+            cardGen.style.setProperty('--card-gen-logo-bg', logoBg);
 
-            cardGen.classList.toggle('card-gen-warm', isWarm);
+            cardGen.classList.remove('card-gen-warm');
+        }
+
+        /* ─── Helper: hex color to comma-separated RGB ─── */
+        function hexToRgb(hex) {
+            var m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return m ? parseInt(m[1],16) + ',' + parseInt(m[2],16) + ',' + parseInt(m[3],16) : '37,99,235';
         }
 
         function generateCardImage(size) {
