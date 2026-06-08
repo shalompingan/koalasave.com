@@ -578,6 +578,7 @@
         .card-preview-box h3 { font-size:1.05rem; font-weight:700; color:#0f172a; margin-bottom:4px; }
         .card-preview-box p { font-size:.85rem; color:#64748b; margin-bottom:14px; }
         .card-preview-box img { width:100%; border-radius:10px; border:1px solid #e2e8f0; margin-bottom:12px; }
+        .card-preview-save-hint { display:none; font-size:.82rem; color:#3b82f6; text-align:center; margin:-6px 0 14px; }
         .card-preview-actions { display:flex; gap:10px; }
         .card-preview-actions .btn { flex:1; }
         .size-options { display:flex; gap:10px; margin-bottom:16px; }
@@ -997,6 +998,7 @@
             <h3>📸 Your Savings Card</h3>
             <p>Preview your card below, then download to share!</p>
             <img id="cardPreviewImg" alt="Savings card preview">
+            <p class="card-preview-save-hint" id="cardSaveHint">Long press image to save</p>
             <div class="card-preview-actions">
                 <button class="btn btn-sm btn-primary" id="cardDownloadBtn">⬇️ Download PNG</button>
                 <button class="btn btn-sm btn-secondary" id="cardPreviewClose">Close</button>
@@ -2080,6 +2082,34 @@
             return m ? parseInt(m[1],16) + ',' + parseInt(m[2],16) + ',' + parseInt(m[3],16) : '37,99,235';
         }
 
+        /* ─── Helper: round canvas corners (fix html2canvas border-radius bug) ─── */
+        function roundCanvasCorners(canvas, radius) {
+            var w = canvas.width, h = canvas.height;
+            var r = Math.min(radius, Math.min(w, h) / 2);
+            var temp = document.createElement('canvas');
+            temp.width = w; temp.height = h;
+            var tCtx = temp.getContext('2d');
+            tCtx.drawImage(canvas, 0, 0);
+            var ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, w, h);
+            ctx.beginPath();
+            ctx.moveTo(r, 0);
+            ctx.lineTo(w - r, 0);
+            ctx.quadraticCurveTo(w, 0, w, r);
+            ctx.lineTo(w, h - r);
+            ctx.quadraticCurveTo(w, h, w - r, h);
+            ctx.lineTo(r, h);
+            ctx.quadraticCurveTo(0, h, 0, h - r);
+            ctx.lineTo(0, r);
+            ctx.quadraticCurveTo(0, 0, r, 0);
+            ctx.closePath();
+            ctx.save();
+            ctx.clip();
+            ctx.drawImage(temp, 0, 0);
+            ctx.restore();
+            return canvas;
+        }
+
         function generateCardImage(size) {
             populateGeneratorCard();
             const id = size === 'square' ? 'cardGenSquare' : 'cardGenLandscape';
@@ -2100,6 +2130,8 @@
                         width: size === 'square' ? 800 : 1200,
                         height: size === 'square' ? 800 : 630
                     }).then(function(canvas) {
+                        // Round corners (CSS border-radius:20px × scale 2 = 40px canvas pixels)
+                        canvas = roundCanvasCorners(canvas, 40);
                         canvas.toBlob(function(blob) {
                             if (!blob) { showToast('Failed to generate image.'); return; }
                             var url = URL.createObjectURL(blob);
@@ -2108,7 +2140,11 @@
                             img.setAttribute('data-blob-url', url);
                             img.setAttribute('data-size', size);
                             document.getElementById('cardPreviewOverlay').classList.add('open');
+                            // Show "long press" hint on touch devices
+                            var hint = document.getElementById('cardSaveHint');
+                            if (hint) hint.style.display = ('ontouchstart' in window || navigator.maxTouchPoints > 0) ? 'block' : 'none';
                             showToast('✅ Card ready!');
+                        }, 'image/png');
                         }, 'image/png');
                     }).catch(function() {
                         showToast('❌ Failed to generate card. Try again.');
@@ -2141,6 +2177,9 @@
             if (blobUrl) { URL.revokeObjectURL(blobUrl); }
             img.removeAttribute('data-blob-url');
             img.src = '';
+            // Hide mobile hint
+            var hint = document.getElementById('cardSaveHint');
+            if (hint) hint.style.display = 'none';
         }
 
         /* ─── Welcome Challenge Modal ─── */
