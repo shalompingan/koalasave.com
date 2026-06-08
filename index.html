@@ -2157,11 +2157,26 @@
             var url = img.getAttribute('data-blob-url') || img.src;
             var size = img.getAttribute('data-size') || 'landscape';
             if (!url || url === '') return;
-            var link = document.createElement('a');
             var cfg = pageConfigs[currentRoute] || pageConfigs.default;
             var name = (cfg.shareCard && cfg.shareCard.titleLine) || 'savings';
+            var filename = 'koalasave-' + name.toLowerCase().replace(/\s+/g, '-') + '-' + size + '.png';
+
+            // On touch devices, try Web Share API (Save to Photos / Share)
+            if (('ontouchstart' in window || navigator.maxTouchPoints > 0) && navigator.share) {
+                fetch(url).then(function(r) { return r.blob(); }).then(function(blob) {
+                    var file = new File([blob], filename, { type: 'image/png' });
+                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                        navigator.share({ files: [file], title: 'My Savings Goal' }).catch(function(){});
+                    }
+                });
+                showToast('⬇️ Saving...');
+                return;
+            }
+
+            // Desktop: create anchor + click
+            var link = document.createElement('a');
             link.href = url;
-            link.download = 'koalasave-' + name.toLowerCase().replace(/\s+/g, '-') + '-' + size + '.png';
+            link.download = filename;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
