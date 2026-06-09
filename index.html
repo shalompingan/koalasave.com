@@ -2100,6 +2100,10 @@
             for (var i = 0; i < bgMains.length; i++) {
                 bgMains[i].style.background = gradientStr;
             }
+            // Also set background on the card containers for html2canvas
+            cardGen.querySelectorAll('.card-gen').forEach(function(el) {
+                el.style.background = gradientStr;
+            });
         }
 
         /* ─── Helper: hex color to comma-separated RGB ─── */
@@ -2120,9 +2124,11 @@
             requestAnimationFrame(function() {
                 requestAnimationFrame(function() {
                     var scale = size === 'square' ? 2 : 2;
+                    // Use gradient's first color as canvas background fallback (html2canvas may not render child element gradients)
+                    var bgFallback = el.style.background ? el.style.background.match(/#[a-f\d]{6}/) : null;
                     html2canvas(el, {
                         scale: scale,
-                        backgroundColor: null,
+                        backgroundColor: bgFallback ? bgFallback[0] : '#eef2ff',
                         useCORS: true,
                         logging: false,
                         width: size === 'square' ? 800 : 1200,
