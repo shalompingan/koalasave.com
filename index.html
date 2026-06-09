@@ -579,8 +579,9 @@
         .card-preview-box p { font-size:.85rem; color:#64748b; margin-bottom:14px; }
         .card-preview-box img { width:100%; border-radius:10px; border:1px solid #e2e8f0; margin-bottom:12px; }
         .card-preview-save-hint { display:none; font-size:.82rem; color:#3b82f6; text-align:center; margin:-6px 0 14px; }
-        .card-preview-actions { display:flex; gap:10px; }
-        .card-preview-actions .btn { flex:1; }
+        .card-preview-actions { display:flex; gap:10px; flex-wrap:wrap; }
+        .card-preview-actions .btn { flex:1; min-width:0; }
+        @media (max-width:480px) { .card-preview-actions .btn { font-size:.75rem; padding:7px 8px; } }
         .size-options { display:flex; gap:10px; margin-bottom:16px; }
         .size-options .btn { flex:1; font-size:.82rem; }
         .size-options .btn.active { outline:2px solid var(--btn-primary-bg); outline-offset:2px; }
@@ -1000,7 +1001,8 @@
             <img id="cardPreviewImg" alt="Savings card preview">
             <p class="card-preview-save-hint" id="cardSaveHint">Long press image to save</p>
             <div class="card-preview-actions">
-                <button class="btn btn-sm btn-primary" id="cardDownloadBtn">⬇️ Download PNG</button>
+                <button class="btn btn-sm btn-primary" id="cardShareBtn">📤 Share</button>
+                <button class="btn btn-sm btn-secondary" id="cardDownloadBtn">⬇️ Download</button>
                 <button class="btn btn-sm btn-secondary" id="cardPreviewClose">Close</button>
             </div>
         </div>
@@ -1718,6 +1720,7 @@
                     navigateToMode(this.getAttribute('data-mode'));
                 });
             });
+            document.getElementById('cardShareBtn').addEventListener('click', shareCardImage);
             document.getElementById('cardDownloadBtn').addEventListener('click', downloadCardImage);
             document.getElementById('cardPreviewClose').addEventListener('click', closeCardPreview);
         }
@@ -2176,19 +2179,13 @@
             var name = (cfg.shareCard && cfg.shareCard.titleLine) || 'savings';
             var filename = 'koalasave-' + name.toLowerCase().replace(/\s+/g, '-') + '-' + size + '.png';
 
-            // On touch devices, try Web Share API (Save to Photos / Share)
-            if (('ontouchstart' in window || navigator.maxTouchPoints > 0) && navigator.share) {
-                fetch(url).then(function(r) { return r.blob(); }).then(function(blob) {
-                    var file = new File([blob], filename, { type: 'image/png' });
-                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                        navigator.share({ files: [file], title: 'My Savings Goal' }).catch(function(){});
-                    }
-                });
-                showToast('⬇️ Saving...');
+            // On touch devices, anchor.click may not work — prompt user to long-press
+            if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+                showToast('💾 Long press the image to save');
                 return;
             }
 
-            // Desktop: create anchor + click
+            // Desktop: anchor click download
             var link = document.createElement('a');
             link.href = url;
             link.download = filename;
@@ -2196,6 +2193,49 @@
             link.click();
             document.body.removeChild(link);
             showToast('⬇️ Card downloaded!');
+        }
+
+        function shareCardImage() {
+            var img = document.getElementById('cardPreviewImg');
+            var url = img.getAttribute('data-blob-url') || img.src;
+            var size = img.getAttribute('data-size') || 'landscape';
+            if (!url || url === '') return;
+            var cfg = pageConfigs[currentRoute] || pageConfigs.default;
+            var name = (cfg.shareCard && cfg.shareCard.titleLine) || 'savings';
+            var filename = 'koalasave-' + name.toLowerCase().replace(/\s+/g, '-') + '-' + size + '.png';
+
+            // Mobile: Web Share API with image file → system share sheet (WhatsApp, IG, etc.)
+            if (('ontouchstart' in window || navigator.maxTouchPoints > 0) && navigator.share) {
+                fetch(url).then(function(r) { return r.blob(); }).then(function(blob) {
+                    var file = new File([blob], filename, { type: 'image/png' });
+                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                        navigator.share({ files: [file], title: 'My Savings Goal' }).catch(function(){});
+                    } else {
+                        showToast('📱 Share not available. Try downloading instead.');
+                    }
+                });
+                showToast('📤 Opening share menu...');
+                return;
+            }
+
+            // Desktop: Web Share API with text+URL (Chrome/Edge)
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Savings Goal',
+                    text: "I'm saving up with KoalaSave! 🐨",
+                    url: location.href
+                }).catch(function(){});
+                return;
+            }
+
+            // Fallback: copy link
+            var temp = document.createElement('input');
+            temp.value = location.href;
+            document.body.appendChild(temp);
+            temp.select();
+            try { document.execCommand('copy'); showToast('🔗 Link copied!'); }
+            catch(e) { showToast('❌ Could not copy link.'); }
+            document.body.removeChild(temp);
         }
 
         function closeCardPreview() {
