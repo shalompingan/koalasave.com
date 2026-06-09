@@ -2179,13 +2179,7 @@
             var name = (cfg.shareCard && cfg.shareCard.titleLine) || 'savings';
             var filename = 'koalasave-' + name.toLowerCase().replace(/\s+/g, '-') + '-' + size + '.png';
 
-            // On touch devices, anchor.click may not work — prompt user to long-press
-            if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-                showToast('💾 Long press the image to save');
-                return;
-            }
-
-            // Desktop: anchor click download
+            // Try anchor click download (works on desktop + Android; iOS falls back to long-press hint)
             var link = document.createElement('a');
             link.href = url;
             link.download = filename;
