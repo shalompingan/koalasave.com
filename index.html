@@ -2093,13 +2093,6 @@
             cardGen.style.setProperty('--card-gen-logo-bg', logoBg);
 
             cardGen.classList.remove('card-gen-warm');
-
-            // Set explicit gradient inline for html2canvas (doesn't resolve CSS var() in gradients)
-            var gradientStr = 'linear-gradient(160deg, ' + bgStart + ' 0%, ' + bgMid + ' 45%, ' + bgEnd + ' 100%)';
-            var bgMains = cardGen.querySelectorAll('.card-gen-bg-main');
-            for (var i = 0; i < bgMains.length; i++) {
-                bgMains[i].style.background = gradientStr;
-            }
         }
 
         /* ─── Helper: hex color to comma-separated RGB ─── */
