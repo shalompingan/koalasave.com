@@ -2110,9 +2110,7 @@
             var tCtx = temp.getContext('2d');
             tCtx.drawImage(canvas, 0, 0);
             var ctx = canvas.getContext('2d');
-            // Fill with card background's lightest edge color so corners blend naturally
-            ctx.fillStyle = '#eef2ff';
-            ctx.fillRect(0, 0, w, h);
+            ctx.clearRect(0, 0, w, h);
             ctx.beginPath();
             ctx.moveTo(r, 0);
             ctx.lineTo(w - r, 0);
