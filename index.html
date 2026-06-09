@@ -2188,6 +2188,8 @@
                     }
                 });
                 showToast('⬇️ Saving...');
+                toastEl.style.bottom = '80px';
+                setTimeout(function() { toastEl.style.bottom = ''; }, 2600);
                 return;
             }
 
