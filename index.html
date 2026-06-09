@@ -697,7 +697,7 @@
                 <div class="form-grid">
                     <div class="full form-group">
                         <label for="goalName" id="nameLabel">Goal name</label>
-                        <input type="text" id="goalName" placeholder="e.g. Hawaii Trip 2027" value="Emergency Fund">
+                        <input type="text" id="goalName" placeholder="e.g. Hawaii Trip 2027">
                     </div>
                     <div class="form-group">
                         <label for="targetAmount" id="targetLabel">Target amount ($)</label>
@@ -1496,8 +1496,8 @@
             document.getElementById('targetLabel').textContent = cfg.header.targetLabel;
             document.getElementById('monthsLabel').innerHTML = cfg.header.monthsLabel + ' <span class="hint">— optional</span>';
             const goalNameInput = document.getElementById('goalName');
-            goalNameInput.placeholder = cfg.header.namePlaceholder;
-            goalNameInput.value = cfg.defaults.goalName;
+            goalNameInput.placeholder = cfg.defaults.goalName;
+            goalNameInput.value = '';
             document.getElementById('targetAmount').value = cfg.defaults.targetAmount;
             document.getElementById('savedAmount').value = cfg.defaults.savedAmount;
             document.getElementById('monthlySavings').value = cfg.defaults.monthlySavings;
@@ -1687,6 +1687,7 @@
             [goalName, targetAmount, savedAmount, monthlySavings, targetMonths].forEach(el =>
                 el.addEventListener('input', () => { updateAll(); renderChart(); })
             );
+            goalName.addEventListener('focus', function() { this.select(); });
             extraSlider.addEventListener('input', () => {
                 extraDisplay.textContent = extraSlider.value;
                 updateAll();
@@ -1727,7 +1728,7 @@
 
         function getValues() {
             return {
-                name: goalName.value.trim() || 'Untitled Goal',
+                name: goalName.value.trim() || goalName.placeholder || 'Untitled Goal',
                 target: parseFloat(targetAmount.value) || 0,
                 saved: parseFloat(savedAmount.value) || 0,
                 monthly: parseFloat(monthlySavings.value) || 0,
