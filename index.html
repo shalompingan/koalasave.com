@@ -2179,7 +2179,19 @@
             var name = (cfg.shareCard && cfg.shareCard.titleLine) || 'savings';
             var filename = 'koalasave-' + name.toLowerCase().replace(/\s+/g, '-') + '-' + size + '.png';
 
-            // Try anchor click download (works on desktop + Android; iOS falls back to long-press hint)
+            // Mobile: use Web Share API so user can save to Photos (iOS requires this)
+            if (('ontouchstart' in window || navigator.maxTouchPoints > 0) && navigator.share) {
+                fetch(url).then(function(r) { return r.blob(); }).then(function(blob) {
+                    var file = new File([blob], filename, { type: 'image/png' });
+                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                        navigator.share({ files: [file], title: 'My Savings Goal' }).catch(function(){});
+                    }
+                });
+                showToast('⬇️ Saving...');
+                return;
+            }
+
+            // Desktop: anchor click download
             var link = document.createElement('a');
             link.href = url;
             link.download = filename;
