@@ -2049,7 +2049,7 @@
 
             // Landscape card
             document.getElementById('cgenEmojiL').textContent = sc.emoji;
-            document.getElementById('cgenTitleL').textContent = sc.titleLine;
+            document.getElementById('cgenTitleL').textContent = v.name || sc.titleLine;
             document.getElementById('cgenTargetL').textContent = '$' + Number(v.target).toLocaleString();
             document.getElementById('cgenSavedL').textContent = '$' + Number(v.saved).toLocaleString();
             document.getElementById('cgenMonthlyL').textContent = '$' + Number(v.monthly || r.neededMonthly).toLocaleString() + '/mo';
@@ -2063,7 +2063,7 @@
 
             // Square card
             document.getElementById('cgenEmojiS').textContent = sc.emoji;
-            document.getElementById('cgenTitleS').textContent = sc.titleLine;
+            document.getElementById('cgenTitleS').textContent = v.name || sc.titleLine;
             document.getElementById('cgenTargetS').textContent = '$' + Number(v.target).toLocaleString();
             document.getElementById('cgenSavedS').textContent = '$' + Number(v.saved).toLocaleString();
             document.getElementById('cgenMonthlyS').textContent = '$' + Number(v.monthly || r.neededMonthly).toLocaleString() + '/mo';
