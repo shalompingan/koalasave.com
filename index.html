@@ -2030,6 +2030,13 @@
             const accent = css['--stat-blue'] || '#2563eb';
             const accent2 = css['--btn-primary-hover'] || '#1d4ed8';
 
+            // Social message dynamic by progress
+            var socialMsg = pct >= 100 ? "I did it! 🎉 I've reached my savings goal!" :
+                pct >= 75 ? "Almost there! Just a little more to go 💪" :
+                pct >= 50 ? "Halfway there! Keep going with me 🐨" :
+                pct >= 25 ? "Making progress! Can you catch up with me? 🐨" :
+                "Just getting started! Join me on my savings journey 🐨";
+
             // Landscape card
             document.getElementById('cgenEmojiL').textContent = sc.emoji;
             document.getElementById('cgenTitleL').textContent = sc.titleLine;
@@ -2038,7 +2045,7 @@
             document.getElementById('cgenMonthlyL').textContent = '$' + Number(v.monthly || r.neededMonthly).toLocaleString() + '/mo';
             document.getElementById('cgenDateL').textContent = dateStr;
             document.getElementById('cgenSloganL').textContent = '"' + sc.slogan + '"';
-            document.getElementById('cgenSocialL').textContent = 'Can you catch up with me? 🐨';
+            document.getElementById('cgenSocialL').textContent = socialMsg;
             document.getElementById('cgenPctL').textContent = pct;
             document.getElementById('cgenBarPctL').textContent = pct + '%';
             document.getElementById('cgenBarL').style.width = pct + '%';
@@ -2052,7 +2059,7 @@
             document.getElementById('cgenMonthlyS').textContent = '$' + Number(v.monthly || r.neededMonthly).toLocaleString() + '/mo';
             document.getElementById('cgenDateS').textContent = dateStr;
             document.getElementById('cgenSloganS').textContent = '"' + sc.slogan + '"';
-            document.getElementById('cgenSocialS').textContent = 'Can you catch up with me? 🐨';
+            document.getElementById('cgenSocialS').textContent = socialMsg;
             document.getElementById('cgenPctS').textContent = pct;
             document.getElementById('cgenBarPctS').textContent = pct + '%';
             document.getElementById('cgenBarS').style.width = pct + '%';
