@@ -66,8 +66,7 @@
     }
     </script>
 
-    <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Chart.js + html2canvas loaded lazily on demand -->
 
     <style>
         :root {
@@ -1718,7 +1717,8 @@
             }
             updateAll();
             renderGoalsList();
-            renderChart();
+            // Delay chart to let the page paint first (reduces TBT)
+            setTimeout(function() { renderChart(); }, 50);
 
             // Close card preview on overlay background click
             document.getElementById('cardPreviewOverlay').addEventListener('click', function(e) {
@@ -1791,6 +1791,14 @@
             document.getElementById('cardShareBtn').addEventListener('click', shareCardImage);
             document.getElementById('cardDownloadBtn').addEventListener('click', downloadCardImage);
             document.getElementById('cardPreviewClose').addEventListener('click', closeCardPreview);
+        }
+
+        /* ─── Dynamic script loader (reduces TBT) ─── */
+        var _loadingChart = false, _loadingHtml2canvas = false;
+        function loadScript(url, cb) {
+            var s = document.createElement('script');
+            s.src = url; s.onload = cb;
+            document.head.appendChild(s);
         }
 
         function getValues() {
@@ -1869,6 +1877,10 @@
         }
 
         function renderChart() {
+            if (typeof Chart === 'undefined') {
+                if (!_loadingChart) { _loadingChart = true; loadScript('https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js', renderChart); }
+                return;
+            }
             const v = getValues(), r = calculate(v);
             const cfg = pageConfigs[currentRoute] || pageConfigs.default;
             const cc = cfg.chartColors;
@@ -2197,6 +2209,10 @@
         }
 
         function generateCardImage(size) {
+            if (typeof html2canvas === 'undefined') {
+                if (!_loadingHtml2canvas) { _loadingHtml2canvas = true; loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js', function() { generateCardImage(size); }); }
+                return;
+            }
             populateGeneratorCard();
             const id = size === 'square' ? 'cardGenSquare' : 'cardGenLandscape';
             const el = document.getElementById(id);
