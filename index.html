@@ -380,6 +380,47 @@
         }
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+        /* ─── Blog Section ─── */
+        .blog-section {
+            text-align: center; padding: 40px 0 20px;
+        }
+        .blog-section h2 {
+            font-size: 1.15rem; font-weight: 700; color: var(--header-gradient-start, #1e3a5f);
+            margin-bottom: 20px; letter-spacing: -0.3px;
+        }
+        .blog-grid {
+            display: flex; flex-direction: column; gap: 10px;
+            max-width: 460px; margin: 0 auto;
+        }
+        .blog-grid a {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 18px; border-radius: 10px;
+            background: rgba(255,255,255,.5); border: 1px solid rgba(0,0,0,.05);
+            text-decoration: none; transition: background .2s, border-color .2s;
+            gap: 12px;
+        }
+        .blog-grid a:hover {
+            background: rgba(255,255,255,.85);
+            border-color: var(--btn-primary-bg, #2563eb);
+        }
+        .blog-grid .blog-title {
+            font-size: .85rem; font-weight: 600; color: #1e293b;
+            text-align: left; line-height: 1.4; flex: 1;
+        }
+        .blog-grid .blog-tag {
+            font-size: .7rem; font-weight: 600; padding: 2px 10px;
+            border-radius: 10px; white-space: nowrap; flex-shrink: 0;
+        }
+        .blog-tag-emergency { background: #dbeafe; color: #1e40af; }
+        .blog-tag-housing { background: #d1fae5; color: #065f46; }
+        .blog-tag-travel { background: #fef3c7; color: #92400e; }
+        .blog-more {
+            display: inline-block; margin-top: 16px;
+            font-size: .82rem; color: var(--btn-primary-bg, #2563eb);
+            text-decoration: none; font-weight: 600;
+        }
+        .blog-more:hover { text-decoration: underline; }
+
         /* ─── Footer ─── */
         footer {
             text-align: center; padding: 32px 0 28px;
@@ -650,6 +691,10 @@
             .form-grid { grid-template-columns: 1fr; }
             .chart-wrap { height: 265px; }
             .tool-links { grid-template-columns: 1fr; }
+            .blog-section { padding: 28px 0 16px; }
+            .blog-section h2 { font-size: 1rem; }
+            .blog-grid a { padding: 10px 14px; }
+            .blog-grid .blog-title { font-size: .8rem; }
         }
         @media (max-width: 480px) {
             header h1 { font-size: 1.15rem; }
@@ -835,6 +880,27 @@
         </div>
 
     </main>
+
+    <section class="blog-section">
+        <div class="container">
+            <h2>📖 Latest from the Blog</h2>
+            <div class="blog-grid">
+                <a href="/blog/how-to-save-for-a-trip-to-japan/">
+                    <span class="blog-title">How to Save for a Trip to Japan: Complete Budget Guide (2026)</span>
+                    <span class="blog-tag blog-tag-travel">Travel</span>
+                </a>
+                <a href="/blog/how-to-save-for-a-house-down-payment/">
+                    <span class="blog-title">How to Save for a House Down Payment: Complete Guide (2026)</span>
+                    <span class="blog-tag blog-tag-housing">Housing</span>
+                </a>
+                <a href="/blog/emergency-fund-guide/">
+                    <span class="blog-title">How Much Emergency Fund Should I Have? Complete Guide (2026)</span>
+                    <span class="blog-tag blog-tag-emergency">Emergency</span>
+                </a>
+            </div>
+            <a href="/blog/" class="blog-more">View all articles →</a>
+        </div>
+    </section>
 
     <footer>
         <div class="container">
