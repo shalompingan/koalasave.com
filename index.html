@@ -640,22 +640,33 @@
         .teamup-box .teamup-url-row input { flex:1; padding:7px 10px; border:1.5px solid #fde68a; border-radius:8px; font-size:.8rem; font-family:monospace; background:#fff; }
         .teamup-box .teamup-url-row input:focus { border-color:#f59e0b; outline:none; }
 
-        /* ─── Affiliate Section ─── */
-        .affiliate-section {
+        /* ─── Affiliate Card (Standalone) ─── */
+        .affiliate-card {
             background: linear-gradient(135deg, var(--affiliate-bg-start), var(--affiliate-bg-end));
-            border-radius: 12px; padding: 20px 24px; margin-top: 16px;
+            border: 1.5px solid var(--affiliate-btn-bg);
+            border-radius: 14px; padding: 24px;
+            transition: transform .2s, box-shadow .2s;
         }
-        .affiliate-section h3 { font-size: 1rem; font-weight: 600; color: var(--affiliate-heading-color); margin-bottom: 12px; }
-        .affiliate-section p { font-size: .85rem; color: var(--affiliate-text-color); line-height: 1.6; }
-        .affiliate-section .affiliate-link {
-            display: inline-block; padding: 8px 12px;
-            background: var(--affiliate-btn-bg); color: #fff; border-radius: 8px;
-            text-decoration: none; font-size: .8rem; font-weight: 600;
-            transition: background .2s;
+        .affiliate-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+        .affiliate-card .affiliate-badge {
+            display: inline-block; padding: 3px 12px; border-radius: 20px;
+            background: var(--affiliate-btn-bg); color: #fff;
+            font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+            margin-bottom: 10px;
         }
-        .affiliate-section .affiliate-link:hover { background: var(--affiliate-btn-hover); }
-        .affiliate-section #affiliateLinks {
-            display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;
+        .affiliate-card h3 { font-size: 1rem; font-weight: 700; color: var(--affiliate-heading-color); margin-bottom: 6px; }
+        .affiliate-card p { font-size: .85rem; color: var(--affiliate-text-color); line-height: 1.6; margin-bottom: 14px; }
+        .affiliate-card .affiliate-cta {
+            display: inline-block; padding: 10px 20px;
+            background: var(--affiliate-btn-bg); color: #fff; border-radius: 10px;
+            text-decoration: none; font-size: .85rem; font-weight: 700;
+            transition: background .2s, transform .2s;
+        }
+        .affiliate-card .affiliate-cta:hover { background: var(--affiliate-btn-hover); transform: translateY(-1px); }
+        .affiliate-card .affiliate-cta + .affiliate-cta { margin-left: 10px; }
+        @media (max-width: 480px) {
+            .affiliate-card .affiliate-cta { display: block; width: 100%; text-align: center; }
+            .affiliate-card .affiliate-cta + .affiliate-cta { margin-left: 0; margin-top: 8px; }
         }
 
         /* ─── Cross-links ─── */
@@ -762,10 +773,15 @@
                     </div>
                 </div>
                 <div class="btn-row">
-                    <button class="btn btn-success" id="saveBtn">💾 Save Goal</button>
+                    <button class="btn btn-success" id="saveBtn">💾 Save My Goal 🚀</button>
                     <button class="btn btn-secondary" id="shareBtn">🔗 Share</button>
                     <button class="btn btn-primary" id="saveCardBtn">📸 Card</button>
                     <button class="btn btn-secondary" id="teamupBtn">👥 Team Up</button>
+                </div>
+                <div id="postSaveAffiliate" style="display:none;margin-top:12px;padding:12px 16px;background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:10px;border:1px solid #a7f3d0;text-align:center;">
+                    <div style="font-weight:600;font-size:.85rem;color:#065f46;">🏦 Earn up to 4-5% APY on your savings</div>
+                    <div style="font-size:.78rem;color:#047857;margin:4px 0 8px;">Put your money to work in a high-yield savings account while you save.</div>
+                    <a href="https://www.nerdwallet.com/best/banking/high-yield-online-savings-accounts" target="_blank" rel="noopener" style="display:inline-block;padding:6px 16px;background:#059669;color:#fff;border-radius:8px;font-size:.8rem;font-weight:600;text-decoration:none;">Compare Best HYSA Rates →</a>
                 </div>
                 <div id="shareBox" style="display:none;margin-top:14px;">
                     <div class="share-card" id="shareCardPreview">
@@ -815,11 +831,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="affiliate-section" id="affiliateSection">
-                    <h3 id="affiliateHeading">🏦 Earn interest while you save</h3>
-                    <p id="affiliateText">Put your savings in a high-yield account and earn while you save.</p>
-                    <div id="affiliateLinks"></div>
-                </div>
             </div>
         </div>
 
@@ -841,6 +852,15 @@
                     <div class="impact-value" id="impactEarly">—</div>
                     <div class="impact-label">Months saved vs. original plan</div>
                 </div>
+            </div>
+        </div>
+
+        <div class="card" id="affiliateCard" style="display:none;">
+            <div class="affiliate-card">
+                <span class="affiliate-badge">💰 Sponsored</span>
+                <h3 id="affiliateCardHeading">🏦 Earn while you save</h3>
+                <p id="affiliateCardText">Put your savings in a high-yield account and grow your money faster.</p>
+                <div id="affiliateCardLinks"></div>
             </div>
         </div>
 
@@ -917,6 +937,8 @@
                 <a href="javascript:void(0)" onclick="openModal('terms')">Terms &amp; Disclaimers</a>
                 <span class="footer-sep">|</span>
                 <a href="javascript:void(0)" onclick="openModal('contact')">Contact Us</a>
+                <span class="footer-sep">|</span>
+                <a href="https://www.nerdwallet.com/best/banking/high-yield-online-savings-accounts" target="_blank" rel="noopener" class="footer-affiliate">🏦 Compare HYSA Rates</a>
             </div>
         </div>
     </footer>
@@ -1618,18 +1640,18 @@
             ).join('');
             document.getElementById('toolLinksTitle').textContent = cfg.toolLinksTitle;
 
-            // Affiliate section
-            const affSection = document.getElementById('affiliateSection');
+            // Affiliate card
+            const affCard = document.getElementById('affiliateCard');
             if (cfg.affiliate) {
-                affSection.style.display = 'block';
-                document.getElementById('affiliateHeading').textContent = cfg.affiliate.heading;
-                document.getElementById('affiliateText').textContent = cfg.affiliate.text;
-                const linksContainer = document.getElementById('affiliateLinks');
+                affCard.style.display = '';
+                document.getElementById('affiliateCardHeading').textContent = cfg.affiliate.heading;
+                document.getElementById('affiliateCardText').textContent = cfg.affiliate.text;
+                const linksContainer = document.getElementById('affiliateCardLinks');
                 linksContainer.innerHTML = cfg.affiliate.links.map((l, i) =>
-                    '<a href="' + (i === 0 && cfg.affiliateLink ? cfg.affiliateLink : l.url) + '" class="affiliate-link" target="_blank" rel="noopener" style="' + (l.style || '') + '">' + l.text + '</a>'
+                    '<a href="' + (i === 0 && cfg.affiliateLink ? cfg.affiliateLink : l.url) + '" class="affiliate-cta" target="_blank" rel="noopener" style="' + (l.style || '') + '">' + l.text + '</a>'
                 ).join('');
             } else {
-                affSection.style.display = 'none';
+                affCard.style.display = 'none';
             }
         }
 
@@ -1943,11 +1965,18 @@
             const v = getValues();
             if (v.target <= 0) { showToast('Please enter a target amount.'); return; }
             const r = calculate(v);
-            const goal = { id: Date.now().toString(36) + Math.random().toString(36).slice(2,5), name: v.name, target: v.target, saved: v.saved, monthly: v.monthly, months: v.months, extra: v.extra, percent: r.percent, createdAt: new Date().toISOString() };
-            const idx = goals.findIndex(g => g.name === v.name);
+            // Match by activeGoalId first, then by name (backward compat)
+            let idx = -1;
+            if (activeGoalId) idx = goals.findIndex(g => g.id === activeGoalId);
+            if (idx === -1) idx = goals.findIndex(g => g.name === v.name);
+            const existingId = idx >= 0 ? goals[idx].id : (Date.now().toString(36) + Math.random().toString(36).slice(2,5));
+            const goal = { id: existingId, name: v.name, target: v.target, saved: v.saved, monthly: v.monthly, months: v.months, extra: v.extra, percent: r.percent, createdAt: new Date().toISOString() };
             if (idx >= 0) goals[idx] = goal; else goals.push(goal);
             saveGoals(); renderGoalsList(); activeGoalId = goal.id;
             showToast('✅ "' + goal.name + '" saved!');
+            // Show affiliate suggestion after save (user is most engaged)
+            var affEl = document.getElementById('postSaveAffiliate');
+            if (affEl) { affEl.style.display = 'block'; setTimeout(function() { if (affEl) affEl.style.display = 'none'; }, 8000); }
         }
         function deleteGoal(id, e) {
             e.stopPropagation(); goals = goals.filter(g => g.id !== id);
@@ -1965,7 +1994,7 @@
             document.querySelector('.tool-row').scrollIntoView({ behavior:'smooth', block:'start' });
         }
         function renderGoalsList() {
-            if (!goals.length) { goalsList.innerHTML = '<div class="empty-state"><div class="empty-icon">📋</div><p id="emptyStateText">' + (document.getElementById('emptyStateText') ? document.getElementById('emptyStateText').innerHTML : 'No goals saved yet.') + '</p></div>'; return; }
+            if (!goals.length) { const cfg = pageConfigs[currentRoute] || pageConfigs.default; goalsList.innerHTML = '<div class="empty-state"><div class="empty-icon">📋</div><p>' + cfg.header.emptyState + '</p></div>'; return; }
             goalsList.innerHTML = goals.map(g => { const pct = g.target > 0 ? Math.min(100, Math.round((g.saved/g.target)*100)) : 0; const active = g.id === activeGoalId ? 'goal-active' : ''; return '<div class="goal-item ' + active + '" data-id="' + g.id + '"><button class="goal-delete" data-id="' + g.id + '" title="Delete">✕</button><div class="goal-name">' + escHtml(g.name) + '</div><div class="goal-progress">' + pct + '% · ' + formatCurrency(g.saved) + ' / ' + formatCurrency(g.target) + '</div><div style="margin-top:6px;height:4px;background:#e2e8f0;border-radius:4px;overflow:hidden;"><div class="goal-progress-bar" style="width:' + pct + '%;"></div></div></div>'; }).join('');
             goalsList.querySelectorAll('.goal-item').forEach(el => { el.addEventListener('click', function(e) { if (e.target.closest('.goal-delete')) return; loadGoal(this.dataset.id); }); });
             goalsList.querySelectorAll('.goal-delete').forEach(el => { el.addEventListener('click', function(e) { deleteGoal(this.dataset.id, e); }); });
@@ -1974,14 +2003,8 @@
         function toggleShareBox() {
             const v = getValues();
             if (v.target <= 0) { showToast('Set a target amount first.'); return; }
-            const p = new URLSearchParams();
-            p.set('mode', currentRoute === 'default' ? 'emergency' : currentRoute);
-            if (goalName.value.trim()) p.set('name', goalName.value.trim());
-            if (v.target) p.set('target', v.target); if (v.saved) p.set('saved', v.saved);
-            if (v.monthly) p.set('monthly', v.monthly); if (v.months) p.set('months', v.months);
-            shareUrlInput.value = location.origin + (currentRoute === 'default' ? '/' : '/?mode=' + (currentRoute === 'default' ? 'emergency' : currentRoute)) + '?' + p.toString();
-            // Remove duplicate mode param by rebuilding cleanly
-            var cleanUrl = location.origin + '/' + '?mode=' + (currentRoute === 'default' ? 'emergency' : currentRoute);
+            // Build clean share URL
+            var cleanUrl = location.origin + '/?mode=' + (currentRoute === 'default' ? 'emergency' : currentRoute);
             if (goalName.value.trim()) cleanUrl += '&name=' + encodeURIComponent(goalName.value.trim());
             if (v.target) cleanUrl += '&target=' + v.target;
             if (v.saved) cleanUrl += '&saved=' + v.saved;
