@@ -680,6 +680,7 @@
         .tool-link-main { background: linear-gradient(135deg, var(--link-main-bg-start), var(--link-main-bg-end)); color: var(--link-main-color); }
         .tool-link-travel { background: linear-gradient(135deg, var(--link-travel-bg-start), var(--link-travel-bg-end)); color: var(--link-travel-color); }
         .tool-link-housing { background: linear-gradient(135deg, var(--link-housing-bg-start), var(--link-housing-bg-end)); color: var(--link-housing-color); }
+        .tool-link-debt { background: linear-gradient(135deg, #1e293b, #0f172a); color: #f59e0b; border: 1px solid rgba(245,158,11,.2); }
         .tool-links .link-title { font-weight: 700; font-size: 1rem; }
         .tool-links .link-desc { font-size: .82rem; opacity: .8; margin-top: 2px; }
 
@@ -891,6 +892,10 @@
                 <a href="/?mode=housing" class="tool-link-housing">
                     <span class="link-title">🏠 Home Down Payment Calculator</span>
                     <span class="link-desc">Plan your home buying savings with down payment targets</span>
+                </a>
+                <a href="/debt-payoff-calculator/" class="tool-link-debt">
+                    <span class="link-title">❄️ Debt Payoff Calculator</span>
+                    <span class="link-desc">Compare snowball vs avalanche payoff strategies</span>
                 </a>
             </div>
         </div>
@@ -1260,7 +1265,8 @@
                 toolLinksTitle: 'Try a specialized savings calculator',
                 toolLinks: [
                     { href: '/?mode=travel', title: '🌴 Paradise Savings Calculator', desc: 'Save for your dream Maldives vacation', cls: 'tool-link-travel' },
-                    { href: '/?mode=housing', title: '🌿 Eucalyptus Grove Fund', desc: 'Plan your first home down payment', cls: 'tool-link-housing' }
+                    { href: '/?mode=housing', title: '🌿 Eucalyptus Grove Fund', desc: 'Plan your first home down payment', cls: 'tool-link-housing' },
+                    { href: '/debt-payoff-calculator/', title: '❄️ Debt Payoff Calculator', desc: 'Compare snowball vs avalanche strategies', cls: 'tool-link-debt' }
                 ],
                 affiliate: {
                     heading: '🏦 Looking for the Best Interest Rates?',
@@ -1381,7 +1387,8 @@
                 toolLinksTitle: 'Try another savings tool',
                 toolLinks: [
                     { href: '/', title: '🛡️ Koala\'s Safety Net', desc: 'Build your emergency fund stress-free', cls: 'tool-link-main' },
-                    { href: '/?mode=housing', title: '🌿 Eucalyptus Grove Fund', desc: 'Plan your first home down payment', cls: 'tool-link-housing' }
+                    { href: '/?mode=housing', title: '🌿 Eucalyptus Grove Fund', desc: 'Plan your first home down payment', cls: 'tool-link-housing' },
+                    { href: '/debt-payoff-calculator/', title: '❄️ Debt Payoff Calculator', desc: 'Compare snowball vs avalanche strategies', cls: 'tool-link-debt' }
                 ],
                 affiliate: {
                     heading: '🏨 Book your Maldives paradise',
@@ -1504,7 +1511,8 @@
                 toolLinksTitle: 'Try another savings tool',
                 toolLinks: [
                     { href: '/', title: "🛡️ Koala's Safety Net", desc: 'Build your emergency fund stress-free', cls: 'tool-link-main' },
-                    { href: '/?mode=travel', title: '🌴 Paradise Savings Calculator', desc: 'Save for your dream Maldives vacation', cls: 'tool-link-travel' }
+                    { href: '/?mode=travel', title: '🌴 Paradise Savings Calculator', desc: 'Save for your dream Maldives vacation', cls: 'tool-link-travel' },
+                    { href: '/debt-payoff-calculator/', title: '❄️ Debt Payoff Calculator', desc: 'Compare snowball vs avalanche strategies', cls: 'tool-link-debt' }
                 ],
                 affiliate: {
                     heading: '🏦 Earn interest while you save for home',
