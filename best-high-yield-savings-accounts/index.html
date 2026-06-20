@@ -162,8 +162,8 @@
         .content ul, .content ol { margin: 0 0 16px 24px; color: #334155; }
         .content li { margin-bottom: 6px; }
         .content strong { color: #0f172a; }
-        .content a:not(.btn):not(.action-btn) { color: #2563eb; text-decoration: underline; text-underline-offset: 2px; }
-        .content a:hover:not(.btn):not(.action-btn) { color: #1d4ed8; }
+        .content a:not(.btn) { color: #2563eb; text-decoration: underline; text-underline-offset: 2px; }
+        .content a:hover:not(.btn) { color: #1d4ed8; }
 
         .highlight-box {
             background: #fef2f2; border-left: 4px solid #dc2626;
@@ -243,12 +243,12 @@
         }
         .cross-cta h3 { font-size: 1.1rem; font-weight: 700; color: #1e3a5f; margin: 0 0 8px; }
         .cross-cta p { font-size: .9rem; color: #475569; margin: 0 0 16px; }
-        .cross-cta a {
+        .cross-cta a[href] {
             display: inline-block; padding: 12px 32px;
             background: #2563eb; color: #fff; border-radius: 10px;
             font-weight: 700; font-size: .95rem; text-decoration: none;
         }
-        .cross-cta a:hover { background: #1d4ed8; }
+        .cross-cta a[href]:hover { background: #1d4ed8; }
 
         /* ─── FAQ ─── */
         .faq-item { border-bottom: 1px solid #eef2f6; padding: 14px 0; }
