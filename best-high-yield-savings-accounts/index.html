@@ -162,8 +162,8 @@
         .content ul, .content ol { margin: 0 0 16px 24px; color: #334155; }
         .content li { margin-bottom: 6px; }
         .content strong { color: #0f172a; }
-        .content a:not(.btn) { color: #2563eb; text-decoration: underline; text-underline-offset: 2px; }
-        .content a:hover:not(.btn) { color: #1d4ed8; }
+        .content a:not(.btn):not(.action-btn) { color: #2563eb; text-decoration: underline; text-underline-offset: 2px; }
+        .content a:hover:not(.btn):not(.action-btn) { color: #1d4ed8; }
 
         .highlight-box {
             background: #fef2f2; border-left: 4px solid #dc2626;
@@ -208,13 +208,13 @@
         .rate-table .min-cell { font-size: .9rem; color: #475569; }
         .rate-table .min-cell .min-label { font-size: .7rem; color: #94a3b8; display: block; }
         .rate-table .action-cell { text-align: right; }
-        .rate-table .action-btn {
+        .rate-table a.action-btn {
             display: inline-block; padding: 10px 22px;
             background: #2563eb; color: #fff; border-radius: 10px;
             font-weight: 700; font-size: .82rem; text-decoration: none;
             transition: background .2s, transform .15s; white-space: nowrap;
         }
-        .rate-table .action-btn:hover { background: #1d4ed8; transform: translateY(-1px); }
+        .rate-table a.action-btn:hover { background: #1d4ed8; transform: translateY(-1px); }
 
         .rate-timestamp { font-size: .78rem; color: #94a3b8; text-align: center; margin-top: 12px; }
 
@@ -223,7 +223,7 @@
             .rate-table tbody td { padding: 12px 10px; }
             .rate-table .bank-icon { width: 28px; height: 28px; font-size: .65rem; }
             .rate-table .apy-cell { font-size: 1.1rem; }
-            .rate-table .action-btn { padding: 8px 14px; font-size: .75rem; }
+            .rate-table a.action-btn { padding: 8px 14px; font-size: .75rem; }
         }
 
         /* ─── E-E-A-T Disclaimer ─── */
