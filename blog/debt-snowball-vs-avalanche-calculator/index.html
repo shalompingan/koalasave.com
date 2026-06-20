@@ -8,6 +8,7 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://koalasave.com/blog/debt-snowball-vs-avalanche-calculator/">
     <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="manifest" href="/manifest.json">
     <meta property="og:title" content="Debt Snowball vs Avalanche: Which Payoff Method Is Faster? (Free Calculator)">
     <meta property="og:description" content="Stop guessing which debt payoff method works for you. Use our free calculator to compare snowball vs avalanche with your actual numbers.">
     <meta property="og:image" content="https://koalasave.com/share-cover.png">
@@ -65,6 +66,17 @@
         ]
     }
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://koalasave.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://koalasave.com/blog/" },
+            { "@type": "ListItem", "position": 3, "name": "Debt Snowball vs Avalanche", "item": "https://koalasave.com/blog/debt-snowball-vs-avalanche-calculator/" }
+        ]
+    }
+    </script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -100,6 +112,13 @@
             transition: transform .15s, box-shadow .2s;
         }
         .hero .tool-link:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(6,182,212,.3); }
+
+        /* Breadcrumb */
+        .breadcrumb { max-width: 720px; margin: 0 auto; padding: 12px 20px 0; font-size: .82rem; color: #94a3b8; }
+        .breadcrumb a { color: #06b6d4; text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb .sep { margin: 0 6px; color: #cbd5e1; }
+        .breadcrumb .current { color: #64748b; }
 
         .container { max-width: 720px; margin: 0 auto; padding: 0 20px; }
 
@@ -220,6 +239,12 @@
             <a href="/" class="nav-logo"><img src="/favicon.png" alt=""> KoalaSave</a>
             <div class="nav-links"><a href="/debt-payoff-calculator/">← Calculator</a></div>
         </div>
+    </nav>
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="sep">›</span>
+        <a href="/blog/">Blog</a><span class="sep">›</span>
+        <span class="current">Debt Snowball vs Avalanche</span>
     </nav>
 
     <section class="hero">
@@ -416,6 +441,12 @@
             <p>Stop guessing. <strong>Use our free debt payoff calculator</strong> to compare both methods with your actual numbers. It takes 30 seconds and might save you thousands.</p>
 
             <div class="cta-box">
+                <h3>🏠 What's Next After Debt?</h3>
+                <p>Once you're debt-free, the next big goal is often a home down payment. Learn how much you need and how to save for it.</p>
+                <a href="/blog/how-to-save-for-a-house-down-payment/" class="cta-btn">Read the Down Payment Guide →</a>
+            </div>
+
+            <div class="cta-box">
                 <h3>🐨 Compare Snowball vs Avalanche Now</h3>
                 <p>No signup. No email. Just add your debts and see your exact debt-free date for both methods.</p>
                 <a href="/debt-payoff-calculator/" class="cta-btn">Launch the Free Calculator →</a>
@@ -437,6 +468,12 @@
                 a.classList.toggle('open');
             });
         });
+    </script>
+
+    <script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').catch(function() {});
+    }
     </script>
 </body>
 </html>

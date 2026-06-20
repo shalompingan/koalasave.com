@@ -8,6 +8,7 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://koalasave.com/blog/how-to-save-for-a-house-down-payment/">
     <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="manifest" href="/manifest.json">
     <meta property="og:title" content="How to Save for a House Down Payment: Complete Guide (2026)">
     <meta property="og:description" content="FHA requires as little as 3.5% down. Learn proven strategies to save for your down payment faster, plus first-time buyer programs that can help.">
     <meta property="og:image" content="https://koalasave.com/share-cover.png">
@@ -73,6 +74,17 @@
         ]
     }
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://koalasave.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://koalasave.com/blog/" },
+            { "@type": "ListItem", "position": 3, "name": "How to Save for a House Down Payment", "item": "https://koalasave.com/blog/how-to-save-for-a-house-down-payment/" }
+        ]
+    }
+    </script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -96,6 +108,13 @@
         .nav-links a { color: rgba(255,255,255,.7); text-decoration: none; font-size: .8rem; padding: 6px 12px; border-radius: 8px; }
         .nav-links a:hover { background: rgba(255,255,255,.12); color: #fff; }
         .container { max-width: 700px; margin: 0 auto; padding: 0 20px; }
+
+        /* Breadcrumb */
+        .breadcrumb { max-width: 700px; margin: 0 auto; padding: 12px 20px 0; font-size: .82rem; color: #94a3b8; }
+        .breadcrumb a { color: #059669; text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb .sep { margin: 0 6px; color: #cbd5e1; }
+        .breadcrumb .current { color: #64748b; }
 
         /* Hero */
         .hero {
@@ -191,6 +210,12 @@
                 <a href="/blog/">Blog</a>
             </div>
         </div>
+    </nav>
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="sep">›</span>
+        <a href="/blog/">Blog</a><span class="sep">›</span>
+        <span class="current">How to Save for a House Down Payment</span>
     </nav>
 
     <div class="hero">
@@ -444,6 +469,12 @@
                 <p><strong>Affiliate Disclosure:</strong> Some links on this page are affiliate links. If you click through and take action, we may earn a small commission at no extra cost to you. This helps us keep our tools free. We only recommend products we believe provide genuine value.</p>
             </div>
 
+            <div class="cta-box">
+                <h3>🛡️ Don't Forget Your Safety Net</h3>
+                <p>A down payment is important, but so is your emergency fund. Learn how much you need before you buy.</p>
+                <a href="/blog/emergency-fund-guide/">Build Your Emergency Fund →</a>
+            </div>
+
         </div>
     </div>
 
@@ -459,6 +490,12 @@
             if (a) a.classList.toggle('open');
         });
     });
+    </script>
+
+    <script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').catch(function() {});
+    }
     </script>
 </body>
 </html>

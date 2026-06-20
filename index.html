@@ -16,6 +16,7 @@
     <meta name="description" id="pageDescription" content="Build your emergency fund with interactive progress tracking. Free savings calculator for emergency fund, vacation, and home down payment goals.">
     <link rel="canonical" id="canonicalLink" href="https://koalasave.com/">
     <meta name="robots" content="index, follow">
+    <link rel="manifest" href="/manifest.json">
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <!-- Plus Jakarta Sans (non-render-blocking) -->
@@ -2449,5 +2450,13 @@
     })();
     </script>
 
+    <!-- ═══ Service Worker Registration ═══ -->
+    <script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').catch(function(e) {
+            console.warn('SW registration failed:', e);
+        });
+    }
+    </script>
 </body>
 </html>
