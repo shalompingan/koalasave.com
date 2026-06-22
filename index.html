@@ -803,6 +803,27 @@
         .tool-links .link-title { font-weight: 700; font-size: 1rem; }
         .tool-links .link-desc { font-size: .82rem; opacity: .8; margin-top: 2px; }
 
+        /* ─── Your Next Move ─── */
+        .related-tools-section { padding: 12px 0 20px; content-visibility: auto; contain-intrinsic-size: 140px; }
+        .related-tools-section h3 { font-size: 1rem; color: #1e3a5f; margin-bottom: 14px; text-align: center; }
+        .related-tools-section .related-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 820px; margin: 0 auto; }
+        .related-tools-section .related-card {
+            display: flex; flex-direction: column; gap: 2px;
+            background: #fff; border-radius: 10px; padding: 14px 16px;
+            text-decoration: none; transition: background .2s, transform .2s;
+            border: 1px solid rgba(0,0,0,.05);
+        }
+        .related-tools-section .related-card:hover { background: #eff6ff; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,.08); }
+        .related-tools-section .related-icon { font-size: 1.1rem; }
+        .related-tools-section .related-name { font-weight: 600; font-size: .82rem; color: #1e3a5f; }
+        .related-tools-section .related-desc { font-size: .72rem; color: #64748b; }
+        @media (max-width: 640px) {
+            .related-tools-section .related-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 400px) {
+            .related-tools-section .related-grid { grid-template-columns: 1fr; }
+        }
+
         /* ─── Responsive ─── */
         @media (max-width: 1024px) {
             .tool-row { grid-template-columns: 1fr; }
@@ -1062,6 +1083,35 @@
                 </a>
             </div>
         </div>
+
+        <!-- ─── Your Next Move ─── -->
+        <section class="related-tools-section">
+            <div class="container">
+                <h3>📌 Your Next Move</h3>
+                <div class="related-grid">
+                    <a href="/debt-payoff-calculator/" class="related-card">
+                        <div class="related-icon">📉</div>
+                        <div class="related-name">Debt Payoff Planner</div>
+                        <div class="related-desc">Use your savings to kill debt faster</div>
+                    </a>
+                    <a href="/best-high-yield-savings-accounts/" class="related-card">
+                        <div class="related-icon">🏦</div>
+                        <div class="related-name">HYSA Rate Comparison</div>
+                        <div class="related-desc">Earn 4–5% APY on your emergency fund</div>
+                    </a>
+                    <a href="/subscription-cost-calculator/" class="related-card">
+                        <div class="related-icon">📋</div>
+                        <div class="related-name">Subscription Cost Calculator</div>
+                        <div class="related-desc">Find hidden monthly savings to boost your goal</div>
+                    </a>
+                    <a href="/tools/budget-planners/" class="related-card">
+                        <div class="related-icon">📊</div>
+                        <div class="related-name">Budget Planning Tools</div>
+                        <div class="related-desc">All our free financial tools in one place</div>
+                    </a>
+                </div>
+            </div>
+        </section>
 
         <div class="card" id="faqCard" itemscope itemtype="https://schema.org/FAQPage">
             <h2><span class="icon">❓</span> <span id="faqTitle">Frequently Asked Questions</span></h2>
