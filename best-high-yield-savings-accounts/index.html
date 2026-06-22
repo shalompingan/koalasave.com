@@ -255,6 +255,7 @@
         .trust-box {
             background: #f8fafc; border: 1.5px solid #e2e8f0;
             border-radius: 14px; padding: 28px; margin: 32px 0;
+            content-visibility: auto; contain-intrinsic-size: 260px;
         }
         .trust-box h3 { font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
         .trust-box p { font-size: .88rem; color: #475569; margin-bottom: 10px; }
@@ -265,6 +266,7 @@
         .cross-cta {
             background: linear-gradient(135deg, #eff6ff, #dbeafe);
             border-radius: 14px; padding: 28px; text-align: center; margin: 36px 0;
+            content-visibility: auto; contain-intrinsic-size: 180px;
         }
         .cross-cta h3 { font-size: 1.1rem; font-weight: 700; color: #1e3a5f; margin: 0 0 8px; }
         .cross-cta p { font-size: .9rem; color: #475569; margin: 0 0 16px; }
@@ -276,7 +278,7 @@
         .cross-cta a[href]:hover { background: #1d4ed8; }
 
         /* ─── FAQ ─── */
-        .faq-item { border-bottom: 1px solid #eef2f6; padding: 14px 0; }
+        .faq-item { border-bottom: 1px solid #eef2f6; padding: 14px 0; content-visibility: auto; contain-intrinsic-size: 56px; }
         .faq-q { font-weight: 600; color: #0f172a; cursor: pointer; font-size: .95rem; padding: 4px 0; }
         .faq-q:hover { color: #2563eb; }
         .faq-q::before { content: "▸ "; color: #2563eb; }
@@ -294,7 +296,7 @@
         footer a:hover { text-decoration: underline; }
 
         /* ─── Related Tools ─── */
-        .related-tools { margin-top: 36px; margin-bottom: -12px; }
+        .related-tools { margin-top: 36px; margin-bottom: -12px; content-visibility: auto; contain-intrinsic-size: 180px; }
         .related-tools h3 { font-size: 1rem; color: #1e3a5f; margin-bottom: 14px; }
         .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .related-card {
@@ -500,6 +502,11 @@
             <div class="related-tools">
                 <h3>📌 You Might Also Want to Try</h3>
                 <div class="related-grid">
+                    <a href="/subscription-cost-calculator/" class="related-card">
+                        <span class="related-icon">📋</span>
+                        <span class="related-name">Subscription Cost Calculator</span>
+                        <span class="related-desc">Bill shock guaranteed — see your true spend</span>
+                    </a>
                     <a href="/" class="related-card">
                         <span class="related-icon">🛡️</span>
                         <span class="related-name">Emergency Fund Calculator</span>
@@ -509,11 +516,6 @@
                         <span class="related-icon">📉</span>
                         <span class="related-name">Debt Payoff Calculator</span>
                         <span class="related-desc">Compare snowball vs avalanche methods</span>
-                    </a>
-                    <a href="/?mode=housing" class="related-card">
-                        <span class="related-icon">🏠</span>
-                        <span class="related-name">Home Down Payment Planner</span>
-                        <span class="related-desc">Save for your first home</span>
                     </a>
                     <a href="/?mode=travel" class="related-card">
                         <span class="related-icon">🌴</span>

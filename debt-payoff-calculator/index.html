@@ -21,7 +21,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
-    <!-- Chart.js -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 
     <!-- FAQ Schema -->
@@ -240,6 +240,7 @@
             border: 1px solid var(--border-color);
             border-radius: var(--radius); padding: 24px;
             transition: border-color .2s;
+            contain: layout style;
         }
         .card:hover { border-color: rgba(255,255,255,.12); }
         .card-title {
@@ -491,7 +492,7 @@
         footer a:hover { text-decoration: underline; }
 
         /* ─── Related Tools ─── */
-        .related-tools { padding: 0 20px; margin-bottom: 0; }
+        .related-tools { padding: 0 20px; margin-bottom: 0; content-visibility: auto; contain-intrinsic-size: 180px; }
         .related-tools .container { max-width: 820px; margin: 0 auto; padding: 24px 0 8px; }
         .related-tools h3 { font-size: 1rem; color: var(--text-primary); margin-bottom: 14px; }
         .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -720,6 +721,11 @@
         <div class="container">
             <h3>📌 You Might Also Want to Try</h3>
             <div class="related-grid">
+                <a href="/subscription-cost-calculator/" class="related-card">
+                    <span class="related-icon">📋</span>
+                    <span class="related-name">Subscription Cost Calculator</span>
+                    <span class="related-desc">Bill shock guaranteed — see your true spend</span>
+                </a>
                 <a href="/" class="related-card">
                     <span class="related-icon">🛡️</span>
                     <span class="related-name">Emergency Fund Calculator</span>
@@ -729,11 +735,6 @@
                     <span class="related-icon">🏦</span>
                     <span class="related-name">HYSA Rate Comparison</span>
                     <span class="related-desc">Find 4–5% APY on your emergency fund</span>
-                </a>
-                <a href="/?mode=housing" class="related-card">
-                    <span class="related-icon">🏠</span>
-                    <span class="related-name">Home Down Payment Planner</span>
-                    <span class="related-desc">Save for your first home</span>
                 </a>
                 <a href="/?mode=travel" class="related-card">
                     <span class="related-icon">🌴</span>
