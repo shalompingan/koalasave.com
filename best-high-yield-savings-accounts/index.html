@@ -268,6 +268,29 @@
         }
         footer { text-align: center; padding: 24px 20px; font-size: .8rem; color: #94a3b8; border-top: 1px solid #e2e8f0; margin-top: 12px; }
         footer a { color: #2563eb; text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+        /* ─── Related Tools ─── */
+        .related-tools { margin-top: 36px; margin-bottom: -12px; }
+        .related-tools h3 { font-size: 1rem; color: #1e3a5f; margin-bottom: 14px; }
+        .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .related-card {
+            display: flex; flex-direction: column; gap: 2px;
+            background: #f8fafc; border-radius: 10px; padding: 14px 16px;
+            text-decoration: none; transition: background .2s, transform .2s;
+        }
+        .related-card:hover { background: #eff6ff; transform: translateY(-1px); }
+        .related-icon { font-size: 1.1rem; }
+        .related-name { font-weight: 600; font-size: .85rem; color: #1e3a5f; }
+        .related-desc { font-size: .75rem; color: #64748b; }
+        @media (max-width: 480px) { .related-grid { grid-template-columns: 1fr; } }
+
+        /* ─── Bottom Breadcrumb ─── */
+        .bottom-breadcrumb { padding: 14px 0 6px; font-size: .78rem; color: #94a3b8; text-align: center; }
+        .bottom-breadcrumb a { color: #2563eb; text-decoration: none; }
+        .bottom-breadcrumb a:hover { text-decoration: underline; }
+        .bottom-breadcrumb .sep { margin: 0 5px; color: #94a3b8; }
+        .bottom-breadcrumb .current { color: #64748b; }
 
         @media (max-width: 640px) {
             .hero h1 { font-size: 1.5rem; }
@@ -450,8 +473,44 @@
                 <p><strong>Advertising &amp; Affiliate Disclosure:</strong> We may earn a commission when you click through and open an account with one of the banks listed on this page. This does not influence our rankings — we prioritize rate accuracy and FDIC security above all else. KoalaSave is not a financial advisor. All information is for educational purposes and should not be considered financial advice. Always verify current rates directly with the financial institution before making a decision.</p>
             </div>
 
+            <!-- ─── Related Tools ─── -->
+            <div class="related-tools">
+                <h3>📌 You Might Also Want to Try</h3>
+                <div class="related-grid">
+                    <a href="/" class="related-card">
+                        <span class="related-icon">🛡️</span>
+                        <span class="related-name">Emergency Fund Calculator</span>
+                        <span class="related-desc">Build your safety net with progress tracking</span>
+                    </a>
+                    <a href="/debt-payoff-calculator/" class="related-card">
+                        <span class="related-icon">📉</span>
+                        <span class="related-name">Debt Payoff Calculator</span>
+                        <span class="related-desc">Compare snowball vs avalanche methods</span>
+                    </a>
+                    <a href="/?mode=housing" class="related-card">
+                        <span class="related-icon">🏠</span>
+                        <span class="related-name">Home Down Payment Planner</span>
+                        <span class="related-desc">Save for your first home</span>
+                    </a>
+                    <a href="/?mode=travel" class="related-card">
+                        <span class="related-icon">🌴</span>
+                        <span class="related-name">Travel Savings Calculator</span>
+                        <span class="related-desc">Plan your dream vacation fund</span>
+                    </a>
+                </div>
+            </div>
+
         </div>
     </div>
+
+    <!-- ─── Bottom Breadcrumb (PageRank flow) ─── -->
+    <nav class="bottom-breadcrumb" aria-label="Breadcrumb">
+        <div class="container">
+            <a href="/">Home</a><span class="sep">›</span>
+            <a href="/tools/saving-calculators/">All Calculators</a><span class="sep">›</span>
+            <span class="current">HYSA Rate Comparison</span>
+        </div>
+    </nav>
 
     <footer>
         <p>&copy; 2026 <a href="/">KoalaSave.com</a> — Free savings tools for everyone.</p>
