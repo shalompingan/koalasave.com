@@ -784,9 +784,11 @@
     }
 
     // ─── Calculate ───
-    document.getElementById('calculateBtn').addEventListener('click', calculate);
+    document.getElementById('calculateBtn').addEventListener('click', function() {
+        calculate(false);
+    });
 
-    function calculate() {
+    function calculate(suppressScroll) {
         updateRowData();
         // Filter out cancelled subscriptions from total
         var activeSubs = subscriptions.filter(function(s) { return !s.cancelled && s.name && s.cost !== '' && s.cost > 0; });
@@ -816,8 +818,10 @@
         // Render Cancellation Simulator
         renderSimulator();
 
-        // Scroll to results
-        resultsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Scroll to results (skip on initial page load)
+        if (!suppressScroll) {
+            resultsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
 
         // GA4 tracking
         if (typeof gtag === 'function') {
@@ -949,7 +953,7 @@
         sub.cancelled = !sub.cancelled;
         saveState();
         // Re-run full calculation to update everything
-        calculate();
+        calculate(false);
     }
 
     var feedbackQueue = [];
@@ -1086,7 +1090,7 @@
     // Check if we should show results on load (if returning user)
     var hasActiveSubs = subscriptions.filter(function(s) { return s.name && s.cost !== '' && s.cost > 0 && !s.cancelled; });
     if (hasActiveSubs.length > 0) {
-        calculate();
+        calculate(true);
     }
 
     // ─── GA4 Consent Mode ───
