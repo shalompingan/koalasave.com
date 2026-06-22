@@ -242,6 +242,47 @@
         .shock-number .sub { font-size: .95rem; color: #64748b; margin-top: 8px; }
         .shock-monthly { background: linear-gradient(135deg, #f0f4f8, #e2e8f0); }
         .shock-monthly .amount { color: #1e3a5f; }
+
+        /* ─── Donut Chart ─── */
+        .donut-section {
+            background: #fff; border-radius: 14px; padding: 20px 24px;
+            margin: 20px 0; box-shadow: 0 1px 3px rgba(0,0,0,.06);
+        }
+        .donut-row { display: flex; align-items: center; gap: 28px; }
+        .donut-chart-wrap { flex-shrink: 0; }
+        .donut-chart {
+            width: 180px; height: 180px; border-radius: 50%;
+            position: relative; background: #e2e8f0;
+        }
+        .donut-chart::after {
+            content: ''; position: absolute; top: 50%; left: 50%;
+            width: 62%; height: 62%; transform: translate(-50%, -50%);
+            background: #fff; border-radius: 50%; z-index: 1;
+        }
+        .donut-center {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%); z-index: 2;
+            text-align: center; pointer-events: none;
+        }
+        .donut-center-amount { font-size: 1.4rem; font-weight: 800; color: #0f172a; line-height: 1.2; }
+        .donut-center-label { font-size: .7rem; color: #94a3b8; }
+        .donut-legend { flex: 1; min-width: 0; }
+        .donut-legend-empty { padding: 8px 0; color: #94a3b8; font-size: .85rem; }
+        .donut-legend-item {
+            display: flex; align-items: center; gap: 8px;
+            padding: 5px 0; font-size: .85rem; color: #1e293b;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .donut-legend-item:last-child { border-bottom: none; }
+        .donut-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+        .donut-name { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .donut-cost { font-weight: 600; color: #0f172a; }
+        .donut-pct { color: #94a3b8; width: 40px; text-align: right; font-size: .8rem; }
+        @media (max-width: 640px) {
+            .donut-row { flex-direction: column; gap: 16px; text-align: center; }
+            .donut-chart { width: 150px; height: 150px; }
+            .donut-center-amount { font-size: 1.2rem; }
+        }
         .shock-yearly { background: linear-gradient(135deg, #fef2f2, #fee2e2); }
         .shock-yearly .amount { color: #dc2626; }
         .shock-opportunity { background: linear-gradient(135deg, #f0fdf4, #dcfce7); }
@@ -513,6 +554,24 @@
             <div class="label">Your Monthly Subscriptions</div>
             <div class="amount" id="monthlyAmount">$0.00</div>
             <div class="sub" id="monthlySub">This is your starting point. Now let’s see what it really means.</div>
+        </div>
+
+        <!-- Spending Breakdown Donut -->
+        <div class="donut-section" id="donutSection">
+            <h3 style="font-size:.95rem;font-weight:700;color:#1e3a5f;margin-bottom:14px;">📊 Where Your Money Goes</h3>
+            <div class="donut-row">
+                <div class="donut-chart-wrap">
+                    <div class="donut-chart" id="donutChart">
+                        <div class="donut-center">
+                            <div class="donut-center-amount" id="donutAmount">$0</div>
+                            <div class="donut-center-label">/ month</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="donut-legend" id="donutLegend">
+                    <div class="donut-legend-empty">Add subscriptions to see your spending breakdown.</div>
+                </div>
+            </div>
         </div>
 
         <!-- Shock Layer 2: Yearly + Analogies -->
@@ -807,6 +866,9 @@
         document.getElementById('monthlyAmount').textContent = '$' + monthlyTotal.toFixed(2);
         document.getElementById('monthlySub').textContent = activeSubs.length + ' active subscription' + (activeSubs.length > 1 ? 's' : '') + '. This is your starting point. Now let’s see what it really means.';
 
+        // Spending Breakdown Donut
+        renderDonutChart(activeSubs, monthlyTotal);
+
         // Layer 2: Yearly + Analogies
         document.getElementById('yearlyAmount').textContent = '$' + yearlyTotal.toFixed(2);
         renderAnalogies(yearlyTotal);
@@ -914,6 +976,47 @@
 
         wrap.innerHTML = html;
         document.getElementById('opportunityAmount').textContent = '$' + finalValue.toFixed(0);
+    }
+
+    // ─── Spending Breakdown Donut ───
+    function renderDonutChart(activeSubs, total) {
+        var donut = document.getElementById('donutChart');
+        var legend = document.getElementById('donutLegend');
+        var center = document.getElementById('donutAmount');
+
+        if (activeSubs.length === 0 || total <= 0) {
+            donut.style.background = '#e2e8f0';
+            legend.innerHTML = '<div class="donut-legend-empty">Add subscriptions to see your spending breakdown.</div>';
+            center.textContent = '$0';
+            return;
+        }
+
+        var colors = ['#2563eb', '#dc2626', '#059669', '#d97706', '#7c3aed', '#ec4899', '#0891b2', '#ca8a04', '#4f46e5', '#db2777'];
+        var pctSum = 0;
+        var parts = [];
+
+        activeSubs.forEach(function(sub, idx) {
+            var pct = sub.cost / total * 100;
+            var start = pctSum;
+            pctSum += pct;
+            var color = colors[idx % colors.length];
+            parts.push(color + ' ' + start + '% ' + pctSum + '%');
+        });
+
+        donut.style.background = 'conic-gradient(' + parts.join(', ') + ')';
+        center.textContent = '$' + total.toFixed(0);
+
+        var html = '';
+        activeSubs.forEach(function(sub, idx) {
+            var pct = sub.cost / total * 100;
+            var color = colors[idx % colors.length];
+            html += '<div class="donut-legend-item">' +
+                '<span class="donut-dot" style="background:' + color + '"></span>' +
+                '<span class="donut-name">' + esc(sub.name) + '</span>' +
+                '<span class="donut-cost">$' + sub.cost.toFixed(2) + '</span>' +
+                '<span class="donut-pct">' + pct.toFixed(1) + '%</span></div>';
+        });
+        legend.innerHTML = html;
     }
 
     // ─── Simulator ───
