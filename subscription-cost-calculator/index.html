@@ -108,7 +108,6 @@
 
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
         body {
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
@@ -1087,6 +1086,13 @@
 
     // ─── Init ───
     renderRows();
+    // Show results on load (like all other KoalaSave tools)
+    calculate(true);
+    // Safety: ensure page starts at top after layout settles
+    (function() {
+        var raf = window.requestAnimationFrame || window.setTimeout;
+        raf(function() { if (window.scrollY > 0) window.scrollTo(0, 0); });
+    })();
 
     // GA4 Consent Mode
     // Consent defaults already set by main site. This page respects them.
