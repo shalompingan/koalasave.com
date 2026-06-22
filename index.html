@@ -116,6 +116,18 @@
     }
     </script>
 
+    <!-- BreadcrumbList JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://koalasave.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Savings Calculator", "item": "https://koalasave.com/" }
+        ]
+    }
+    </script>
+
     <!-- Chart.js + html2canvas loaded lazily on demand -->
 
     <style>
@@ -1805,6 +1817,26 @@
                 '</div>'
             ).join('');
             document.getElementById('faqTitle').innerHTML = cfg.faqTitle;
+
+            // FAQPage JSON-LD for People Also Ask eligibility
+            var faqSchema = document.getElementById('faqSchemaJson');
+            if (!faqSchema) {
+                faqSchema = document.createElement('script');
+                faqSchema.id = 'faqSchemaJson';
+                faqSchema.type = 'application/ld+json';
+                document.head.appendChild(faqSchema);
+            }
+            faqSchema.textContent = JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'FAQPage',
+                'mainEntity': cfg.faq.map(function(item) {
+                    return {
+                        '@type': 'Question',
+                        'name': item.q,
+                        'acceptedAnswer': { '@type': 'Answer', 'text': item.a }
+                    };
+                })
+            });
 
             // Tool links
             const toolLinksContainer = document.getElementById('toolLinksContainer');
