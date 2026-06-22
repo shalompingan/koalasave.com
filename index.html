@@ -73,14 +73,44 @@
                 "url": "https://koalasave.com/",
                 "description": "Free interactive savings calculator with progress tracking, charts, and multiple goal support.",
                 "applicationCategory": "FinanceApplication",
-                "operatingSystem": "All"
+                "operatingSystem": "All",
+                "browserRequirements": "Requires JavaScript",
+                "softwareVersion": "2.0",
+                "datePublished": "2025-12-01",
+                "dateModified": "2026-06-22",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "USD"
+                },
+                "author": {
+                    "@type": "Person",
+                    "name": "Shalom Pingan",
+                    "url": "https://koalasave.com/about/"
+                },
+                "featureList": [
+                    "Emergency fund calculator",
+                    "Travel savings planner",
+                    "Home down payment tracker",
+                    "Progress ring visualization",
+                    "Savings projection chart",
+                    "What-if scenario analysis",
+                    "Shareable goal cards",
+                    "Team challenge mode"
+                ]
             },
             {
                 "@type": "Organization",
                 "@id": "https://koalasave.com/#organization",
                 "name": "KoalaSave",
                 "url": "https://koalasave.com/",
-                "logo": "https://koalasave.com/favicon.png"
+                "logo": "https://koalasave.com/favicon.png",
+                "description": "Free, privacy-first savings goal calculator and financial planning tools.",
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "email": "support@koalasave.com",
+                    "contactType": "customer support"
+                }
             }
         ]
     }
@@ -221,6 +251,9 @@
         }
         header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.5px; }
         header p { font-size: 1rem; opacity: .85; margin-top: 6px; }
+        .last-updated { text-align: center; font-size: .75rem; color: #94a3b8; margin-top: -8px; margin-bottom: 4px; }
+        .last-updated span { background: #f1f5f9; padding: 2px 10px; border-radius: 20px; display: inline-block; }
+        @media (max-width: 640px) { .last-updated { font-size: .7rem; margin-top: -6px; } }
 
         /* ─── Cards ─── */
         .card {
@@ -803,6 +836,8 @@
             <p id="headerDesc">Plan your savings &amp; watch your progress — free interactive tracker</p>
         </div>
     </header>
+
+    <div class="last-updated"><span>📅 Updated June 22, 2026</span></div>
 
     <main class="container" style="margin-top: 20px;">
 
@@ -1658,6 +1693,7 @@
                     app.name = cfg.seo.schemaName;
                     app.description = cfg.seo.schemaDescription;
                     app.url = cfg.seo.canonical;
+                    app.dateModified = new Date().toISOString().split('T')[0];
                 }
                 schemaEl.textContent = JSON.stringify(schema);
             } catch(e) {}
