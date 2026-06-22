@@ -1087,13 +1087,8 @@
 
     // ─── Init ───
     renderRows();
-    // Check if we should show results on load (if returning user)
-    var hasActiveSubs = subscriptions.filter(function(s) { return s.name && s.cost !== '' && s.cost > 0 && !s.cancelled; });
-    if (hasActiveSubs.length > 0) {
-        calculate(true);
-    }
 
-    // ─── GA4 Consent Mode ───
+    // GA4 Consent Mode
     // Consent defaults already set by main site. This page respects them.
 })();
 </script>
