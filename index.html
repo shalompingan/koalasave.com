@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Consent Mode v2 — defaults to deny -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
+        'wait_for_update': 500
+      });
+      gtag('set', 'ads_data_redaction', true);
+      gtag('set', 'url_passthrough', true);
+    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-05GKEP7NNY"></script>
     <script>
@@ -375,6 +389,26 @@
             transition: max-height .35s cubic-bezier(0.4,0,0.2,1), opacity .25s ease, margin-top .25s ease;
         }
         .faq-a.open { max-height: 150px; opacity: 1; margin-top: 10px; }
+
+        /* ─── Cookie Consent Banner ─── */
+        .cookie-banner {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+            background: #0f172a; color: #e2e8f0; padding: 18px 24px;
+            font-size: .85rem; line-height: 1.6;
+            transform: translateY(100%); transition: transform .4s cubic-bezier(0.4,0,0.2,1);
+            box-shadow: 0 -8px 30px rgba(0,0,0,.2);
+        }
+        .cookie-banner.show { transform: translateY(0); }
+        .cookie-banner-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+        .cookie-banner-inner p { margin: 0; flex: 1; min-width: 240px; }
+        .cookie-banner-inner .btn-row { display: flex; gap: 8px; flex-shrink: 0; }
+        .cookie-banner-inner .btn { padding: 8px 18px; border-radius: 8px; font-size: .82rem; font-weight: 600; cursor: pointer; border: none; }
+        .cookie-btn-accept { background: #2563eb; color: #fff; }
+        .cookie-btn-accept:hover { background: #1d4ed8; }
+        .cookie-btn-reject { background: transparent; color: #94a3b8; border: 1px solid #334155; }
+        .cookie-btn-reject:hover { background: #1e293b; color: #e2e8f0; }
+        .cookie-btn-settings { background: transparent; color: #94a3b8; text-decoration: underline; border: none; cursor: pointer; padding: 8px 4px; font-size: .8rem; }
+        .cookie-btn-settings:hover { color: #e2e8f0; }
 
         /* ─── Toast ─── */
         .toast {
@@ -987,6 +1021,8 @@
                 <a href="javascript:void(0)" onclick="openModal('contact')">Contact Us</a>
                 <span class="footer-sep">|</span>
                 <a href="https://www.nerdwallet.com/best/banking/high-yield-online-savings-accounts" target="_blank" rel="noopener" class="footer-affiliate">🏦 Compare HYSA Rates</a>
+				<span class="footer-sep">|</span>
+				<a href="javascript:void(0)" onclick="showCookieSettings()">Cookie Settings</a>
             </div>
         </div>
     </footer>
@@ -1175,9 +1211,10 @@
                 render: function() {
                     return '<p><strong>Information Collection:</strong> KoalaSave does not collect any personally identifiable information (PII). You do not need to create an account or provide personal data to use the Service. All financial goals, target amounts, and savings data you enter are stored exclusively in your browser\'s localStorage on your own device.</p>' +
                         '<p><strong>LocalStorage Technology:</strong> We use localStorage, not traditional cookies, to store your data. localStorage data never leaves your device and is not sent to our servers. Clearing your browser cache will permanently delete your saved goals.</p>' +
-                        '<p><strong>Third-Party Services:</strong> We may use Google Analytics (anonymized IPs) for usage analysis and Google AdSense for advertisements. These services may place cookies governed by their own privacy policies. Affiliate links on this site may earn us a commission at no extra cost to you.</p>' +
+                        '<p><strong>Google Consent Mode v2 &amp; Cookie Consent:</strong> We use Google Consent Mode v2 to manage consent for Google Analytics (anonymized IPs) and Google AdSense. Upon your first visit, a cookie consent banner asks you to Accept or Reject non-essential cookies. Your choice is saved in localStorage and can be changed at any time. Granting consent enables personalized ads and analytics; rejecting limits data collection to strictly anonymous traffic measurement. For more details, see <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google\'s Privacy Policy</a>.</p>' +
+                        '<p><strong>GDPR &amp; Your Privacy Rights (EU/UK):</strong> If you are in the European Economic Area (EEA) or the United Kingdom, you have the right to: (1) withdraw consent at any time via the cookie banner; (2) request information about what data is processed; (3) lodge a complaint with your local data protection authority. We process no personal data server-side — all goal data stays in your browser. You can withdraw or update consent by clicking the "Cookie Settings" link in the footer.</p>' +
                         '<p><strong>Children\'s Privacy:</strong> Our Service is not directed at children under 13 (or under 16 in the EU/UK). We do not knowingly collect any personal information from children.</p>' +
-                        '<p><strong>Your Rights:</strong> All your data is stored locally. You can delete it anytime by clearing your browser\'s localStorage for this site. For questions, contact us at <a href="mailto:support@koalasave.com">support@koalasave.com</a>.</p>';
+                        '<p><strong>Your Rights:</strong> All your data is stored locally. You can delete it anytime by clearing your browser\'s localStorage for this site. To update your cookie preferences, click the "Cookie Settings" link in the footer. For questions, contact us at <a href="mailto:support@koalasave.com">support@koalasave.com</a>.</p>';
                 }
             },
             terms: {
@@ -2492,6 +2529,39 @@
     })();
     </script>
 
+    <!-- ─── Cookie Consent Banner ─── -->
+    <div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Cookie consent">
+        <div class="cookie-banner-inner">
+            <p>We use cookies to analyze traffic and improve your experience.
+            <a href="javascript:void(0)" onclick="window.closeModal();openModal('privacy')">Learn more</a>.</p>
+            <div class="btn-row">
+                <button class="btn cookie-btn-reject" onclick="denyConsent()">Reject All</button>
+                <button class="btn cookie-btn-accept" onclick="acceptConsent()">Accept All</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function acceptConsent() {
+        gtag('consent', 'update', {'ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted','analytics_storage':'granted'});
+        document.getElementById('cookieBanner').classList.remove('show');
+        localStorage.setItem('koalasave_consent','granted');
+    }
+    function denyConsent() {
+        gtag('consent', 'update', {'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied'});
+        document.getElementById('cookieBanner').classList.remove('show');
+        localStorage.setItem('koalasave_consent','denied');
+    }
+    function showCookieSettings() {
+        localStorage.removeItem('koalasave_consent');
+        document.getElementById('cookieBanner').classList.add('show');
+    }
+    (function(){
+        var c = localStorage.getItem('koalasave_consent');
+        if (!c) { setTimeout(function(){ document.getElementById('cookieBanner').classList.add('show'); }, 800); }
+        else if (c === 'granted') { gtag('consent', 'update', {'ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted','analytics_storage':'granted'}); }
+    })();
+    </script>
     <!-- ═══ Service Worker Registration ═══ -->
     <script>
     if ('serviceWorker' in navigator) {
