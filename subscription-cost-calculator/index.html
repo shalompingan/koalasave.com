@@ -229,9 +229,6 @@
         .btn-outline:hover { background: #eff6ff; }
 
         /* ─── Results ─── */
-        .results-area { display: none; }
-        .results-area.visible { display: block; animation: fadeSlide .4s ease; }
-        @keyframes fadeSlide { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
 
         .shock-number {
             text-align: center; padding: 32px 20px;
@@ -552,8 +549,8 @@
         <!-- Shock Layer 1: Monthly -->
         <div class="shock-number shock-monthly">
             <div class="label">Your Monthly Subscriptions</div>
-            <div class="amount" id="monthlyAmount">$0.00</div>
-            <div class="sub" id="monthlySub">This is your starting point. Now let’s see what it really means.</div>
+            <div class="amount" id="monthlyAmount">$54.99</div>
+            <div class="sub" id="monthlySub">3 active subscriptions. This is your starting point. Now let’s see what it really means.</div>
         </div>
 
         <!-- Spending Breakdown Donut -->
@@ -563,7 +560,7 @@
                 <div class="donut-chart-wrap">
                     <div class="donut-chart" id="donutChart">
                         <div class="donut-center">
-                            <div class="donut-center-amount" id="donutAmount">$0</div>
+                            <div class="donut-center-amount" id="donutAmount">$55</div>
                             <div class="donut-center-label">/ month</div>
                         </div>
                     </div>
@@ -577,7 +574,7 @@
         <!-- Shock Layer 2: Yearly + Analogies -->
         <div class="shock-number shock-yearly" id="yearlyShock">
             <div class="label">That’s Per Year</div>
-            <div class="amount" id="yearlyAmount">$0.00</div>
+            <div class="amount" id="yearlyAmount">$659.88</div>
             <div class="sub" id="yearlySub">Here's what that actually buys:</div>
         </div>
         <div class="analogy-list" id="analogyList"></div>
@@ -817,7 +814,6 @@
                 subscriptions.splice(idx, 1);
                 saveState();
                 renderRows();
-                hideResults();
             });
         });
     }
@@ -857,10 +853,6 @@
             alert('Add at least one subscription to see your total.');
             return;
         }
-
-        // Show results
-        var resultsArea = document.getElementById('resultsArea');
-        resultsArea.classList.add('visible');
 
         // Layer 1: Monthly
         document.getElementById('monthlyAmount').textContent = '$' + monthlyTotal.toFixed(2);
@@ -1183,20 +1175,9 @@
         ];
     }
 
-    function hideResults() {
-        document.getElementById('resultsArea').classList.remove('visible');
-    }
-
     // ─── Init ───
     renderRows();
-    // Show results on load (like all other KoalaSave tools)
     calculate(true);
-    // Safety: ensure page starts at top after layout settles
-    (function() {
-        var raf = window.requestAnimationFrame || window.setTimeout;
-        raf(function() { if (window.scrollY > 0) window.scrollTo(0, 0); });
-    })();
-
     // GA4 Consent Mode
     // Consent defaults already set by main site. This page respects them.
 })();
