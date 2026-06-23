@@ -132,11 +132,13 @@ const STATIC_FILES = [
 // ─── Build ───
 
 function build() {
-    console.log('🔨 KoalaSave Build — Minifying all HTML files...\n');
+    const inplace = process.argv.includes('--inplace');
 
-    // Clean dist
-    if (fs.existsSync(DIST)) fs.rmSync(DIST, { recursive: true });
-    fs.mkdirSync(DIST, { recursive: true });
+    console.log(`🔨 KoalaSave Build — Minifying all HTML files...${inplace ? ' (in-place)' : ''}\n`);
+
+    // Clean dist (only if not inplace)
+    if (!inplace && fs.existsSync(DIST)) fs.rmSync(DIST, { recursive: true });
+    if (!inplace) fs.mkdirSync(DIST, { recursive: true });
 
     // Find HTML files
     const allFiles = getAllFiles(ROOT, '.html');
@@ -152,7 +154,13 @@ function build() {
         const original = fs.readFileSync(srcPath, 'utf-8');
         const minified = minifyHTML(original);
 
-        const dstPath = path.join(DIST, relPath);
+        const isInplace = process.argv.includes('--inplace');
+        const dstPath = isInplace ? srcPath : path.join(DIST, relPath);
+        // Backup original if inplace (saved as .orig)
+        if (isInplace) {
+            const bakPath = srcPath + '.orig';
+            if (!fs.existsSync(bakPath)) fs.copyFileSync(srcPath, bakPath);
+        }
         fs.mkdirSync(path.dirname(dstPath), { recursive: true });
         fs.writeFileSync(dstPath, minified, 'utf-8');
 
@@ -166,17 +174,24 @@ function build() {
         console.log(`    ${(oSize/1024).toFixed(1)} KB → ${(mSize/1024).toFixed(1)} KB  (${savings}%)`);
     }
 
-    // Copy static files
-    for (const fname of STATIC_FILES) {
-        const src = path.join(ROOT, fname);
-        if (fs.existsSync(src)) {
-            fs.copyFileSync(src, path.join(DIST, fname));
-            console.log(`  ${fname} — copied`);
+    // Copy static files (only for dist/ mode)
+    if (!process.argv.includes('--inplace')) {
+        for (const fname of STATIC_FILES) {
+            const src = path.join(ROOT, fname);
+            if (fs.existsSync(src)) {
+                fs.copyFileSync(src, path.join(DIST, fname));
+                console.log(`  ${fname} — copied`);
+            }
         }
     }
 
     console.log(`\n📊 Total: ${(totalOrig/1024).toFixed(0)} KB → ${(totalMin/1024).toFixed(0)} KB  (saved ${((totalOrig-totalMin)/1024).toFixed(0)} KB, ${(((totalOrig-totalMin)/totalOrig)*100).toFixed(0)}%)`);
-    console.log(`📁 Output: ${DIST}`);
+    if (process.argv.includes('--inplace')) {
+        console.log('📝 Source files updated in-place. Originals saved as *.orig');
+        console.log('💡 To restore: delete any .html file and rename .html.orig back');
+    } else {
+        console.log(`📁 Output: ${DIST}`);
+    }
 
     return true;
 }
