@@ -2,18 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://koalasave.com/</loc>
-    <lastmod>2026-06-22</lastmod>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://koalasave.com/travel/</loc>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://koalasave.com/housing/</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-06-23</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
