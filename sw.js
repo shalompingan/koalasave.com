@@ -1,11 +1,15 @@
 /* KoalaSave Service Worker — cache static assets for offline use */
-const CACHE = 'koalasave-v1';
+const CACHE = 'koalasave-v2';
 const STATIC_URLS = [
     '/',
     '/favicon.png',
     '/blog/',
     '/index.html',
+    '/travel/',
+    '/housing/',
     '/debt-payoff-calculator/',
+    '/subscription-cost-calculator/',
+    '/best-high-yield-savings-accounts/',
     '/blog/emergency-fund-guide/',
     '/blog/how-to-save-for-a-house-down-payment/',
     '/blog/how-to-save-for-a-trip-to-japan/',
