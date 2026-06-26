@@ -124,7 +124,7 @@ function minifyHTML(html) {
 // ─── Copy static assets ───
 
 const STATIC_FILES = [
-    'favicon.png', 'logo.png', 'logo-32.webp', 'logo-64.webp', 'share-cover.png',
+    'favicon.png', 'logo.png', 'logo-32.webp', 'logo-64.webp', 'share-cover.webp',
     'offline.html', 'manifest.json', 'sw.js', 'sitemap.xml', 'robots.txt', 'ads.txt',
     'privacy-policy.html', 'terms-of-service.html'
 ];
