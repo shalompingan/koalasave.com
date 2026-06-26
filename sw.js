@@ -1,10 +1,10 @@
 /* KoalaSave Service Worker — cache static assets for offline use */
 const CACHE = 'koalasave-v2';
-const OFFLINE_URL = '/offline.html';
+const OFFLINE_URL = '/offline';
 const STATIC_URLS = [
     '/',
     '/favicon.png',
-    '/offline.html',
+    '/offline',
     '/logo-32.webp',
     '/about/',
     '/blog/',
