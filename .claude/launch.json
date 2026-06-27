@@ -6,7 +6,7 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": [
         "serve",
-        "C:\\Users\\shalom\\koalasave.com"
+        "C:\\Users\\shalom\\koalasave.com\\dist"
       ],
       "port": 3000
     }
