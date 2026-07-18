@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none">
+  <circle cx="60" cy="60" r="56" fill="#FFF8E1" stroke="#1e3a5f" stroke-width="2.5"/>
+  <!-- 墨镜左 -->
+  <ellipse cx="44" cy="54" rx="12" ry="8" fill="#1e3a5f" stroke="#1e3a5f" stroke-width="1.5"/>
+  <!-- 墨镜右 -->
+  <ellipse cx="76" cy="54" rx="12" ry="8" fill="#1e3a5f" stroke="#1e3a5f" stroke-width="1.5"/>
+  <!-- 墨镜桥 -->
+  <path d="M56 54 Q60 50 64 54" stroke="#1e3a5f" stroke-width="2" fill="none"/>
+  <!-- 墨镜高光 -->
+  <line x1="38" y1="52" x2="48" y2="52" stroke="#6b8cae" stroke-width="1" opacity="0.5"/>
+  <line x1="70" y1="52" x2="80" y2="52" stroke="#6b8cae" stroke-width="1" opacity="0.5"/>
+  <!-- 耳朵 -->
+  <ellipse cx="26" cy="32" rx="16" ry="14" fill="#A8D8EA" stroke="#1e3a5f" stroke-width="2.5"/>
+  <ellipse cx="26" cy="32" rx="8" ry="7" fill="#FFB6C1"/>
+  <ellipse cx="94" cy="32" rx="16" ry="14" fill="#A8D8EA" stroke="#1e3a5f" stroke-width="2.5"/>
+  <ellipse cx="94" cy="32" rx="8" ry="7" fill="#FFB6C1"/>
+  <!-- 头 -->
+  <ellipse cx="60" cy="58" rx="30" ry="28" fill="#A8D8EA" stroke="#1e3a5f" stroke-width="2.5"/>
+  <ellipse cx="60" cy="64" rx="22" ry="20" fill="#E8F4F8"/>
+  <!-- 鼻子 -->
+  <ellipse cx="60" cy="64" rx="6" ry="5" fill="#1e3a5f"/>
+  <!-- 微笑 -->
+  <path d="M54 70 Q60 76 66 70" stroke="#1e3a5f" stroke-width="2" stroke-linecap="round"/>
+  <!-- 树叶 -->
+  <path d="M85 30 Q100 20 95 40 Q90 50 85 30Z" fill="#4CAF50" stroke="#2E7D32" stroke-width="1.5"/>
+  <path d="M85 30 Q95 28 95 40" stroke="#2E7D32" stroke-width="1" fill="none"/>
+</svg>

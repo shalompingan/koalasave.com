@@ -25,7 +25,7 @@ export default {
           'api-key': env.BREVO_API_KEY,
         },
         body: JSON.stringify({
-          sender: { name: 'KoalaSave Contact', email: 'cqionglei@gmail.com' },
+          sender: { name: 'KoalaSave', email: 'support@koalasave.com' },
           to: [{ name: 'KoalaSave Support', email: 'support@koalasave.com' }],
           replyTo: { name: name, email: email },
           subject: `KoalaSave Contact: ${name}`,

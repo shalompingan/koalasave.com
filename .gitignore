@@ -1,7 +1,11 @@
 dist/
 *.orig
+*.bak
+*.new
 node_modules/
 .claude/
+fix.js
+fix-all.js
 _debug_*.js
 _check_*.js
 _dcheck*.js
