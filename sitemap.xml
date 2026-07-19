@@ -80,11 +80,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://koalasave.com/tools/budget-planners/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://koalasave.com/subscription-cost-calculator/</loc>
     <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
