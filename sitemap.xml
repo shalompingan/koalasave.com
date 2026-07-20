@@ -14,16 +14,18 @@
   </url>
   <url>
     <loc>https://koalasave.com/housing/</loc>
-    <lastmod>2026-06-23</lastmod>
+    <lastmod>2026-07-19</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://koalasave.com/about/</loc>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://koalasave.com/blog/</loc>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -71,13 +73,21 @@
   </url>
   <url>
     <loc>https://koalasave.com/tools/</loc>
+    <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://koalasave.com/tools/saving-calculators/</loc>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://koalasave.com/contact/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://koalasave.com/subscription-cost-calculator/</loc>
@@ -87,26 +97,31 @@
   </url>
   <url>
     <loc>https://koalasave.com/privacy-policy.html</loc>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://koalasave.com/terms-of-service.html</loc>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://koalasave.com/cookie-policy.html</loc>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://koalasave.com/disclaimer/</loc>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://koalasave.com/offline.html</loc>
+    <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.1</priority>
   </url>
