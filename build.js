@@ -126,7 +126,7 @@ function minifyHTML(html) {
 const STATIC_FILES = [
     'favicon.png', 'logo.png', 'logo-32.webp', 'logo-64.webp', 'share-cover.webp',
     'offline.html', 'manifest.json', 'sw.js', 'sitemap.xml', 'robots.txt', 'ads.txt',
-    'privacy-policy.html', 'terms-of-service.html'
+    'privacy-policy.html', 'terms-of-service.html', 'hysa-rates.json'
 ];
 
 // ─── Build ───

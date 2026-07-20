@@ -1,0 +1,10 @@
+[
+  {"name":"Wealthfront","short":"WF","apy":4.00,"min":0,"desc":"Cash Account · FDIC insured up to $8M","color":"linear-gradient(135deg,#6366f1,#4f46e5)"},
+  {"name":"SoFi","short":"SF","apy":3.10,"min":0,"desc":"Checking&Savings · Direct deposit required for top rate","color":"linear-gradient(135deg,#10b981,#059669)"},
+  {"name":"Marcus by Goldman Sachs","short":"MG","apy":3.90,"min":0,"desc":"High-Yield Savings · No fees,no minimums","color":"linear-gradient(135deg,#2563eb,#1d4ed8)"},
+  {"name":"Ally Bank","short":"AB","apy":3.85,"min":0,"desc":"Online Savings · No monthly fees","color":"linear-gradient(135deg,#dc2626,#b91c1c)"},
+  {"name":"CIT Bank","short":"CT","apy":4.10,"min":5000,"desc":"Platinum Savings · $5K min to earn top rate · Promo CITBoost","color":"linear-gradient(135deg,#0891b2,#0e7490)"},
+  {"name":"American Express","short":"AX","apy":3.00,"min":0,"desc":"High-Yield Savings · No fees","color":"linear-gradient(135deg,#7c3aed,#6d28d9)"},
+  {"name":"Discover","short":"DI","apy":3.30,"min":0,"desc":"Online Savings · No longer accepting new applications — converting to Capital One 360 on 8/23/26","color":"linear-gradient(135deg,#f59e0b,#d97706)"},
+  {"name":"Capital One 360","short":"C1","apy":3.00,"min":0,"desc":"Performance Savings · No fees or minimums","color":"linear-gradient(135deg,#64748b,#475569)"}
+]
